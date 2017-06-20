@@ -30,3 +30,6 @@ Route::get('/test', function() {
     $data['message'] = 'nihao';
     $pusher->trigger('my-channel', 'my-event', $data);
 });
+Route::get('/phpinfo', function(){
+    phpinfo();
+});
