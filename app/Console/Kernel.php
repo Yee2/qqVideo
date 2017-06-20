@@ -16,7 +16,7 @@ class Kernel extends ConsoleKernel
         'App\Console\Commands\Se',
         'App\Console\Commands\Socket',
         'App\Console\Commands\One',
-        'App\Console\Commands\XiciIp',
+        'App\Console\Commands\XiciIP',
         'App\Console\Commands\Video',
         'App\Console\Commands\Youjizz',
         'App\Console\Commands\Qq',
