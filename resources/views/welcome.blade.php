@@ -72,6 +72,7 @@
             欢迎您！
         </div>
     </div>
+    <video src="/test" type="video/mp4" controls="controls"></video>
 </div>
 </body>
 </html>

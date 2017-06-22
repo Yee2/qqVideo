@@ -15,20 +15,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/test', function() {
-    //include_once(public_path().'\..\vendor\pusher\pusher-php-server\lib\Pusher.php');
-    $options = array(
-        'cluster' => 'ap1',
-        'encrypted' => false
-    );
-    $pusher = new Pusher(
-        '393cf83ed8f2f30f0e8c',
-        '0d102b1fd2a1b6fed2ef',
-        '331778',
-        $options
-    );
-
-    $data['message'] = 'nihao';
-    $pusher->trigger('my-channel', 'my-event', $data);
+    $file = \App\Video::find(1);
+    $path = $file->file_url;
+    set_time_limit(0);
+    return readfile($path);
+    /*$stream = new \App\VideoStream($path);
+    return response()->stream(function() use ($stream) {
+        $stream->start();
+    });
+    return response("File doesn't exists", 404);*/
 });
 Route::get('/phpinfo', function(){
     phpinfo();
