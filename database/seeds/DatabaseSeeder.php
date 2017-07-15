@@ -11,6 +11,45 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
+        \App\VideoType::insert([
+            [
+                'name' => '乱伦',
+            ],
+            [
+                'name' => '人妻',
+            ],
+            [
+                'name' => '偷拍',
+            ],
+            [
+                'name' => '学生',
+            ],
+            [
+                'name' => '巨乳',
+            ],
+            [
+                'name' => '日韩',
+            ],
+            [
+                'name' => '欧美',
+            ],
+            [
+                'name' => '国产',
+            ],
+            [
+                'name' => '动漫',
+            ],
+        ]);
+        \App\SpVideoType::insert([
+            [
+                'name' => '电影',
+            ],
+            [
+                'name' => '电视剧',
+            ],
+            [
+                'name' => '动漫',
+            ],
+        ]);
     }
 }

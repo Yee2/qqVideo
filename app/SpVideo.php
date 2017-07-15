@@ -2,9 +2,7 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
-
-class SpVideo extends Model
+class SpVideo extends Base
 {
     //
 }

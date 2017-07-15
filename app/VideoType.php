@@ -2,7 +2,7 @@
 
 namespace App;
 
-class UserAgent extends Base
+class VideoType extends Base
 {
     //
 }

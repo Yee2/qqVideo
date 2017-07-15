@@ -7,6 +7,7 @@ use App\UserAgent;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Storage;
 
 class Yiqiyin extends Command
@@ -29,16 +30,16 @@ class Yiqiyin extends Command
         $house = date('Y', time());
         if($house > 13 && $house < 23)
         {
-            $num = 1;
+            $num = 50;
         }elseif ($house >= 23)
         {
-            $num = 5;
+            $num = 80;
         }elseif ($house > 0 && $house < 6)
         {
-            $num = 8;
+            $num = 120;
         }elseif ($house > 6 && $house <= 12)
         {
-            $num = 10;
+            $num = 200;
         }
         for ($i = 0; $i < $num; $i++)
         {
@@ -60,6 +61,7 @@ class Yiqiyin extends Command
                     Log::info("成功请求URL：".$urls);
                 }
             }
+            Artisan::call('ads:yiqiyin');
         }
     }
 

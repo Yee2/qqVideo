@@ -13,12 +13,12 @@ class VideoType extends Migration
      */
     public function up()
     {
-        Schema::create('video_type', function (Blueprint $table) {
+        Schema::create('video_types', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->default('')->index()->comment("类型名称");
             $table->string('remark')->default('')->comment("备注");
-            $table->tinyInteger('sort')->default(0)->comment("排序");
-            $table->tinyInteger('status')->default(1)->comment("状态：1正常");
+            $table->integer('sort')->default(0)->comment("排序");
+            $table->integer('status')->default(1)->comment("状态：1正常");
         });
     }
 
@@ -29,6 +29,6 @@ class VideoType extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('video_type');
+        Schema::dropIfExists('video_types');
     }
 }

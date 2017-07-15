@@ -2,9 +2,7 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
-
-class SpThumb extends Model
+class SpThumb extends Base
 {
     //
 }
