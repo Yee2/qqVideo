@@ -17,7 +17,7 @@ Route::get('/', function () {
     preg_match("/var COVER_INFO = (.+)\n/", $contents, $listMatch);
     $pathInfo = pathinfo($url);
     $json = json_decode($listMatch[1], true);
-    $find = \App\SpAlbum::where('title', '楚乔传')->first();
+    $find = \App\Models\SpAlbum::where('title', '楚乔传')->first();
     if(!is_null($find)){
         if(is_null($find->tags)){
             $find->tags = implode(',', $json['subtype']);
@@ -34,9 +34,9 @@ Route::get('/', function () {
             'title' => ($key+1),
             'source_url' => $urls,
         ];
-        $info = \App\SpVideo::where($data)->first();
+        $info = \App\Models\SpVideo::where($data)->first();
         if(is_null($info)){
-            $res = \App\SpVideo::create($data);
+            $res = \App\Models\SpVideo::create($data);
         }
     }
     /*foreach ($list as $key => $item)
