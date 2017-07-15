@@ -7,6 +7,9 @@ header .nav-list{
 header .userPanel{
     line-height: 36px;
 }
+div {
+    background-color: #000;
+}
 header .logo{
     height: 42px;
     width: 101px;
@@ -38,7 +41,7 @@ header .userPanel .login, header .userPanel .register,header .userPanel .lqVip{
 }
 .dataList .shipin .title{
     font-size: 1.8rem;
-    line-height: 2.3rem;
+    line-height: 4.3rem;
 }
 
 /*专辑页面*/

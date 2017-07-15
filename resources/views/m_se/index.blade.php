@@ -7,15 +7,18 @@
     <title>首页</title>
     <link rel="stylesheet" href="{{asset('m_se')}}/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{asset('m_se')}}/css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="{{asset('m_se')}}/css/swiper-3.4.2.min.css">
     <link rel="stylesheet" href="{{asset('m_se')}}/css/index.css">
+    <script src="{{asset('m_se')}}/js/jquery.min.js"></script>
+    <script src="{{asset('m_se')}}/js/bootstrap.min.js"></script>
+    <script src="{{asset('m_se')}}/js/jquery.pjax.js"></script>
+    <script src="{{asset('m_se')}}/js/index.js"></script>
 </head>
 <body>
 <div class="">
     <header>
         <div class="row">
             <div class="col-xs-4">
-                <a href="./">
+                <a href="{{route('se.index')}}">
                     <div class="logo"></div>
                 </a>
             </div>
@@ -78,12 +81,5 @@
         </div>
     </div>
 </div>
-<script src="{{asset('m_se')}}/js/jquery.min.js"></script>
-<script src="{{asset('m_se')}}/js/swiper-3.4.2.jquery.min.js"></script>
-<script src="{{asset('m_se')}}/js/swiper.animate1.0.2.min.js"></script>
-<script src="{{asset('m_se')}}/js/bootstrap.min.js"></script>
-<script src="{{asset('m_se')}}/js/jquery.goup.min.js"></script>
-<script src="{{asset('m_se')}}/js/jquery.pjax.js"></script>
-<script src="{{asset('m_se')}}/js/index.js"></script>
 </body>
 </html>

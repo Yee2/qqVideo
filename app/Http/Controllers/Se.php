@@ -11,6 +11,7 @@ namespace App\Http\Controllers;
 use App\Models\Video;
 use App\Models\VideoType;
 use GuzzleHttp\Client;
+use Illuminate\Http\Request;
 use Jenssegers\Agent\Agent;
 
 class Se extends Controller
@@ -27,7 +28,7 @@ class Se extends Controller
      */
     public function index(){
         $category = VideoType::get();
-        $info = Video::orderBy('id', 'desc')->limit(20)->get();
+        $info = Video::orderBy('id', 'desc')->limit(5)->get();
         return $this->view('index', compact('category', 'info'));
     }
 
@@ -36,8 +37,11 @@ class Se extends Controller
      * @param $id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function category($id){
-        return $this->view('category');
+    public function category(Request $request, $id, $page = 1){
+        $request->merge(['page' => $page]);
+        $list = Video::where('type_id', $id)->orderBy('id', 'desc')->paginate(5);
+        if(is_null($list)) return response('404');
+        return $this->view('category', compact('list', 'id'));
     }
 
     /**
@@ -46,7 +50,10 @@ class Se extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function info($id){
-        return $this->view('info');
+        $info = Video::find($id);
+        if(is_null($info)) return response('404');
+        $info['typeName'] = VideoType::where('id', $info->type_id)->value('name');
+        return $this->view('info', compact('info'));
     }
 
     /**
