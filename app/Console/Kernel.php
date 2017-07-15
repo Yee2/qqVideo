@@ -19,7 +19,6 @@ class Kernel extends ConsoleKernel
         'App\Console\Commands\XiciIP',
         'App\Console\Commands\Video',
         'App\Console\Commands\Youjizz',
-        'App\Console\Commands\Qq',
         'App\Console\Commands\Yiqiyin',
         'App\Console\Commands\UUU',
         'App\Console\Commands\Qqvideo',

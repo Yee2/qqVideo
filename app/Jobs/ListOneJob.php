@@ -2,7 +2,7 @@
 
 namespace App\Jobs;
 
-use App\Video;
+use App\Models\Video;
 use Illuminate\Support\Facades\DB;
 
 class ListOneJob extends Job

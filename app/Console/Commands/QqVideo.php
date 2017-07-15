@@ -3,8 +3,8 @@
 namespace App\Console\Commands;
 
 use App\Jobs\QqVideoOne;
-use App\SpAlbum;
-use App\SpThumb;
+use App\Models\SpAlbum;
+use App\Models\SpThumb;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
 

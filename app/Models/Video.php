@@ -6,7 +6,7 @@
  * Time: 1:49
  */
 
-namespace App;
+namespace App\Models;
 
 class Video extends Base
 {

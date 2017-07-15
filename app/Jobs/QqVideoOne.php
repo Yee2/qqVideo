@@ -2,8 +2,8 @@
 
 namespace App\Jobs;
 
-use App\SpAlbum;
-use App\SpVideo;
+use App\Models\SpAlbum;
+use App\Models\SpVideo;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;

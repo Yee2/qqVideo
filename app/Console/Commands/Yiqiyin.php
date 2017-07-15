@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands;
 
-use App\Ip;
-use App\UserAgent;
+use App\Models\Ip;
+use App\Models\UserAgent;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;

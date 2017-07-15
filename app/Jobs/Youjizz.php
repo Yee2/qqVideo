@@ -9,7 +9,7 @@
 namespace App\Jobs;
 
 
-use App\Video;
+use App\Models\Video;
 
 class Youjizz extends Job
 {

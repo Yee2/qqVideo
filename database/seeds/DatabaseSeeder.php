@@ -11,7 +11,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        \App\VideoType::insert([
+        \App\Models\VideoType::insert([
             [
                 'name' => '乱伦',
             ],
@@ -40,7 +40,7 @@ class DatabaseSeeder extends Seeder
                 'name' => '动漫',
             ],
         ]);
-        \App\SpVideoType::insert([
+        \App\Models\SpVideoType::insert([
             [
                 'name' => '电影',
             ],
