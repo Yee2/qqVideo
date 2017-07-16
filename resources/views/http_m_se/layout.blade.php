@@ -23,7 +23,7 @@
                 </a>
             </div>
             <div class="col-xs-8">
-                <form action="{{route('se.search')}}" method="post" class="searchForm input-group">
+                <form action="{{route('se.search')}}" method="get" class="searchForm input-group">
                     <input name="title" type="text" class="form-control"
                            placeholder="{{$title or $data['title']}}" value="{{$title or $data['title']}}">
                     {{csrf_field()}}
