@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     $url = 'https://v.qq.com/x/cover/dhzimk1qzznf301/a0024157n9v.html';
     $contents = file_get_contents("compress.zlib://".$url);
     preg_match("/var COVER_INFO = (.+)\n/", $contents, $listMatch);
@@ -39,7 +39,7 @@ Route::get('/', function () {
             $res = \App\Models\SpVideo::create($data);
         }
     }
-    /*foreach ($list as $key => $item)
+    foreach ($list as $key => $item)
     {
         $map = pq($item);
         $data= [
@@ -51,7 +51,7 @@ Route::get('/', function () {
         if(is_null($info)){
             \App\SpVideo::create($data);
         }
-    }*/
+    }
 });
 Route::get('/test', function() {
     $url = 'http://v.qq.com/x/list/movie?offset=0';
@@ -74,7 +74,13 @@ Route::get('/test', function() {
 });
 Route::get('/phpinfo', function(){
     phpinfo();
-});
+});*/
+
+Route::get('/', ['as' => 'video.index', 'uses' => 'Video@index']);
+Route::get('/g/{id}/{page?}', ['as' => 'video.category', 'uses' => 'Video@category']);
+Route::get('/v/{id}/{page?}', ['as' => 'video.info', 'uses' => 'Video@info']);
+Route::get('/s/{title?}/{page?}', ['as' => 'video.search', 'uses' => 'Video@search']);
+Route::get('/t/{id}', ['as' => 'video.getThumb', 'uses' => 'Video@getThumb']);
 
 Route::get('/se', ['as' => 'se.index', 'uses' => 'Se@index']);
 Route::get('/se/t/{id}', ['as' => 'se.getThumb', 'uses' => 'Se@getThumb']);
