@@ -20,7 +20,7 @@
                     @if ($page == $paginator->currentPage())
                         <li class="page-item active"><span class="page-link">{{ $page }}</span></li>
                     @else
-                        <li class="page-item"><a class="page-link" href="{{ route('se.search', ['page' => $page]) }}">{{ $page }}</a></li>
+                        <li class="page-item"><a class="page-link" href="{{ route('se.search', ['title' => $title,'page' => $page]) }}">{{ $page }}</a></li>
                     @endif
                 @endforeach
             @endif

@@ -28,7 +28,7 @@
             </div>
             <div class="panel-footer">
                 <nav aria-label="Page navigation" style="text-align: center">
-                    {{$list->links('paginate.se_m_search')}}
+                    {{$list->links('paginate.se_m_search', ['title' => $title])}}
                 </nav>
             </div>
         </div>
