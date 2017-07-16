@@ -20,16 +20,17 @@ class Se extends Controller
     public function __construct()
     {
         $this->agent = new Agent();
+        $category = VideoType::get();
+        view()->share('category', ['category' => $category]);
     }
 
     /**
      * 首页
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index(){
-        $category = VideoType::get();
+    public function index(Request $request){
         $info = Video::orderBy('id', 'asc')->limit(5)->get();
-        return $this->view('index', compact('category', 'info'));
+        return $this->view($request, 'index', compact('info'));
     }
 
     /**
@@ -41,7 +42,7 @@ class Se extends Controller
         $request->merge(['page' => $page]);
         $list = Video::where('type_id', $id)->orderBy('id', 'asc')->paginate(5);
         if(is_null($list)) return response('404');
-        return $this->view('category', compact('list', 'id'));
+        return $this->view($request, 'category', compact('list', 'id'));
     }
 
     /**
@@ -49,11 +50,25 @@ class Se extends Controller
      * @param $id
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function info($id){
+    public function info(Request $request, $id){
         $info = Video::find($id);
         if(is_null($info)) return response('404');
         $info['typeName'] = VideoType::where('id', $info->type_id)->value('name');
-        return $this->view('info', compact('info'));
+        return $this->view($request, 'info', compact('info'));
+    }
+
+    /**
+     * 搜索
+     * @param Request $request
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|\Symfony\Component\HttpFoundation\Response
+     */
+    public function search(Request $request){
+        $title = $request->input('title');
+        $list = Video::where('title', 'like', '%'.$title.'%')
+            ->orderBy('id', 'asc')->paginate(5);
+        dd($list, $title, Video::where('title', 'like', '%'.$title.'%')->count());
+        if(is_null($list)) return response('404');
+        return $this->view($request, 'search', compact('list', 'title'));
     }
 
     /**
@@ -75,9 +90,11 @@ class Se extends Controller
      * @param array $data
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    private function view($template = '', $data = []){
-        if($this->agent->isMobile()){
-            return view('m_se.'.$template, $data);
+    private function view(Request $request, $template = '', $data = []){
+        if(!$request->ajax()){
+            $template = 'http_m_se.'.$template;
+        }else{
+            $template = 'm_se.'.$template;
         }
         return view($template, $data);
     }

@@ -1,17 +1,15 @@
-<div class="col-xs-12">
-        <div class="panel panel-default">
+@extends('http_m_se.layout')
+@section('title', '首页')
+@section('body')
+    <div class="col-xs-12">
+        <div class="panel panel-default contentLeft">
+            <div class="panel-header">
+
+            </div>
             <div class="panel-body dataList">
-                <!--热门推荐start-->
-                <div class="row header">
-                    <div class="col-xs-8">
-                        <h4 class="title">
-                            <span class="hotThumb"></span>
-                            <a href="">热门推荐</a>
-                        </h4>
-                    </div>
-                </div>
+                <!--电影start-->
                 <div class="list-group">
-                    @foreach($info as $item)
+                    @foreach($list as $item)
                         <div class="row list-group-item shipin">
                             <div class="col-xs-4">
                                 <a href="{{route('se.info', $item->id)}}" class="thumbnail">
@@ -26,7 +24,13 @@
                         </div>
                     @endforeach
                 </div>
-                <!--热门推荐end-->
+                <!--电影end-->
+            </div>
+            <div class="panel-footer">
+                <nav aria-label="Page navigation" style="text-align: center">
+                    {{$list->links('paginate.se_m_search')}}
+                </nav>
             </div>
         </div>
     </div>
+@endsection

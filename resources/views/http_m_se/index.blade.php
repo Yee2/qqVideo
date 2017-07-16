@@ -1,4 +1,7 @@
-<div class="col-xs-12">
+@extends('http_m_se.layout')
+@section('title', '首页')
+@section('body')
+    <div class="col-xs-12">
         <div class="panel panel-default">
             <div class="panel-body dataList">
                 <!--热门推荐start-->
@@ -30,3 +33,4 @@
             </div>
         </div>
     </div>
+@endsection
