@@ -26,7 +26,6 @@
                 <form action="{{route('se.search')}}" method="get" class="searchForm input-group">
                     <input name="title" type="text" class="form-control"
                            placeholder="{{$title or $data['title']}}" value="{{$title or $data['title']}}">
-                    {{csrf_field()}}
                     <span class="input-group-btn">
                         <button class="btn btn-default" type="submit">搜索</button>
                     </span>
