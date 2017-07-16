@@ -1,5 +1,5 @@
 @extends('http_m_se.layout')
-@section('title', '分类')
+@section('title', $cateName)
 @section('body')
     <div class="col-xs-12">
         <div class="panel panel-default contentLeft">

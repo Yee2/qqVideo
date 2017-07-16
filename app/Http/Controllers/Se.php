@@ -21,7 +21,8 @@ class Se extends Controller
     {
         $this->agent = new Agent();
         $category = VideoType::get();
-        view()->share('category', ['category' => $category]);
+        $title = Video::getRandTitle();
+        view()->share('data', ['category' => $category, 'title' => substr($title, 2)]);
     }
 
     /**
@@ -42,7 +43,8 @@ class Se extends Controller
         $request->merge(['page' => $page]);
         $list = Video::where('type_id', $id)->orderBy('id', 'asc')->paginate(5);
         if(is_null($list)) return response('404');
-        return $this->view($request, 'category', compact('list', 'id'));
+        $cateName = VideoType::getNameById($id);
+        return $this->view($request, 'category', compact('list', 'id', 'cateName'));
     }
 
     /**
@@ -66,7 +68,6 @@ class Se extends Controller
         $title = $request->input('title');
         $list = Video::where('title', 'like', '%'.$title.'%')
             ->orderBy('id', 'asc')->paginate(5);
-        dd($list, $title, Video::where('title', 'like', '%'.$title.'%')->count());
         if(is_null($list)) return response('404');
         return $this->view($request, 'search', compact('list', 'title'));
     }

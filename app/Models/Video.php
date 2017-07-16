@@ -8,7 +8,17 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Facades\DB;
+
 class Video extends Base
 {
     protected $guarded = [];
+
+    /**
+     * 获取随机标题
+     * @return mixed
+     */
+    public static function getRandTitle(){
+        return self::orderBy(DB::Raw('rand()'))->limit(1)->value('title');
+    }
 }

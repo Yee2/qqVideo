@@ -25,7 +25,7 @@
             <div class="col-xs-8">
                 <form action="{{route('se.search')}}" method="post" class="searchForm input-group">
                     <input name="title" type="text" class="form-control"
-                           placeholder="{{$title or ''}}" value="{{$title or ''}}">
+                           placeholder="{{$title or $data['title']}}" value="{{$title or $data['title']}}">
                     {{csrf_field()}}
                     <span class="input-group-btn">
                         <button class="btn btn-default" type="submit">搜索</button>
@@ -36,9 +36,7 @@
         <div class="row">
             <div class="col-xs-12">
                 <ul class="nav nav-tabs nav-list">
-                    @php
-                    @endphp
-                    @foreach($category['category'] as $item)
+                    @foreach($data['category'] as $item)
                         <li class="presentation">
                             <a href="{{route('se.category', $item->id)}}">{{$item->name}}</a>
                         </li>
