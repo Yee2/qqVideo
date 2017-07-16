@@ -80,4 +80,4 @@ Route::get('/se', ['as' => 'se.index', 'uses' => 'Se@index']);
 Route::get('/se/t/{id}', ['as' => 'se.getThumb', 'uses' => 'Se@getThumb']);
 Route::get('/se/g/{id}/{page?}', ['as' => 'se.category', 'uses' => 'Se@category']);
 Route::get('/se/v/{id}', ['as' => 'se.info', 'uses' => 'Se@info']);
-Route::post('/se/s/{page?}', ['as' => 'se.search', 'uses' => 'Se@search']);
+Route::any('/se/s/{page?}', ['as' => 'se.search', 'uses' => 'Se@search']);
