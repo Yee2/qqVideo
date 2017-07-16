@@ -22,7 +22,11 @@ class Se extends Controller
         $this->agent = new Agent();
         $category = VideoType::get();
         $title = Video::getRandTitle();
-        view()->share('data', ['category' => $category, 'title' => substr($title, 2)]);
+        view()->share('data', [
+            'category' => $category,
+            'title' => substr($title, 2),
+            'isMobile' => $this->agent->isMobile()
+        ]);
     }
 
     /**
