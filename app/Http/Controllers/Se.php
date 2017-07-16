@@ -64,8 +64,9 @@ class Se extends Controller
      * @param Request $request
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|\Symfony\Component\HttpFoundation\Response
      */
-    public function search(Request $request){
+    public function search(Request $request, $page = 1){
         $title = $request->input('title');
+        $request->merge(['page' => $page]);
         $list = Video::where('title', 'like', '%'.$title.'%')
             ->orderBy('id', 'asc')->paginate(5);
         if(is_null($list)) return response('404');
