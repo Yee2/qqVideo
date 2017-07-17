@@ -15,7 +15,7 @@ class QqVideo extends Command
      *
      * @var string
      */
-    protected $signature = 'video:qqvideo {--type=0} {--offset=0}';
+    protected $signature = 'video:qqvideo {--first=true} {--type=0} {--offset=0}';
 
     /**
      * The console command description.
@@ -43,15 +43,34 @@ class QqVideo extends Command
     {
         $optionType = $this->option('type');
         $optionOffset = $this->option('offset');
+        $optionFirst = $this->option('first');
         $type = self::getType($optionType);
         $url = 'http://v.qq.com/x/list/'.$type['type'].'?offset='.$optionOffset;
-        $dom = \phpQuery::newDocumentFileHTML($url, 'utf-8');
+        try{
+            $dom = \phpQuery::newDocumentFileHTML($url, 'utf-8');
+        }catch (\Exception $e){
+            Artisan::call('video:qqvideo', [
+                '--type' => $optionType,
+                '--offset' => $optionOffset,
+                '--first' => $optionFirst,
+            ]);
+            exit(0);
+        }
         $listDom = $dom->find('.figures_list li>a');
         $pageTotal = $dom->find('.mod_pages span a:last')->text();
-        $offsetTotal = ($pageTotal-1) * 30;
+        if($optionFirst){
+            Artisan::call('video:qqvideo', [
+                '--type' => $optionType,
+                '--offset' => ($pageTotal - 1) * 30,
+                '--first' => false,
+            ]);
+            exit(0);
+        }
         echo "ing --type:".$optionType.", --offst:".$optionOffset."\r\n";
-        foreach ($listDom as $item){
-            $map = pq($item);
+        $count = $listDom->count();
+        for($i = 1; $i <= $count; $i++){
+            $map = pq($listDom->eq($count-$i));
+            if($i == 1) $count++;
             $alt = $map->find('.figure_info')->text();
             if(($type['id'] != 1) && !preg_match('/^(全|更).+/', $alt, $match)) continue;
             $data = [
@@ -73,10 +92,11 @@ class QqVideo extends Command
         }
         echo "finash\r\n";
         if($optionType != 3){
-            if($offsetTotal >= $optionOffset){
+            if(0 <= $optionOffset){
                 Artisan::call('video:qqvideo', [
                     '--type' => $optionType,
-                    '--offset' => $optionOffset+30
+                    '--offset' => $optionOffset-30,
+                    '--first' => false,
                 ]);
             }else{
                 Artisan::call('video:qqvideo', [

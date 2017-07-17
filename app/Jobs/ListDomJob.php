@@ -31,8 +31,10 @@ class ListDomJob extends Job
     {
         $html = $this->html;
         $listDom = \phpQuery::newDocument($html);
-        foreach ($listDom->find('ul>li') as $val){
-            $map = pq($val);
+        $list = $listDom->find('ul>li');
+        $count = $list->count();
+        for($i = 1; $i <= $count; $i++){
+            $map = pq($list->eq($count - $i));
             $data = [
                 'title' => $map->find('a')->text(),
                 'parse_type' => '20sao.com',

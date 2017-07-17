@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Log;
 
 class Se extends Command
 {
-    protected $signature = 'se:list {--type=} {--page=}';
+    protected $signature = 'se:list {--first=true} {--type=27} {--page=1}';
 
     protected $description = 'Command description';
     private static $host = 'http://www.68btbt.com';
@@ -30,8 +30,7 @@ class Se extends Command
         $typeMap = self::typeMap();
         $page = $this->option('page');
         $type = $this->option('type');
-        $page = is_null($page)?1:$page;
-        $type = is_null($type)?27:$type;
+        $first = $this->option('first');
         if(!array_key_exists($type, $typeMap))
         {
             Log::info("不存在的类型：".$type);
@@ -50,7 +49,8 @@ class Se extends Command
             echo "error: type:{$type},page:{$page}\r\n";
             Artisan::call('se:list', [
                 '--type' => $type,
-                '--page' => $page
+                '--page' => $page,
+                '--first' => false
             ]);
             exit();
         }
@@ -60,17 +60,26 @@ class Se extends Command
         if(preg_match('/\/(.*)页/', $pageTxt, $pageMatch))
         {
             $totalPage = $pageMatch[1];
+            if($first){
+                Artisan::call('se:list', [
+                    '--type' => $type,
+                    '--page' => $totalPage,
+                    '--first' => false
+                ]);
+                exit();
+            }
         }else{
             $totalPage = 0;
         }
 
         dispatch(new ListDomJob($listContent, self::$host, $typeMap[$type]));
-        if($page < $totalPage){
+        if($page <= $totalPage){
             Artisan::call('se:list', [
                 '--type' => $type,
-                '--page' => ($page+1)
+                '--page' => (--$page),
+                '--first' => false
             ]);
-        }else if($page == $totalPage)
+        }else if($page == 0)
         {
             $keys = array_keys($typeMap);
             $index = array_search($type, $keys);
@@ -79,7 +88,7 @@ class Se extends Command
             {
                 Artisan::call('se:list', [
                     '--type' => $keys[$index],
-                    '--page' => 1
+                    '--first' => true
                 ]);
             }else{
                 Log::info("finash");

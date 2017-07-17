@@ -64,12 +64,7 @@
         </div>
     </div>
 </div>
-{{--
+<script src="https://api.seohaochen.com/vplay/vparse.js?ver=2017041702"></script>
 <script>
-    var swiper = new Swiper('.swiper-container', {
-        loop: true,
-        // 如果需要前进后退按钮
-        nextButton: '.swiper-button-next',
-        prevButton: '.swiper-button-prev',
-    });
-</script>--}}
+    console.log(vParser.h5play.parse());
+</script>
