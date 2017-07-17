@@ -46,6 +46,20 @@ class Se extends Command
             $pageContents = $domMap->querySelector('.page')->outerHTML;
         }catch (\Exception $e)
         {
+            if($page == 0)
+            {
+                $keys = array_keys($typeMap);
+                $index = array_search($type, $keys);
+                ++$index;
+                if(isset($keys[$index]))
+                {
+                    Artisan::call('se:list', [
+                        '--type' => $keys[$index],
+                        '--first' => true
+                    ]);
+                }
+                exit();
+            }
             echo "error: type:{$type},page:{$page}\r\n";
             Artisan::call('se:list', [
                 '--type' => $type,
