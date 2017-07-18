@@ -66,7 +66,7 @@ class QqVideoOne implements ShouldQueue
             preg_match("/var COVER_INFO = (.+)\n/", $contents, $listMatch);
             $pathInfo = pathinfo($url);
             $json = json_decode($listMatch[1], true);
-            $find = \App\SpAlbum::where('title', $this->map['title'])->first();
+            $find = SpAlbum::where('title', $this->map['title'])->first();
             if(!is_null($find)){
                 if(is_null($find->tags)){
                     $find->tags = implode(',', $json['subtype']);
@@ -83,9 +83,9 @@ class QqVideoOne implements ShouldQueue
                     'title' => ($key+1),
                     'source_url' => $urls,
                 ];
-                $info = \App\SpVideo::where($data)->first();
+                $info = SpVideo::where($data)->first();
                 if(is_null($info)){
-                    $res = \App\SpVideo::create($data);
+                    $res = SpVideo::create($data);
                 }
             }
         }elseif($this->map['type_id'] == 3){
@@ -94,7 +94,7 @@ class QqVideoOne implements ShouldQueue
             preg_match("/var LIST_INFO = (.+)\n/", $scriptListInfo, $listMatch);
             $pathInfo = pathinfo($url);
             $json = json_decode($listMatch[1], true);
-            $find = \App\SpAlbum::where('title', $this->map['title'])->first();
+            $find = SpAlbum::where('title', $this->map['title'])->first();
             if(!is_null($find)){
                 foreach ($json['vid'] as $key => $item){
                     $urls = 'https://v.qq.com/x/cover/'.$pathInfo['filename'].'/'.$item.'.html';
@@ -106,9 +106,9 @@ class QqVideoOne implements ShouldQueue
                         'title' => $title,
                         'source_url' => $urls,
                     ];
-                    $info = \App\SpVideo::where($data)->first();
+                    $info = SpVideo::where($data)->first();
                     if(is_null($info)){
-                        \App\SpVideo::create($data);
+                        SpVideo::create($data);
                     }
                 }
             }
