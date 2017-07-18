@@ -11,7 +11,7 @@
                         <a href="{{route('video.info', $item->id)}}" @if($data['isMobile']) target="_blank"@endif class="thumbnail">
                             <img src="{{route('video.getThumb', $item->id)}}">
                             <div class="title">
-                                <p>{{$item->title}}</p>
+                                <p class="text-center">{{$item->title}}</p>
                             </div>
                         </a>
                     </div>

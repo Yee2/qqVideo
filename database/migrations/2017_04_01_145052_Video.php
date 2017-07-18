@@ -16,7 +16,7 @@ class Video extends Migration
         Schema::create('videos', function (Blueprint $table) {
             $table->engine = "MyISAM";
             $table->increments('id');
-            $table->string('title')->nullable()->comment("标题");
+            $table->string('title')->nullable()->index()->comment("标题");
             $table->integer('type_id')->default(1)->comment("类型ID");
             $table->string('parse_type')->nullable()->comment("类型ID");
             $table->string('source_url')->nullable()->comment("资源地址");

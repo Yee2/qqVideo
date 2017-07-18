@@ -16,7 +16,7 @@ class CreateSpAlbumsTable extends Migration
         Schema::create('sp_albums', function (Blueprint $table) {
             $table->engine = "innoDB";
             $table->increments('id');
-            $table->string('title')->nullable()->comment("标题");
+            $table->string('title')->nullable()->index()->comment("标题");
             $table->string('sub_title')->nullable()->comment("副标题");
             $table->integer('type_id')->default(1)->comment("类型ID");
             $table->string('parse_type')->nullable()->comment("类型ID");

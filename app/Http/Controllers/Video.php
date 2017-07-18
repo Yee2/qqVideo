@@ -34,7 +34,7 @@ class Video extends Controller
     
     public function category(Request $request, $id, $page = 1){
         $request->merge(['page' => $page]);
-        $list = SpAlbum::where('type_id', $id)->orderBy('id', 'asc')->paginate(16);
+        $list = SpAlbum::where('type_id', $id)->orderBy('id', 'desc')->paginate(16);
         if(is_null($list)) return response('404');
         $cateName = SpVideoType::getNameById($id);
         return $this->view($request, 'category', compact('list', 'id', 'cateName'));

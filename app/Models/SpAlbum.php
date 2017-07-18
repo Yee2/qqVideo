@@ -28,7 +28,7 @@ class SpAlbum extends Base
      * @return mixed
      */
     public static function getByTypeId($id, $limit = 10){
-        $result = self::where('type_id', $id)->limit($limit)->get();
+        $result = self::where('type_id', $id)->limit($limit)->orderBy('id', 'desc')->get();
         return $result;
     }
 
