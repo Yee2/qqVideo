@@ -18,9 +18,9 @@ class CreateSpAlbumsTable extends Migration
             $table->increments('id');
             $table->string('title')->nullable()->index()->comment("标题");
             $table->string('sub_title')->nullable()->comment("副标题");
-            $table->integer('type_id')->default(1)->comment("类型ID");
+            $table->integer('type_id')->default(1)->index()->comment("类型ID");
             $table->string('parse_type')->nullable()->comment("类型ID");
-            $table->string('source_url')->nullable()->comment("资源地址");
+            $table->string('source_url')->nullable()->index()->comment("资源地址");
             $table->longText('tags')->nullable()->comment("标签");
             $table->longText('year')->nullable()->comment("年份");
             $table->longText('director')->nullable()->comment("导演");
