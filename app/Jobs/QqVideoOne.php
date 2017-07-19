@@ -77,7 +77,14 @@ class QqVideoOne implements ShouldQueue
                 $find->save();
             }
             foreach ($json['vip_ids'] as $key => $item){
-                $urls = 'https://v.qq.com/x/cover/'.$pathInfo['filename'].'/'.$item['V'].'.html';
+                $map = [
+                    'id' => $find->id,
+                    'filename' => $pathInfo['filename'],
+                    'item' => $item['V'],
+                    'title' => ($key+1)
+                ];
+                dispatch(new QqvideoOneTv($map));
+                /*$urls = 'https://v.qq.com/x/cover/'.$pathInfo['filename'].'/'.$item['V'].'.html';
                 $data= [
                     'albums_id' => $find->id,
                     'title' => ($key+1),
@@ -86,7 +93,7 @@ class QqVideoOne implements ShouldQueue
                 $info = SpVideo::where($data)->first();
                 if(is_null($info)){
                     $res = SpVideo::create($data);
-                }
+                }*/
             }
         }elseif($this->map['type_id'] == 3){
             $dom = \phpQuery::newDocumentFileHTML($url, 'utf-8');
@@ -97,7 +104,13 @@ class QqVideoOne implements ShouldQueue
             $find = SpAlbum::where('title', $this->map['title'])->first();
             if(!is_null($find)){
                 foreach ($json['vid'] as $key => $item){
-                    $urls = 'https://v.qq.com/x/cover/'.$pathInfo['filename'].'/'.$item.'.html';
+                    $map = [
+                        'id' => $find->id,
+                        'filename' => $pathInfo['filename'],
+                        'item' => $item,
+                    ];
+                    dispatch(new QqvideoOneDm($map));
+                    /*$urls = 'https://v.qq.com/x/cover/'.$pathInfo['filename'].'/'.$item.'.html';
                     $doms = \phpQuery::newDocumentFileHTML($urls, 'gb2312');
                     $titles = $doms->find('title')->text();
                     $title = explode('_', $titles)[0];
@@ -109,7 +122,7 @@ class QqVideoOne implements ShouldQueue
                     $info = SpVideo::where($data)->first();
                     if(is_null($info)){
                         SpVideo::create($data);
-                    }
+                    }*/
                 }
             }
         }
