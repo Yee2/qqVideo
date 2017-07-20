@@ -34,7 +34,7 @@ class Se extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index(Request $request){
-        $info = Video::orderBy('id', 'asc')->limit(5)->get();
+        $info = Video::orderBy('id', 'desc')->limit(5)->get();
         return $this->view($request, 'index', compact('info'));
     }
 
@@ -45,7 +45,7 @@ class Se extends Controller
      */
     public function category(Request $request, $id, $page = 1){
         $request->merge(['page' => $page]);
-        $list = Video::where('type_id', $id)->orderBy('id', 'asc')->paginate(5);
+        $list = Video::where('type_id', $id)->orderBy('id', 'desc')->paginate(5);
         if(is_null($list)) return response('404');
         $cateName = VideoType::getNameById($id);
         return $this->view($request, 'category', compact('list', 'id', 'cateName'));
