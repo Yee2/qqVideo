@@ -79,7 +79,6 @@ class Youjizz extends Command
             '--page' => ($page+1),
             '--next' => ($page+1)
         ]);
-        unset($data,$next, $page, $GLOBALS, $this);
     }
 
     /**
