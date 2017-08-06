@@ -78,8 +78,13 @@ class Se extends Controller
     public function search(Request $request, $title = '', $page = 1){
         $title = $request->has('title')?$request->input('title'):$title;
         $request->merge(['page' => $page]);
-        $list = Video::where('title', 'like', '%'.$title.'%')
-            ->orderBy('id', 'asc')->paginate(5);
+        if($this->agent->isMobile()){
+            $list = Video::where('title', 'like', '%'.$title.'%')
+                ->orderBy('id', 'asc')->paginate(6);
+        }else{
+            $list = Video::where('title', 'like', '%'.$title.'%')
+                ->orderBy('id', 'asc')->paginate(16);
+        }
         if(is_null($list)) return response('404');
         return $this->view($request, 'search', compact('list', 'title'));
     }

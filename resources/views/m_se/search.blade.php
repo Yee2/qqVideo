@@ -5,22 +5,68 @@
         </div>
         <div class="panel-body dataList">
             <!--电影start-->
-            <div class="list-group">
-                @foreach($list as $item)
-                    <div class="row list-group-item shipin">
-                        <div class="col-xs-4">
-                            <a href="{{route('se.info', $item->id)}}" @if($data['isMobile']) target="_blank"@endif class="thumbnail">
-                                <img src="{{route('se.getThumb', $item->id)}}" />
-                            </a>
-                        </div>
-                        <div class="col-xs-8">
-                            <a href="{{route('se.info', $item->id)}}" @if($data['isMobile']) target="_blank"@endif>
-                                <div class="title">{{$item->title}}</div>
-                            </a>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
+            @if($data['isMobile'])
+                <div class="list-group">
+                    @foreach($list as $item)
+                        @if($loop->index %2 == 0)
+                            <div class="row list-group-item shipin">
+                                <div class="col-xs-6">
+                                    <a href="{{route('se.info', $item->id)}}" @if($data['isMobile']) target="_blank"@endif class="thumbnail">
+                                        <img src="{{route('se.getThumb', $item->id)}}" />
+                                    </a>
+                                    <a href="{{route('se.info', $item->id)}}" @if($data['isMobile']) target="_blank"@endif>
+                                        <div class="title">{{$item->title}}</div>
+                                    </a>
+                                </div>
+                                @elseif($loop->index %2 == 1)
+                                    <div class="col-xs-6">
+                                        <a href="{{route('se.info', $item->id)}}" @if($data['isMobile']) target="_blank"@endif class="thumbnail">
+                                            <img src="{{route('se.getThumb', $item->id)}}" />
+                                        </a>
+                                        <a href="{{route('se.info', $item->id)}}" @if($data['isMobile']) target="_blank"@endif>
+                                            <div class="title">{{$item->title}}</div>
+                                        </a>
+                                    </div>
+                            </div>
+                        @endif
+                    @endforeach
+                </div>
+            @else
+                <div class="list-group">
+                    @foreach($list as $item)
+                        @if($loop->index %4 == 0)
+                            <div class="row list-group-item shipin">
+                                <div class="col-sm-3">
+                                    <a href="{{route('se.info', $item->id)}}" class="thumbnail">
+                                        <img src="{{route('se.getThumb', $item->id)}}" />
+                                    </a>
+                                    <a href="{{route('se.info', $item->id)}}">
+                                        <div class="title">{{$item->title}}</div>
+                                    </a>
+                                </div>
+                                @elseif($loop->index %4 == 3)
+                                    <div class="col-sm-3">
+                                        <a href="{{route('se.info', $item->id)}}" class="thumbnail">
+                                            <img src="{{route('se.getThumb', $item->id)}}" />
+                                        </a>
+                                        <a href="{{route('se.info', $item->id)}}" >
+                                            <div class="title">{{$item->title}}</div>
+                                        </a>
+                                    </div>
+                            </div>
+                        @else
+                            <div class="col-sm-3">
+                                <a href="{{route('se.info', $item->id)}}" class="thumbnail">
+                                    <img src="{{route('se.getThumb', $item->id)}}" />
+                                </a>
+                                <a href="{{route('se.info', $item->id)}}" >
+                                    <div class="title">{{$item->title}}</div>
+                                </a>
+                            </div>
+                        @endif
+                    @endforeach
+                </div>
+            @endif
             <!--电影end-->
         </div>
         <div class="panel-footer">
@@ -30,3 +76,8 @@
         </div>
     </div>
 </div>
+<script>
+    $(function(){
+        $('.page-link').css('background-color', '#000');
+    })
+</script>
