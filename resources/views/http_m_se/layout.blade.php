@@ -21,7 +21,7 @@
         <div class="row">
             <div class="col-xs-4">
                 <a href="{{route('se.index')}}">
-                    <div class="logo"></div>
+                    <h5>www.99se99se.com</h5>
                 </a>
             </div>
             <div class="col-xs-8">
