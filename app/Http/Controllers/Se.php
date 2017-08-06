@@ -12,6 +12,7 @@ use App\Models\Video;
 use App\Models\VideoType;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Jenssegers\Agent\Agent;
 
 class Se extends Controller
@@ -34,8 +35,9 @@ class Se extends Controller
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index(Request $request){
-        $info = Video::orderBy('id', 'desc')->limit(5)->get();
-        return $this->view($request, 'index', compact('info'));
+        $info = Video::orderBy('id', 'desc')->limit(6)->get();
+        $rands = Video::orderBy(DB::Raw('rand()'))->limit(6)->get();
+        return $this->view($request, 'index', compact('info', 'rands'));
     }
 
     /**
@@ -45,7 +47,7 @@ class Se extends Controller
      */
     public function category(Request $request, $id, $page = 1){
         $request->merge(['page' => $page]);
-        $list = Video::where('type_id', $id)->orderBy('id', 'desc')->paginate(5);
+        $list = Video::where('type_id', $id)->orderBy('id', 'desc')->paginate(6);
         if(is_null($list)) return response('404');
         $cateName = VideoType::getNameById($id);
         return $this->view($request, 'category', compact('list', 'id', 'cateName'));
@@ -60,7 +62,8 @@ class Se extends Controller
         $info = Video::find($id);
         if(is_null($info)) return response('404');
         $info['typeName'] = VideoType::where('id', $info->type_id)->value('name');
-        return $this->view($request, 'info', compact('info'));
+        $rands = Video::orderBy(DB::Raw('rand()'))->limit(4)->get();
+        return $this->view($request, 'info', compact('info', 'rands'));
     }
 
     /**

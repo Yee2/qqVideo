@@ -11,70 +11,22 @@
 |
 */
 
-/*Route::get('/', function () {
-    $url = 'https://v.qq.com/x/cover/dhzimk1qzznf301/a0024157n9v.html';
-    $contents = file_get_contents("compress.zlib://".$url);
-    preg_match("/var COVER_INFO = (.+)\n/", $contents, $listMatch);
-    $pathInfo = pathinfo($url);
-    $json = json_decode($listMatch[1], true);
-    $find = \App\Models\SpAlbum::where('title', '楚乔传')->first();
-    if(!is_null($find)){
-        if(is_null($find->tags)){
-            $find->tags = implode(',', $json['subtype']);
-        }
-        if(is_null($find->descript)){
-            $find->descript = $json['description'];
-        }
-        $find->save();
-    }
-    foreach ($json['vip_ids'] as $key => $item){
-        $urls = 'https://v.qq.com/x/cover/'.$pathInfo['filename'].'/'.$item['V'].'.html';
-        $data= [
-            'albums_id' => 1,
-            'title' => ($key+1),
-            'source_url' => $urls,
-        ];
-        $info = \App\Models\SpVideo::where($data)->first();
-        if(is_null($info)){
-            $res = \App\Models\SpVideo::create($data);
-        }
-    }
-    foreach ($list as $key => $item)
-    {
-        $map = pq($item);
-        $data= [
-            'albums_id' => 1,
-            'title' => $map->text(),
-            'source_url' => 'https://v.qq.com'.$map->find('a')->attr('href'),
-        ];
-        $info = \App\SpVideo::where($data)->first();
-        if(is_null($info)){
-            \App\SpVideo::create($data);
-        }
-    }
-});
-Route::get('/test', function() {
-    $url = 'http://v.qq.com/x/list/movie?offset=0';
-    $dom = \phpQuery::newDocumentFileHTML($url, 'utf-8');
-    $listDom = $dom->find('.figures_list li>a');
-    $pageTotal = $dom->find('.mod_pages span a:last')->text();
-    foreach ($listDom as $item){
-        $map = pq($item);
-        $alt = $map->find('span.figure_info')->text();
-        echo $alt.'<br />';
-        //echo "url:".$map->attr('href')."name: {$alt}\r\n";
-        if(!preg_match('/^(全|更).+/', $alt, $match)) continue;
+Route::get('/test', function(){
+    $url = 'http://shk3.icaile.com/?op=hzzs';
+    $dom = \phpQuery::newDocumentFileHTML($url);
+    $qh = $dom->find('td.chart-bg-qh');
+    $kjhm = $dom->find('td.cc');
+    dd($kjhm->eq(1)->text(),base64_decode($kjhm->eq(1)->text()));
+    foreach ($qh as $key => $item){
+        $itemQh = pq($item)->text();
+        $itemkjhm = pq($kjhm->eq($key))->text();
         $data[] = [
-            'title' => $map->find('img')->attr('alt'),
-            'url' => $map->attr('href'),
-            'thumb' => $map->find('img')->attr('r-lazyload')
+            'qh' => $itemQh,
+            'kjhm' => $itemkjhm
         ];
     }
-    dd($data, $dom->find('.mod_pages span a:last')->text());
+    dd($data);
 });
-Route::get('/phpinfo', function(){
-    phpinfo();
-});*/
 
 Route::get('/', ['as' => 'video.index', 'uses' => 'Video@index']);
 Route::get('/g/{id}/{page?}', ['as' => 'video.category', 'uses' => 'Video@category']);

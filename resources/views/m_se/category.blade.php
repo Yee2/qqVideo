@@ -7,18 +7,27 @@
             <!--电影start-->
             <div class="list-group">
                 @foreach($list as $item)
-                    <div class="row list-group-item shipin">
-                        <div class="col-xs-4">
-                            <a href="{{route('se.info', $item->id)}}" @if($data['isMobile']) target="_blank"@endif class="thumbnail">
-                                <img src="{{route('se.getThumb', $item->id)}}" />
-                            </a>
+                    @if($loop->index %2 == 0)
+                        <div class="row list-group-item shipin">
+                            <div class="col-xs-6">
+                                <a href="{{route('se.info', $item->id)}}" @if($data['isMobile']) target="_blank"@endif class="thumbnail">
+                                    <img src="{{route('se.getThumb', $item->id)}}" />
+                                </a>
+                                <a href="{{route('se.info', $item->id)}}" @if($data['isMobile']) target="_blank"@endif>
+                                    <div class="title">{{$item->title}}</div>
+                                </a>
+                            </div>
+                            @elseif($loop->index %2 == 1)
+                                <div class="col-xs-6">
+                                    <a href="{{route('se.info', $item->id)}}" @if($data['isMobile']) target="_blank"@endif class="thumbnail">
+                                        <img src="{{route('se.getThumb', $item->id)}}" />
+                                    </a>
+                                    <a href="{{route('se.info', $item->id)}}" @if($data['isMobile']) target="_blank"@endif>
+                                        <div class="title">{{$item->title}}</div>
+                                    </a>
+                                </div>
                         </div>
-                        <div class="col-xs-8">
-                            <a href="{{route('se.info', $item->id)}}" @if($data['isMobile']) target="_blank"@endif>
-                                <div class="title">{{$item->title}}</div>
-                            </a>
-                        </div>
-                    </div>
+                    @endif
                 @endforeach
             </div>
             <!--电影end-->
@@ -30,3 +39,8 @@
         </div>
     </div>
 </div>
+<script>
+    $(function(){
+        $('.page-link').css('background-color', '#000');
+    })
+</script>

@@ -22,6 +22,7 @@ class Kernel extends ConsoleKernel
         'App\Console\Commands\Yiqiyin',
         'App\Console\Commands\UUU',
         'App\Console\Commands\QqVideo',
+        'App\Console\Commands\Kuaisan',
     ];
 
     /**

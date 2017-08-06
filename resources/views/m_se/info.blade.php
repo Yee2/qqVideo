@@ -16,9 +16,59 @@
         <div class="panel-body dataInfo">
             <div class="panel-body">
                 <div class="row">
-                    <video src="{{$info->file_url}}" controls="controls" style="width: 100%;" autoplay="true"></video>
+                    <div id="player" style="width: 100%;"></div>
+                </div>
+            </div>
+            <div class="panel-body dataList">
+                <!--热门推荐start-->
+                <div class="row header">
+                    <div class="col-xs-8">
+                        <h4 class="title">
+                            <span class="hotThumb"></span>
+                            <a href="">你可能喜欢</a>
+                        </h4>
+                    </div>
+                </div>
+                <div class="list-group">
+                    @foreach($rands as $item)
+                        @if($loop->index %2 == 0)
+                            <div class="row list-group-item shipin">
+                                <div class="col-xs-6">
+                                    <a href="{{route('se.info', $item->id)}}" @if($data['isMobile']) target="_blank"@endif class="thumbnail">
+                                        <img src="{{route('se.getThumb', $item->id)}}" />
+                                    </a>
+                                    <a href="{{route('se.info', $item->id)}}" @if($data['isMobile']) target="_blank"@endif>
+                                        <div class="title">{{$item->title}}</div>
+                                    </a>
+                                </div>
+                                @elseif($loop->index %2 == 1)
+                                    <div class="col-xs-6">
+                                        <a href="{{route('se.info', $item->id)}}" @if($data['isMobile']) target="_blank"@endif class="thumbnail">
+                                            <img src="{{route('se.getThumb', $item->id)}}" />
+                                        </a>
+                                        <a href="{{route('se.info', $item->id)}}" @if($data['isMobile']) target="_blank"@endif>
+                                            <div class="title">{{$item->title}}</div>
+                                        </a>
+                                    </div>
+                            </div>
+                        @endif
+                    @endforeach
                 </div>
             </div>
         </div>
     </div>
 </div>
+<script>
+    $(function(){
+        $('.breadcrumb').css('background-color','#000');
+        $('.dplayer-bezel,.dplayer-mask').css('background-color', 'none');
+    })
+    var dp = new DPlayer({
+        element: document.getElementById('player'),
+        theme: '#ddd',
+        video: {
+            url: '{{$info->file_url}}',
+            type: 'auto'
+        },
+    });
+</script>

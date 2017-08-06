@@ -1,5 +1,5 @@
 header{
-    border: 1px solid #ddd;
+    //border: 1px solid #ddd;
 }
 header .nav-list{
     border: none;
@@ -7,7 +7,7 @@ header .nav-list{
 header .userPanel{
     line-height: 36px;
 }
-* {
+*,.panel-footer {
     background-color: #000;
 }
 header .logo{
@@ -20,6 +20,9 @@ header .logo{
 header .searchForm{
     margin-top: 3px;
 }
+header .searchForm input {
+    background-color: #000;
+}
 header .userPanel .login, header .userPanel .register,header .userPanel .lqVip{
     padding: 0px;
 }
@@ -30,7 +33,7 @@ header .userPanel .login, header .userPanel .register,header .userPanel .lqVip{
     border: none;
 }
 .dataList .header{
-    border: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
 }
 .dataList .tuijian li a{
     padding: 8px 5px;
@@ -39,6 +42,7 @@ header .userPanel .login, header .userPanel .register,header .userPanel .lqVip{
 .dataList .shipin{
     padding: 0;
     background: #000;
+    border: none;
 }
 .dataList a {
     border: 1px solid #000;
@@ -46,7 +50,7 @@ header .userPanel .login, header .userPanel .register,header .userPanel .lqVip{
 }
 .dataList .shipin .title{
     font-size: 1.8rem;
-    line-height: 4.3rem;
+    line-height: 2.3rem;
     height: 8.6rem;
     text-overflow: ellipsis;
 }

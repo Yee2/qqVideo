@@ -8,10 +8,12 @@
     <link rel="stylesheet" href="{{asset('m_se')}}/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{asset('m_se')}}/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="{{asset('m_se')}}/css/index.css">
+    <link rel="stylesheet" href="{{asset('dplay')}}/dplay.css">
     <script src="{{asset('m_se')}}/js/jquery.min.js"></script>
     <script src="{{asset('m_se')}}/js/bootstrap.min.js"></script>
     <script src="{{asset('m_se')}}/js/jquery.pjax.js"></script>
     <script src="{{asset('m_se')}}/js/index.js"></script>
+    <script src="{{asset('dplay')}}/dplay.js"></script>
 </head>
 <body>
 <div class="">
