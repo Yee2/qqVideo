@@ -5,7 +5,8 @@
         </div>
         <div class="panel-body dataList">
             <!--电影start-->
-            <div class="list-group">
+            @if($data['isMobile'])
+                <div class="list-group">
                 @foreach($list as $item)
                     @if($loop->index %2 == 0)
                         <div class="row list-group-item shipin">
@@ -30,6 +31,42 @@
                     @endif
                 @endforeach
             </div>
+            @else
+                <div class="list-group">
+                    @foreach($listPc as $item)
+                        @if($loop->index %4 == 0)
+                            <div class="row list-group-item shipin">
+                                <div class="col-sm-3">
+                                    <a href="{{route('se.info', $item->id)}}" class="thumbnail">
+                                        <img src="{{route('se.getThumb', $item->id)}}" />
+                                    </a>
+                                    <a href="{{route('se.info', $item->id)}}">
+                                        <div class="title">{{$item->title}}</div>
+                                    </a>
+                                </div>
+                                @elseif($loop->index %4 == 3)
+                                    <div class="col-sm-3">
+                                        <a href="{{route('se.info', $item->id)}}" class="thumbnail">
+                                            <img src="{{route('se.getThumb', $item->id)}}" />
+                                        </a>
+                                        <a href="{{route('se.info', $item->id)}}" >
+                                            <div class="title">{{$item->title}}</div>
+                                        </a>
+                                    </div>
+                            </div>
+                        @else
+                            <div class="col-sm-3">
+                                <a href="{{route('se.info', $item->id)}}" class="thumbnail">
+                                    <img src="{{route('se.getThumb', $item->id)}}" />
+                                </a>
+                                <a href="{{route('se.info', $item->id)}}" >
+                                    <div class="title">{{$item->title}}</div>
+                                </a>
+                            </div>
+                        @endif
+                    @endforeach
+                </div>
+            @endif
             <!--电影end-->
         </div>
         <div class="panel-footer">

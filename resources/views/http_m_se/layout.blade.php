@@ -19,12 +19,26 @@
 <div class="">
     <header>
         <div class="row">
-            <div class="col-xs-4">
+            <div class="col-xs-12">
+                <ul class="nav nav-tabs nav-list">
+                    <li class="presentation">
+                        <a href="{{route('se.index')}}">久久色首页</a>
+                    </li>
+                    @foreach($data['category'] as $item)
+                        <li class="presentation">
+                            <a href="{{route('se.category', $item->id)}}">{{$item->name}}</a>
+                        </li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
                 <a href="{{route('se.index')}}">
-                    <h5>www.99se99se.com</h5>
+                    <h5 class="text-center" style="color: red">一秒钟记住久久色：www.99se99se.com</h5>
                 </a>
             </div>
-            <div class="col-xs-8">
+            <div class="col-xs-12">
                 <form action="{{route('se.search')}}" method="get" class="searchForm input-group">
                     <input name="title" type="text" class="form-control"
                            placeholder="{{$title or $data['title']}}" value="{{$title or $data['title']}}">
@@ -32,17 +46,6 @@
                         <button class="btn btn-default" type="submit">搜索</button>
                     </span>
                 </form>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-12">
-                <ul class="nav nav-tabs nav-list">
-                    @foreach($data['category'] as $item)
-                        <li class="presentation">
-                            <a href="{{route('se.category', $item->id)}}">{{$item->name}}</a>
-                        </li>
-                    @endforeach
-                </ul>
             </div>
         </div>
     </header>

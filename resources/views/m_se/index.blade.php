@@ -10,7 +10,8 @@
                         </h4>
                     </div>
                 </div>
-                <div class="list-group">
+                @if($data['isMobile'])
+                    <div class="list-group">
                     @foreach($info as $item)
                         @if($loop->index %2 == 0)
                             <div class="row list-group-item shipin">
@@ -35,6 +36,42 @@
                         @endif
                     @endforeach
                 </div>
+                @else
+                    <div class="list-group">
+                        @foreach($infoPc as $item)
+                            @if($loop->index %4 == 0)
+                                <div class="row list-group-item shipin">
+                                    <div class="col-sm-3">
+                                        <a href="{{route('se.info', $item->id)}}" class="thumbnail">
+                                            <img src="{{route('se.getThumb', $item->id)}}" />
+                                        </a>
+                                        <a href="{{route('se.info', $item->id)}}">
+                                            <div class="title">{{$item->title}}</div>
+                                        </a>
+                                    </div>
+                                    @elseif($loop->index %4 == 3)
+                                        <div class="col-sm-3">
+                                            <a href="{{route('se.info', $item->id)}}" class="thumbnail">
+                                                <img src="{{route('se.getThumb', $item->id)}}" />
+                                            </a>
+                                            <a href="{{route('se.info', $item->id)}}" >
+                                                <div class="title">{{$item->title}}</div>
+                                            </a>
+                                        </div>
+                                </div>
+                            @else
+                                <div class="col-sm-3">
+                                    <a href="{{route('se.info', $item->id)}}" class="thumbnail">
+                                        <img src="{{route('se.getThumb', $item->id)}}" />
+                                    </a>
+                                    <a href="{{route('se.info', $item->id)}}" >
+                                        <div class="title">{{$item->title}}</div>
+                                    </a>
+                                </div>
+                            @endif
+                        @endforeach
+                    </div>
+                @endif
                 <!--热门推荐end-->
                 <!--热门推荐start-->
                 <div class="row header">
@@ -45,7 +82,8 @@
                         </h4>
                     </div>
                 </div>
-                <div class="list-group">
+                @if($data['isMobile'])
+                    <div class="list-group">
                     @foreach($rands as $item)
                         @if($loop->index %2 == 0)
                         <div class="row list-group-item shipin">
@@ -70,6 +108,42 @@
                         @endif
                     @endforeach
                 </div>
+                @else
+                    <div class="list-group">
+                        @foreach($randsPc as $item)
+                            @if($loop->index %4 == 0)
+                                <div class="row list-group-item shipin">
+                                    <div class="col-sm-3">
+                                        <a href="{{route('se.info', $item->id)}}" class="thumbnail">
+                                            <img src="{{route('se.getThumb', $item->id)}}" />
+                                        </a>
+                                        <a href="{{route('se.info', $item->id)}}">
+                                            <div class="title">{{$item->title}}</div>
+                                        </a>
+                                    </div>
+                                    @elseif($loop->index %4 == 3)
+                                        <div class="col-sm-3">
+                                            <a href="{{route('se.info', $item->id)}}" class="thumbnail">
+                                                <img src="{{route('se.getThumb', $item->id)}}" />
+                                            </a>
+                                            <a href="{{route('se.info', $item->id)}}" >
+                                                <div class="title">{{$item->title}}</div>
+                                            </a>
+                                        </div>
+                                </div>
+                            @else
+                                <div class="col-sm-3">
+                                    <a href="{{route('se.info', $item->id)}}" class="thumbnail">
+                                        <img src="{{route('se.getThumb', $item->id)}}" />
+                                    </a>
+                                    <a href="{{route('se.info', $item->id)}}" >
+                                        <div class="title">{{$item->title}}</div>
+                                    </a>
+                                </div>
+                            @endif
+                        @endforeach
+                    </div>
+                @endif
                 <!--热门推荐end-->
             </div>
         </div>

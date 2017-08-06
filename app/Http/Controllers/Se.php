@@ -36,8 +36,10 @@ class Se extends Controller
      */
     public function index(Request $request){
         $info = Video::orderBy('id', 'desc')->limit(6)->get();
+        $infoPc = Video::orderBy('id', 'desc')->limit(12)->get();
         $rands = Video::orderBy(DB::Raw('rand()'))->limit(6)->get();
-        return $this->view($request, 'index', compact('info', 'rands'));
+        $randsPc = Video::orderBy(DB::Raw('rand()'))->limit(12)->get();
+        return $this->view($request, 'index', compact('info', 'rands', 'infoPc', 'randsPc'));
     }
 
     /**
@@ -48,9 +50,10 @@ class Se extends Controller
     public function category(Request $request, $id, $page = 1){
         $request->merge(['page' => $page]);
         $list = Video::where('type_id', $id)->orderBy('id', 'desc')->paginate(6);
+        $listPc = Video::where('type_id', $id)->orderBy('id', 'desc')->paginate(16);
         if(is_null($list)) return response('404');
         $cateName = VideoType::getNameById($id);
-        return $this->view($request, 'category', compact('list', 'id', 'cateName'));
+        return $this->view($request, 'category', compact('list', 'id', 'cateName', 'listPc'));
     }
 
     /**
@@ -63,7 +66,8 @@ class Se extends Controller
         if(is_null($info)) return response('404');
         $info['typeName'] = VideoType::where('id', $info->type_id)->value('name');
         $rands = Video::orderBy(DB::Raw('rand()'))->limit(4)->get();
-        return $this->view($request, 'info', compact('info', 'rands'));
+        $randPc = Video::orderBy(DB::Raw('rand()'))->limit(12)->get();
+        return $this->view($request, 'info', compact('info', 'rands', 'randPc'));
     }
 
     /**
