@@ -16,9 +16,3 @@ Route::get('/g/{id}/{page?}', ['as' => 'video.category', 'uses' => 'Video@catego
 Route::get('/v/{id}/{page?}', ['as' => 'video.info', 'uses' => 'Video@info']);
 Route::get('/s/{title?}/{page?}', ['as' => 'video.search', 'uses' => 'Video@search']);
 Route::get('/t/{id}', ['as' => 'video.getThumb', 'uses' => 'Video@getThumb']);
-
-Route::get('/se', ['as' => 'se.index', 'uses' => 'Se@index']);
-Route::get('/se/t/{id}', ['as' => 'se.getThumb', 'uses' => 'Se@getThumb']);
-Route::get('/se/g/{id}/{page?}', ['as' => 'se.category', 'uses' => 'Se@category']);
-Route::get('/se/v/{id}', ['as' => 'se.info', 'uses' => 'Se@info']);
-Route::get('/se/s/{title?}/{page?}', ['as' => 'se.search', 'uses' => 'Se@search']);

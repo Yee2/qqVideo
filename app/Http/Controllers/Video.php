@@ -25,13 +25,25 @@ class Video extends Controller
         ]);
     }
 
+    /**
+     * 首页
+     * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index(Request $request){
-        $info = SpAlbum::getCategoryDatas(8);
+        $info = SpAlbum::getCategoryDatas(4);
+        $infoPc = SpAlbum::getCategoryDatas(12);
         $hot = SpAlbum::getHots();
-        //dd($info);
-        return $this->view($request,'index', compact('info', 'hot'));
+        return $this->view($request,'index', compact('info', 'hot', 'infoPc'));
     }
-    
+
+    /**
+     * 分类
+     * @param Request $request
+     * @param $id
+     * @param int $page
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|\Symfony\Component\HttpFoundation\Response
+     */
     public function category(Request $request, $id, $page = 1){
         $request->merge(['page' => $page]);
         $list = SpAlbum::where('type_id', $id)->orderBy('id', 'desc')->paginate(16);
@@ -40,17 +52,31 @@ class Video extends Controller
         return $this->view($request, 'category', compact('list', 'id', 'cateName'));
     }
 
-    public function info(Request $request, $id, $page = 1)
+    /**
+     * 内容页
+     * @param Request $request
+     * @param $id
+     * @param int $page
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|\Symfony\Component\HttpFoundation\Response
+     */
+    public function info(Request $request, $id)
     {
         $info = SpAlbum::find($id);
         if(is_null($info)) return response('404');
         $info['typeName'] = SpVideoType::where('id', $info->type_id)->value('name');
         $videos = SpVideo::where('albums_id', $id)->paginate(1);
-        //dd($videos);
+        if(is_null($videos) || !isset($videos[0])) return response('数据正在更新中，请稍等再试.....');
         $sourceUrl = "https://api.vparse.org/?skin=47ks&url=".$videos[0]->source_url;
         return $this->view($request, 'info', compact('info', 'videos', 'sourceUrl'));
     }
 
+    /**
+     * 搜索
+     * @param Request $request
+     * @param string $title
+     * @param int $page
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|\Symfony\Component\HttpFoundation\Response
+     */
     public function search(Request $request, $title = '', $page = 1){
         $title = $request->has('title')?$request->input('title'):$title;
         $request->merge(['page' => $page]);

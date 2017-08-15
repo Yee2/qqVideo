@@ -18,44 +18,6 @@
                 <div class="row">
                     <iframe src="{{$sourceUrl}}" style="width:100%;height: 550px;"></iframe>
                 </div>
-                <div class="row">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <strong>在线播放</strong>
-                        </div>
-                        <div class="panel-body">
-                            <div class="video-play-src row">
-                                {{$videos->links('paginate.video_m_info', ['id' => $info->id])}}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-xs-4 shipin">
-                        <a href="#" class="thumbnail">
-                            <img src="img/i1498560651_1.jpg" alt="">
-                            <div class="title">
-                                <p>睡在我上铺的兄弟</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-xs-4 shipin">
-                        <a href="#" class="thumbnail">
-                            <img src="img/i1498560651_1.jpg" alt="">
-                            <div class="title">
-                                <p>睡在我上铺的兄弟</p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-xs-4 shipin">
-                        <a href="#" class="thumbnail">
-                            <img src="img/i1498560651_1.jpg" alt="">
-                            <div class="title">
-                                <p>睡在我上铺的兄弟</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
             </div>
         </div>
 

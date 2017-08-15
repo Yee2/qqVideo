@@ -13,16 +13,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        'App\Console\Commands\Se',
-        'App\Console\Commands\Socket',
-        'App\Console\Commands\One',
-        'App\Console\Commands\XiciIP',
-        'App\Console\Commands\Video',
-        'App\Console\Commands\Youjizz',
-        'App\Console\Commands\Yiqiyin',
-        'App\Console\Commands\UUU',
         'App\Console\Commands\QqVideo',
-        'App\Console\Commands\Kuaisan',
     ];
 
     /**
