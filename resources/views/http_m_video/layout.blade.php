@@ -28,9 +28,6 @@
                 </form>
             </div>
         </div>
-        <div class="ads">
-            <script language="javascript" src="http://sy.kcxsyz.com/1191/2/1"></script>
-        </div>
         <div class="row">
             <div class="col-xs-12">
                 <ul class="nav nav-tabs nav-list">
@@ -43,6 +40,9 @@
             </div>
         </div>
     </header>
+    <div class="ads">
+        <script language="javascript" src="http://sy.kcxsyz.com/1191/2/1"></script>
+    </div>
     <div class="row main" id="pjax-container">
         @yield('body')
     </div>
