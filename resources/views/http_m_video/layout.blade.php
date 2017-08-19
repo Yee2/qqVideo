@@ -42,6 +42,8 @@
     </header>
     <div class="ads">
         <script language="javascript" src="http://sy.kcxsyz.com/1191/2/1"></script>
+        <script>var jd_uid="750959";var jd_tid="64";var jd_w="640";var jd_h="200";</script>
+        <script charset="utf-8" src="http://d.6c.cn/js/mob/cpc_i.js"></script>
     </div>
     <div class="row main" id="pjax-container">
         @yield('body')
@@ -49,8 +51,6 @@
     <footer>
         <div class="ads">
             <script language="javascript" src="http://sy.kcxsyz.com/1191/1/1"></script>
-            <script>var jd_uid=750959;var jd_tid=67;var os=0;var jd_w=600;var jd_h=200;</script>
-            <script charset="utf-8" src="http://xsthg.com/js/mob/top.js"></script>
         </div>
     </footer>
 </div>
