@@ -3,4 +3,5 @@
  */
 $(document).ready(function () {
     $(document).pjax('a', '.main')
+    $('[title="站长统计"]').toggle()
 });
