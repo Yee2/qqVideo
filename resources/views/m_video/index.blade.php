@@ -10,6 +10,7 @@
                     </h4>
                 </div>
             </div>
+
             @if($data['isMobile'])
                 <div class="list-group">
                     @foreach($info[1] as $item)
@@ -72,6 +73,9 @@
                     @endforeach
                 </div>
             @endif
+            <div class="ads">
+                <script language="javascript" src="http://sy.kcxsyz.com/1191/2/1"></script>
+            </div>
 
             <div class="row header">
                 <div class="col-xs-8">
@@ -144,6 +148,10 @@
                 </div>
             @endif
 
+            <div class="ads">
+                <script language="javascript" src="http://sy.kcxsyz.com/1191/2/1"></script>
+            </div>
+
             <div class="row header">
                 <div class="col-xs-8">
                     <h4 class="title">
@@ -214,6 +222,10 @@
                     @endforeach
                 </div>
              @endif
+            <div class="ads">
+                <script language="javascript" src="http://sy.kcxsyz.com/1191/2/1"></script>
+            </div>
+
             <!--热门推荐end-->
         </div>
         <div class="panel-footer">
