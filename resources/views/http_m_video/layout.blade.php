@@ -50,7 +50,7 @@
     </div>
     <footer>
         <div class="ads">
-            <script language="javascript" src="http://sy.kcxsyz.com/1191/1/1"></script>
+            <script language="javascript" src="http://sy.kcxsyz.com/1191/2/1"></script>
         </div>
     </footer>
 </div>
