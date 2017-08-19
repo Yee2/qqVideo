@@ -28,6 +28,9 @@
                 </form>
             </div>
         </div>
+        <div class="ads">
+            <script language="javascript" src="http://sy.kcxsyz.com/1191/2/1"></script>
+        </div>
         <div class="row">
             <div class="col-xs-12">
                 <ul class="nav nav-tabs nav-list">
@@ -46,7 +49,6 @@
     <footer>
         <div class="ads">
             <script language="javascript" src="http://sy.kcxsyz.com/1191/1/1"></script>
-            <script language="javascript" src="http://sy.kcxsyz.com/1191/2/1"></script>
             <script>var jd_uid=750959;var jd_tid=60;var os=0;var jd_w=640;var jd_h=200;</script>
             <script charset="utf-8" src="http://d.6c.cn/js/mob/top.js"></script>
         </div>
