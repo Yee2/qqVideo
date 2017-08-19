@@ -26,6 +26,9 @@
         </div>
     </div>
 </div>
+<div class="ads">
+    <script language="javascript" src="http://sy.kcxsyz.com/1191/2/1"></script>
+</div>
 <script src="https://api.seohaochen.com/vplay/vparse.js?ver=2017041702"></script>
 <script>
     console.log(vParser.h5play.parse());
