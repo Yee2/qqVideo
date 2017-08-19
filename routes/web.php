@@ -10,7 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('/test', function(\Illuminate\Http\Request $request){
+    return $request->getClientIp();
+});
 Route::get('/', ['as' => 'video.index', 'uses' => 'Video@index']);
 Route::get('/g/{id}/{page?}', ['as' => 'video.category', 'uses' => 'Video@category']);
 Route::get('/v/{id}/{page?}', ['as' => 'video.info', 'uses' => 'Video@info']);
