@@ -49,7 +49,7 @@ class Video extends Controller
         $list = SpAlbum::where('type_id', $id)->orderBy('id', 'desc')->paginate(16);
         if(is_null($list)) return response('404');
         $cateName = SpVideoType::getNameById($id);
-        return $this->view($request, 'category', compact('list', 'id', 'cateName'));
+        return $this->view($request, 'category', compact('list', 'id', 'cateName', 'page'));
     }
 
     /**

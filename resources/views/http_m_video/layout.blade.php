@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <title>@yield('title')</title>
+    <meta name="keywords" content="@yield('seo_keywords'),{{config('site.keywords')}}">
+    <meta name="description" content="@yield('seo_description')">
+    <title>@yield('title')_{{config('site.title')}}</title>
     <link rel="stylesheet" href="{{asset('m_video')}}/css/bootstrap.min.css">
     {{--<link rel="stylesheet" href="{{asset('m_video')}}/css/bootstrap-theme.min.css">--}}
     <link rel="stylesheet" href="{{asset('m_video')}}/css/index.css">
@@ -15,7 +17,7 @@
         <div class="row">
             <div class="col-xs-4">
                 <a href="{{route('video.index')}}">
-                    <div class="logo"></div>
+                    <div class="logo" title="logo_{{config('site.title')}}"></div>
                 </a>
             </div>
             <div class="col-xs-8">
@@ -33,7 +35,7 @@
                 <ul class="nav nav-tabs nav-list">
                     @foreach($data['category'] as $item)
                         <li class="presentation">
-                            <a href="{{route('video.category', $item->id)}}">{{$item->name}}</a>
+                            <a href="{{route('video.category', $item->id)}}" title="{{$item->name}}_{{config('site.title')}}">{{$item->name}}</a>
                         </li>
                     @endforeach
                 </ul>

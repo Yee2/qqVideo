@@ -192,29 +192,38 @@
                         @if($loop->index %6 == 0)
                             <div class="row list-group-item shipin">
                                 <div class="col-sm-2">
-                                    <a href="{{route('video.info', $item->id)}}" class="thumbnail">
-                                        <img src="{{route('video.getThumb', $item->id)}}" />
+                                    <a href="{{route('video.info', $item->id)}}" class="thumbnail"
+                                       title="{{$item->title}}_{{config('site.title')}}">
+                                        <img src="{{route('video.getThumb', $item->id)}}"
+                                             alt="{{$item->title}}_{{config('site.title')}}" />
                                     </a>
-                                    <a href="{{route('video.info', $item->id)}}">
+                                    <a href="{{route('video.info', $item->id)}}"
+                                       title="{{$item->title}}_{{config('site.title')}}">
                                         <div class="title text-center">{{$item->title}}</div>
                                     </a>
                                 </div>
                                 @elseif($loop->index %6 == 5)
                                     <div class="col-sm-2">
-                                        <a href="{{route('video.info', $item->id)}}" class="thumbnail">
-                                            <img src="{{route('video.getThumb', $item->id)}}" />
+                                        <a href="{{route('video.info', $item->id)}}" class="thumbnail"
+                                           title="{{$item->title}}_{{config('site.title')}}">
+                                            <img src="{{route('video.getThumb', $item->id)}}"
+                                                 alt="{{$item->title}}_{{config('site.title')}}" />
                                         </a>
-                                        <a href="{{route('video.info', $item->id)}}" >
+                                        <a href="{{route('video.info', $item->id)}}"
+                                           title="{{$item->title}}_{{config('site.title')}}">
                                             <div class="title text-center">{{$item->title}}</div>
                                         </a>
                                     </div>
                             </div>
                         @else
                             <div class="col-sm-2">
-                                <a href="{{route('video.info', $item->id)}}" class="thumbnail">
-                                    <img src="{{route('video.getThumb', $item->id)}}" />
+                                <a href="{{route('video.info', $item->id)}}" class="thumbnail"
+                                   title="{{$item->title}}_{{config('site.title')}}">
+                                    <img src="{{route('video.getThumb', $item->id)}}"
+                                         alt="{{$item->title}}_{{config('site.title')}}" />
                                 </a>
-                                <a href="{{route('video.info', $item->id)}}" >
+                                <a href="{{route('video.info', $item->id)}}"
+                                   title="{{$item->title}}_{{config('site.title')}}">
                                     <div class="title text-center">{{$item->title}}</div>
                                 </a>
                             </div>

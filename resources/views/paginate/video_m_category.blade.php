@@ -18,9 +18,14 @@
             @if (is_array($element))
                 @foreach ($element as $page => $url)
                     @if ($page == $paginator->currentPage())
-                        <li class="page-item active"><span class="page-link">{{ $page }}</span></li>
+                        <li class="page-item active">
+                            <span class="page-link" title="{{$cateName}}_第{{$page}}页_{{config('site.title')}}">{{ $page }}</span>
+                        </li>
                     @else
-                        <li class="page-item"><a class="page-link" href="{{ route('video.category', ['id' => $id, 'page' => $page]) }}">{{ $page }}</a></li>
+                        <li class="page-item">
+                            <a class="page-link" title="{{$cateName}}_第{{$page}}页_{{config('site.title')}}"
+                               href="{{ route('video.category', ['id' => $id, 'page' => $page]) }}">{{ $page }}</a>
+                        </li>
                     @endif
                 @endforeach
             @endif
@@ -28,7 +33,9 @@
 
         {{-- Next Page Link --}}
         @if ($paginator->hasMorePages())
-            <li class="page-item"><a class="page-link" href="{{ $paginator->nextPageUrl() }}" rel="next">&raquo;</a></li>
+            <li class="page-item">
+                <a class="page-link" href="{{ $paginator->nextPageUrl() }}" rel="next">&raquo;</a>
+            </li>
         @else
             <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
         @endif

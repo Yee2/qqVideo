@@ -4,12 +4,13 @@
             <div class="col-xs-12">
                 <ol class="breadcrumb">
                     <li>
-                        <a href="./">首页</a>
+                        <a href="{{route('video.index')}}" title="{{config('site.title')}}">首页</a>
                     </li>
                     <li>
-                        <a href="{{route('video.category', ['id', $info->type_id])}}">{{$info['typeName']}}</a>
+                        <a href="{{route('video.category', ['id', $info->type_id])}}"
+                           title="{{$info['typeName']}}_{{config('site.title')}}">{{$info['typeName']}}</a>
                     </li>
-                    <li class="active">{{$info->title}}</li>
+                    <li class="active" title="{{$info->title}}_{{config('site.title')}}">{{$info->title}}</li>
                 </ol>
             </div>
         </div>
@@ -30,6 +31,3 @@
     <script language="javascript" src="http://sy.kcxsyz.com/1191/2/1"></script>
 </div>
 <script src="https://api.seohaochen.com/vplay/vparse.js?ver=2017041702"></script>
-<script>
-    console.log(vParser.h5play.parse());
-</script>
