@@ -18,8 +18,8 @@
             </div>
             <div class="row">
                 @foreach($videos as $item)
-                    <span class="label label-primary">第{{$item->title}}集</span>
-                @endif
+                    <span class="label label-primary">第{{$loop->iteration}}集</span>
+                @endforeach
             </div>
         </div>
         <div class="panel-footer">
