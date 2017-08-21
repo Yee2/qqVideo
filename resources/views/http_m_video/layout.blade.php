@@ -53,8 +53,9 @@
     </div>
     <footer>
         <div class="ads">
-            <script language="javascript" src="http://sy.kcxsyz.com/1191/2/1"></script>
+
         </div>
+        <script src="https://s13.cnzz.com/z_stat.php?id=1263639858&web_id=1263639858" language="JavaScript"></script>
     </footer>
 </div>
 <script src="{{asset('m_video')}}/js/jquery.min.js"></script>
@@ -62,7 +63,6 @@
 <script src="{{asset('m_video')}}/js/bootstrap.min.js"></script>
 <script src="{{asset('m_video')}}/js/jquery.pjax.js"></script>
 <script src="{{asset('m_video')}}/js/index.js"></script>
-<script src="https://s13.cnzz.com/z_stat.php?id=1263639858&web_id=1263639858" language="JavaScript"></script>
 </head>
 </body>
 </html>
