@@ -19,10 +19,14 @@
             <div class="row">
                 <div class="btn-group" role="group">
                 @foreach($videos as $item)
-                    <a class="btn btn-primary" href="{{route('video.info', [
-                        'id' => $info->id,
-                        'infoId' => $item->id
-                        ])}}">第{{$loop->iteration}}集</a>
+                    @if($item->id === $infoId)
+                        <button class="btn btn-info">第{{$loop->iteration}}集</button>
+                    @else
+                        <a class="btn btn-primary" href="{{route('video.info', [
+                            'id' => $info->id,
+                            'infoId' => $item->id
+                            ])}}">第{{$loop->iteration}}集</a>
+                    @endif
                 @endforeach
                 </div>
             </div>
