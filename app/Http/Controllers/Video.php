@@ -60,12 +60,16 @@ class Video extends Controller
      * @param int $page
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Contracts\View\Factory|\Illuminate\View\View|\Symfony\Component\HttpFoundation\Response
      */
-    public function info(Request $request, $id)
+    public function info(Request $request, $id, $infoId = null)
     {
         $info = SpAlbum::find($id);
         if(is_null($info)) return response('404');
         $info['typeName'] = SpVideoType::where('id', $info->type_id)->value('name');
-        $source_url = SpVideo::where('albums_id', $id)->orderBy(DB::Raw('title', 'asc'))->value('source_url');
+        if(is_null($infoId)){
+            $source_url = SpVideo::where('id', $id)->value('source_url');
+        }else{
+            $source_url = SpVideo::where('albums_id', $id)->orderBy(DB::Raw('title', 'asc'))->value('source_url');
+        }
         if(is_null($source_url)){
             return $this->view($request, 'loading');
         }
