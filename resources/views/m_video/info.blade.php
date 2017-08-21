@@ -19,6 +19,7 @@
             <div class="row">
                 <div class="btn-group" role="group">
                 @foreach($videos as $item)
+                    {{$item->id}}{{$infoId}}
                     @if($item->id === $infoId)
                         <button class="btn btn-info">第{{$loop->iteration}}集</button>
                     @else
