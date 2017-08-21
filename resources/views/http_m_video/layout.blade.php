@@ -50,7 +50,6 @@
     <div class="row main" id="pjax-container">
         @yield('body')
     </div>
-    </div>
     <footer>
         <div class="ads">
 
