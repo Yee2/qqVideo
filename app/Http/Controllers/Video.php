@@ -65,12 +65,12 @@ class Video extends Controller
         $info = SpAlbum::find($id);
         if(is_null($info)) return response('404');
         $info['typeName'] = SpVideoType::where('id', $info->type_id)->value('name');
-        $videos = SpVideo::where('albums_id', $id)->orderBy(DB::Raw('title', 'asc'))->paginate(1);
-        if(is_null($videos) || !isset($videos[0])){
+        $source_url = SpVideo::where('albums_id', $id)->orderBy(DB::Raw('title', 'asc'))->value('source_url');
+        if(is_null($source_url)){
             return $this->view($request, 'loading');
         }
-        $sourceUrl = "https://api.vparse.org/?skin=47ks&url=".$videos[0]->source_url;
-        dd($videos);
+        $sourceUrl = "https://api.vparse.org/?skin=47ks&url=".$source_url;
+        $videos = SpVideo::where('albums_id', $id)->orderBy(DB::Raw('title', 'asc'))->get();
         return $this->view($request, 'info', compact('info', 'videos', 'sourceUrl'));
     }
 
