@@ -15,6 +15,6 @@ Route::get('/test', function(\Illuminate\Http\Request $request){
 });
 Route::get('/', ['as' => 'video.index', 'uses' => 'Video@index']);
 Route::get('/g/{id}/{page?}', ['as' => 'video.category', 'uses' => 'Video@category']);
-Route::get('/v/{id}/{page?}', ['as' => 'video.info', 'uses' => 'Video@info']);
+Route::get('/v/{id}/{infoId?}', ['as' => 'video.info', 'uses' => 'Video@info']);
 Route::get('/s/{title?}/{page?}', ['as' => 'video.search', 'uses' => 'Video@search']);
 Route::get('/t/{id}', ['as' => 'video.getThumb', 'uses' => 'Video@getThumb']);
