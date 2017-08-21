@@ -8,6 +8,7 @@ use App\Models\SpVideo;
 use App\Models\SpVideoType;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Jenssegers\Agent\Agent;
 
 class Video extends Controller
@@ -64,7 +65,7 @@ class Video extends Controller
         $info = SpAlbum::find($id);
         if(is_null($info)) return response('404');
         $info['typeName'] = SpVideoType::where('id', $info->type_id)->value('name');
-        $videos = SpVideo::where('albums_id', $id)->paginate(1);
+        $videos = SpVideo::where('albums_id', $id)->orderBy(DB::Raw('title', 'asc'))->paginate(1);
         if(is_null($videos) || !isset($videos[0])){
             return $this->view($request, 'loading');
         }

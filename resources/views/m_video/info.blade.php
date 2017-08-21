@@ -18,7 +18,7 @@
             </div>
             <div class="row">
                 @foreach($videos as $item)
-                    <span class="label label-primary">第{{$item->item}}集</span>
+                    <span class="label label-primary">第{{$item->title}}集</span>
                 @endif
             </div>
         </div>
