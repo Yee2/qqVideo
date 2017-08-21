@@ -21,7 +21,7 @@
                                         <img src="{{route('video.getThumb', $item->id)}}" />
                                     </a>
                                     <a href="{{route('video.info', $item->id)}}" @if($data['isMobile']) target="_blank"@endif>
-                                        <div class="title">{{$item->title}}</div>
+                                        <div class="title text-center">{{$item->title}}</div>
                                     </a>
                                 </div>
                                 @elseif($loop->index %2 == 1)
@@ -30,7 +30,7 @@
                                             <img src="{{route('video.getThumb', $item->id)}}" />
                                         </a>
                                         <a href="{{route('video.info', $item->id)}}" @if($data['isMobile']) target="_blank"@endif>
-                                            <div class="title">{{$item->title}}</div>
+                                            <div class="title text-center">{{$item->title}}</div>
                                         </a>
                                     </div>
                             </div>
@@ -95,7 +95,7 @@
                                         <img src="{{route('video.getThumb', $item->id)}}" />
                                     </a>
                                     <a href="{{route('video.info', $item->id)}}" @if($data['isMobile']) target="_blank"@endif>
-                                        <div class="title">{{$item->title}}</div>
+                                        <div class="title text-center">{{$item->title}}</div>
                                     </a>
                                 </div>
                                 @elseif($loop->index %2 == 1)
@@ -104,7 +104,7 @@
                                             <img src="{{route('video.getThumb', $item->id)}}" />
                                         </a>
                                         <a href="{{route('video.info', $item->id)}}" @if($data['isMobile']) target="_blank"@endif>
-                                            <div class="title">{{$item->title}}</div>
+                                            <div class="title text-center">{{$item->title}}</div>
                                         </a>
                                     </div>
                             </div>
@@ -170,7 +170,7 @@
                                         <img src="{{route('video.getThumb', $item->id)}}" />
                                     </a>
                                     <a href="{{route('video.info', $item->id)}}" @if($data['isMobile']) target="_blank"@endif>
-                                        <div class="title">{{$item->title}}</div>
+                                        <div class="title text-center">{{$item->title}}</div>
                                     </a>
                                 </div>
                                 @elseif($loop->index %2 == 1)
@@ -179,7 +179,7 @@
                                             <img src="{{route('video.getThumb', $item->id)}}" />
                                         </a>
                                         <a href="{{route('video.info', $item->id)}}" @if($data['isMobile']) target="_blank"@endif>
-                                            <div class="title">{{$item->title}}</div>
+                                            <div class="title text-center">{{$item->title}}</div>
                                         </a>
                                     </div>
                             </div>
@@ -238,7 +238,7 @@
             <!--热门推荐end-->
         </div>
         <div class="panel-footer">
-            <p class="text-center small">有些东西失去了就永远找不回</p>
+            <p class="text-center small">看到的、听到的，最终......都成了回忆</p>
         </div>
     </div>
 </div>
