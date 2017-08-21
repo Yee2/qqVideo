@@ -1,24 +1,20 @@
 <div class="col-xs-12">
     <div class="panel panel-default contentLeft">
         <div class="panel-header">
-            <div class="col-xs-12">
-                <ol class="breadcrumb">
-                    <li>
-                        <a href="{{route('video.index')}}" title="{{config('site.title')}}">首页</a>
-                    </li>
-                    <li>
-                        <a href="{{route('video.category', ['id', $info->type_id])}}"
-                           title="{{$info['typeName']}}_{{config('site.title')}}">{{$info['typeName']}}</a>
-                    </li>
-                    <li class="active" title="{{$info->title}}_{{config('site.title')}}">{{$info->title}}</li>
-                </ol>
-            </div>
+            <ol class="breadcrumb">
+                <li>
+                    <a href="{{route('video.index')}}" title="{{config('site.title')}}">首页</a>
+                </li>
+                <li>
+                    <a href="{{route('video.category', ['id', $info->type_id])}}"
+                       title="{{$info['typeName']}}_{{config('site.title')}}">{{$info['typeName']}}</a>
+                </li>
+                <li class="active" title="{{$info->title}}_{{config('site.title')}}">{{$info->title}}</li>
+            </ol>
         </div>
         <div class="panel-body dataInfo">
-            <div class="panel-body">
-                <div class="row">
-                    <iframe src="{{$sourceUrl}}" style="width:100%;height: 550px;"></iframe>
-                </div>
+            <div class="row">
+                <iframe src="{{$sourceUrl}}" style="width:100%;height: 550px;"></iframe>
             </div>
         </div>
 
