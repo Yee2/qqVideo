@@ -11,7 +11,7 @@
 |
 */
 Route::get('/test', function(\Illuminate\Http\Request $request){
-    return $request->getClientIp();
+    return $request->header('referer');
 });
 Route::get('/', ['as' => 'video.index', 'uses' => 'Video@index']);
 Route::get('/g/{id}/{page?}', ['as' => 'video.category', 'uses' => 'Video@category']);
