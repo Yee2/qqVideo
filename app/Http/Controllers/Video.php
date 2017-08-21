@@ -66,7 +66,7 @@ class Video extends Controller
         if(is_null($info)) return response('404');
         $info['typeName'] = SpVideoType::where('id', $info->type_id)->value('name');
         if(!is_null($infoId)){
-            $source_url = SpVideo::where('id', $id)->value('source_url');
+            $source_url = SpVideo::where('id', $infoId)->value('source_url');
         }else{
             $source_url = SpVideo::where('albums_id', $id)->orderBy(DB::Raw('title', 'asc'))->value('source_url');
         }
