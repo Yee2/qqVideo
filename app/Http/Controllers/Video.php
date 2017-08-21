@@ -70,6 +70,7 @@ class Video extends Controller
             return $this->view($request, 'loading');
         }
         $sourceUrl = "https://api.vparse.org/?skin=47ks&url=".$videos[0]->source_url;
+        dd($videos);
         return $this->view($request, 'info', compact('info', 'videos', 'sourceUrl'));
     }
 
