@@ -18,7 +18,7 @@
             </div>
             <div class="row">
                 @foreach($videos as $item)
-                    <span class="label label-primary">第{{$loop->iteration}}集</span>
+                    <a class="btn btn-primary" href="{{route('video.info', $item->id)}}">第{{$loop->iteration}}集</a>
                 @endforeach
             </div>
         </div>
