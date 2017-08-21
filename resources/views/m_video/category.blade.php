@@ -1,8 +1,5 @@
 <div class="col-xs-12">
     <div class="panel panel-default contentLeft">
-        <div class="panel-header">
-
-        </div>
         <div class="panel-body dataList">
             <!--电影start-->
             <div class="row body">

@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="{{asset('m_video')}}/css/index.css">
     <link rel="stylesheet" href="{{asset('m_video')}}/css/swiper-3.4.2.min.css">
 <body>
-<div class="">
+<div class="@if(!$data['isMobile']) container @endif">
     <header>
         <div class="row">
             <div class="col-xs-4">
@@ -49,6 +49,7 @@
     </div>
     <div class="row main" id="pjax-container">
         @yield('body')
+    </div>
     </div>
     <footer>
         <div class="ads">

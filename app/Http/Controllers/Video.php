@@ -65,7 +65,9 @@ class Video extends Controller
         if(is_null($info)) return response('404');
         $info['typeName'] = SpVideoType::where('id', $info->type_id)->value('name');
         $videos = SpVideo::where('albums_id', $id)->paginate(1);
-        if(is_null($videos) || !isset($videos[0])) return response('数据正在更新中，请稍等再试.....');
+        if(is_null($videos) || !isset($videos[0])){
+            return $this->view($request, 'loading');
+        }
         $sourceUrl = "https://api.vparse.org/?skin=47ks&url=".$videos[0]->source_url;
         return $this->view($request, 'info', compact('info', 'videos', 'sourceUrl'));
     }
