@@ -4,7 +4,7 @@
             <!--电影start-->
             @if($data['isMobile'])
                 @foreach($list as $item)
-                    @if($loop->index == 0)
+                    @if($loop->index%2 == 0)
                     <div class="row body">
                     @endif
                         <div class="col-xs-6 shipin">
@@ -22,7 +22,7 @@
                 @endforeach
             @else
                 @foreach($list as $item)
-                    @if($loop->index == 0)
+                    @if($loop->index%4 == 0)
                     <div class="row body">
                     @endif
                         <div class="col-xs-3 shipin">
