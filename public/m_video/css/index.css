@@ -44,7 +44,9 @@ header .userPanel .login, header .userPanel .register,header .userPanel .lqVip{
     height: 8.6rem;
     text-overflow: ellipsis;*/
 }
-
+.dataInfo {
+    padding-top: 0px;
+}
 /*专辑页面*/
 .video-play-src a {
     width: 50px;

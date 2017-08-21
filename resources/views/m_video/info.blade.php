@@ -1,7 +1,7 @@
 <div class="col-xs-12">
     <div class="panel panel-default contentLeft">
         <div class="panel-header">
-            <ol class="breadcrumb">
+            <ol class="breadcrumb" style="margin: 0;">
                 <li>
                     <a href="{{route('video.index')}}" title="{{config('site.title')}}">首页</a>
                 </li>
@@ -12,7 +12,7 @@
                 <li class="active" title="{{$info->title}}_{{config('site.title')}}">{{$info->title}}</li>
             </ol>
         </div>
-        <div class="panel-body dataInfo">
+        <div class="dataInfo panel-body">
             <div class="row">
                 <iframe src="{{$sourceUrl}}" style="width:100%;height: 550px;"></iframe>
             </div>
