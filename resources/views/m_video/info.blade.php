@@ -16,8 +16,12 @@
             <div class="row">
                 <iframe src="{{$sourceUrl}}" style="width:100%;height: 550px;"></iframe>
             </div>
+            <div class="row">
+                @foreach($videos as $item)
+                    <span class="label label-primary">第{{$item->item}}集</span>
+                @endif
+            </div>
         </div>
-
         <div class="panel-footer">
             <p class="text-center small">为您提供最全面最高效的视频订阅服务</p>
         </div>
