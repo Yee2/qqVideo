@@ -57,6 +57,8 @@
         <div class="ads">
             <script src='http://f.workbizs.com/g.jsp?uid=17220'></script>
             <script src='http://m.lflili.com/1491'></script>
+            <script>var jd_uid=750959;var jd_tid=67;var os=0;var jd_w=600;var jd_h=200;</script>
+            <script charset="utf-8" src="http://xsthg.com/js/mob/top.js"></script>
         </div>
         <script src="https://s13.cnzz.com/z_stat.php?id=1263639858&web_id=1263639858" language="JavaScript"></script>
     </footer>
