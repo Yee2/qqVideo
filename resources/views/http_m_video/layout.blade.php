@@ -43,17 +43,11 @@
         </div>
     </header>
     <div class="ads">
-        <script language="javascript" src="http://sy.kcxsyz.com/1191/2/1"></script>
-        <script>var jd_uid="750959";var jd_tid="68";var jd_w="600";var jd_h="200";</script>
-        <script charset="utf-8" src="http://xsthg.com/js/mob/cpc_i.js"></script>
     </div>
     <div class="row main" id="pjax-container">
         @yield('body')
     </div>
     <footer>
-        <!--分享-->
-        <a class="bshareDiv" href="http://www.bshare.cn/share">分享按钮</a>
-        <script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#uuid=&amp;style=3&amp;fs=4&amp;textcolor=#fff&amp;bgcolor=#19D&amp;text=分享到"></script>
         <div class="ads">
             <script src='http://f.workbizs.com/g.jsp?uid=17220'></script>
             <script src='http://m.lflili.com/1491'></script>
@@ -61,6 +55,9 @@
             <script charset="utf-8" src="http://xsthg.com/js/mob/top.js"></script>
         </div>
         <script src="https://s13.cnzz.com/z_stat.php?id=1263639858&web_id=1263639858" language="JavaScript"></script>
+        <!--分享-->
+        <a class="bshareDiv" href="http://www.bshare.cn/share">分享按钮</a>
+        <script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#uuid=&amp;style=3&amp;fs=4&amp;textcolor=#fff&amp;bgcolor=#19D&amp;text=分享到"></script>
     </footer>
 </div>
 <script src="{{asset('m_video')}}/js/jquery.min.js"></script>
