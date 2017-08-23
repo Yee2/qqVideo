@@ -69,6 +69,9 @@ class Video extends Controller
             $source_url = SpVideo::where('id', $infoId)->value('source_url');
         }else{
             $data = SpVideo::where('albums_id', $id)->orderBy(DB::Raw('title', 'asc'))->first();
+            if(is_null($data)){
+                return $this->view($request, 'loading');
+            }
             $source_url = $data->source_url;
             $infoId = $data->id;
         }
