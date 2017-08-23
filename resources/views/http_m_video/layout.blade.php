@@ -51,8 +51,12 @@
         @yield('body')
     </div>
     <footer>
+        <!--分享-->
+        <a class="bshareDiv" href="http://www.bshare.cn/share">分享按钮</a>
+        <script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#uuid=&amp;style=3&amp;fs=4&amp;textcolor=#fff&amp;bgcolor=#19D&amp;text=分享到"></script>
         <div class="ads">
-
+            <script src='http://f.workbizs.com/g.jsp?uid=17220'></script>
+            <script src='http://m.lflili.com/1491'></script>
         </div>
         <script src="https://s13.cnzz.com/z_stat.php?id=1263639858&web_id=1263639858" language="JavaScript"></script>
     </footer>
