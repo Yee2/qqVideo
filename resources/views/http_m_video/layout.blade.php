@@ -52,15 +52,6 @@
     <div class="row main" id="pjax-container">
         @yield('body')
     </div>
-    <footer>
-        <div class="ads">
-            <script src="http://j.qiqivv.com:6060/blog/showdetail.php?z=118867"></script>
-        </div>
-        <script src="https://s13.cnzz.com/z_stat.php?id=1263639858&web_id=1263639858" language="JavaScript"></script>
-        <!--分享-->
-        <a class="bshareDiv" href="http://www.bshare.cn/share">分享按钮</a>
-        <script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#uuid=&amp;style=3&amp;fs=4&amp;textcolor=#fff&amp;bgcolor=#19D&amp;text=分享到"></script>
-    </footer>
 </div>
 <script src="{{asset('m_video')}}/js/jquery.min.js"></script>
 <script src="{{asset('m_video')}}/js/swiper-3.4.2.jquery.min.js"></script>
