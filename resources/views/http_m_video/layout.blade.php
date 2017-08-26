@@ -51,7 +51,7 @@
     </div>
     <footer>
         <div class="ads">
-            <script src='http://m.lflili.com/1491'></script>
+
         </div>
         <script src="https://s13.cnzz.com/z_stat.php?id=1263639858&web_id=1263639858" language="JavaScript"></script>
         <!--分享-->
