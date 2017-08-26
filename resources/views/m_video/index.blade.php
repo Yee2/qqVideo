@@ -238,7 +238,7 @@
             <!--热门推荐end-->
         </div>
         <div class="panel-footer">
-            <p class="text-center small">看到的、听到的，最终......都成了回忆</p>
+            <p class="text-center small">备案号：黔ICP备17000996号-1</p>
         </div>
     </div>
 </div>
