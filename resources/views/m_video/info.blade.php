@@ -6,7 +6,7 @@
                     <a href="{{route('video.index')}}" title="{{config('site.title')}}">首页</a>
                 </li>
                 <li>
-                    <a href="{{route('video.category', ['id', $info->type_id])}}"
+                    <a href="{{route('video.category', $info->type_id)}}"
                        title="{{$info['typeName']}}_{{config('site.title')}}">{{$info['typeName']}}</a>
                 </li>
                 <li class="active" title="{{$info->title}}_{{config('site.title')}}">{{$info->title}}</li>
