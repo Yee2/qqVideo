@@ -9,6 +9,8 @@
     <title>@yield('title')_{{config('site.title')}}</title>
     {{--亿赢联盟--}}
     <meta name='zyiis_check_verify' content='e7b64a49676834dce6af183b492456f1'>
+    {{--百度联盟--}}
+    <meta name="baidu_union_verify" content="34e101b089f885cea6b5b38b960aad27">
     <link rel="stylesheet" href="{{asset('m_video')}}/css/bootstrap.min.css">
     {{--<link rel="stylesheet" href="{{asset('m_video')}}/css/bootstrap-theme.min.css">--}}
     <link rel="stylesheet" href="{{asset('m_video')}}/css/index.css">
