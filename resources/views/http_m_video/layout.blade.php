@@ -7,6 +7,8 @@
     <meta name="keywords" content="@yield('seo_keywords'),{{config('site.keywords')}}">
     <meta name="description" content="@yield('seo_description')">
     <title>@yield('title')_{{config('site.title')}}</title>
+    {{--亿赢联盟--}}
+    <meta name='zyiis_check_verify' content='e7b64a49676834dce6af183b492456f1'>
     <link rel="stylesheet" href="{{asset('m_video')}}/css/bootstrap.min.css">
     {{--<link rel="stylesheet" href="{{asset('m_video')}}/css/bootstrap-theme.min.css">--}}
     <link rel="stylesheet" href="{{asset('m_video')}}/css/index.css">
