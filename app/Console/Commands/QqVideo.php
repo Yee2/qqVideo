@@ -44,6 +44,10 @@ class QqVideo extends Command
         $optionType = $this->option('type');
         $optionOffset = $this->option('offset');
         $optionFirst = $this->option('first');
+        if($optionType >= 3){
+            echo "all finash\r\n";
+            return false;
+        }
         $type = self::getType($optionType);
         $url = 'http://v.qq.com/x/list/'.$type['type'].'?offset='.$optionOffset;
         try{
@@ -91,19 +95,17 @@ class QqVideo extends Command
             }
         }
         echo "finash\r\n";
-        if($optionType != 3){
-            if(0 <= $optionOffset){
-                Artisan::call('video:qqvideo', [
-                    '--type' => $optionType,
-                    '--offset' => $optionOffset-30,
-                    '--first' => false,
-                ]);
-            }else{
-                Artisan::call('video:qqvideo', [
-                    '--type' => $optionType+1,
-                    '--offset' => 0
-                ]);
-            }
+        if(0 <= $optionOffset){
+            Artisan::call('video:qqvideo', [
+                '--type' => $optionType,
+                '--offset' => $optionOffset-30,
+                '--first' => false,
+            ]);
+        }else{
+            Artisan::call('video:qqvideo', [
+                '--type' => $optionType+1,
+                '--offset' => 0
+            ]);
         }
     }
 
