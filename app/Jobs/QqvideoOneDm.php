@@ -43,7 +43,7 @@ class QqvideoOneDm implements ShouldQueue
         ];
         $info = SpVideo::where($data)->first();
         if(is_null($info)){
-            SpVideo::create($data);
+            SpVideo::firstOrCreate($data);
         }
     }
 }

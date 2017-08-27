@@ -86,6 +86,7 @@ class QqVideo extends Command
             if(is_null($find)){
                 $info = SpAlbum::create($data);
                 if($info){
+                    $data['id'] = $info->id;
                     dispatch(new QqVideoOne($data));
                     SpThumb::create([
                         'albums_id' => $info->id,
@@ -93,6 +94,7 @@ class QqVideo extends Command
                     ]);
                 }
             }else{
+                $data['id'] = $find->id;
                 dispatch(new QqVideoOne($data));
             }
         }

@@ -73,6 +73,7 @@ class Youku extends Command
                     ]);
                 }
             }else{
+                $data['id'] = $find->id;
                 dispatch(new YoukuOne($data));
             }
         }

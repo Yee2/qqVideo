@@ -51,7 +51,7 @@ class YoukuOne implements ShouldQueue
         $find->descript = $description;
         $find->save();
         if($this->map['type_id'] == 1){
-            SpVideo::create([
+            SpVideo::firstOrCreate([
                 'source_url' => $this->map['source_url'],
                 'albums_id' => $find->id
             ]);
@@ -60,7 +60,7 @@ class YoukuOne implements ShouldQueue
             $count = $listDom->count();
             for($i = 1; $i <= $count; $i++){
                 $map = pq($listDom->eq($count-$i));
-                SpVideo::create([
+                SpVideo::firstOrCreate([
                     'source_url' => $map->find('a')->attr('href'),
                     'title' => $map->find('a')->text(),
                     'albums_id' => $find->id
