@@ -32,7 +32,7 @@
             </div>
             <div class="row">
                 <!--PC和WAP自适应版-->
-                <div id="SOHUCS" sid="请将此处替换为配置SourceID的语句" ></div>
+                <div id="SOHUCS" sid="{{$info->id}}" ></div>
                 <script type="text/javascript">
                     (function(){
                         var appid = 'cysXcUQEm';
