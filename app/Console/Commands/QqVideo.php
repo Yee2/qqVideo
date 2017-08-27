@@ -86,12 +86,16 @@ class QqVideo extends Command
             if(is_null($find)){
                 $info = SpAlbum::create($data);
                 if($info){
+                    $data['id'] = $info->id;
                     dispatch(new QqVideoOne($data));
                     SpThumb::create([
                         'albums_id' => $info->id,
                         'thumb' => $map->find('img')->attr('r-lazyload')
                     ]);
                 }
+            }else{
+                $data['id'] = $find->id;
+                dispatch(new QqVideoOne($data));
             }
         }
         echo "finash\r\n";

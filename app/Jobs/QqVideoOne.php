@@ -35,7 +35,7 @@ class QqVideoOne implements ShouldQueue
     {
         $url = $this->map['source_url'];
         $dom = \phpQuery::newDocumentFileHTML($url, 'gbk');
-        $find = SpAlbum::where('title', $this->map['title'])->first();
+        $find = SpAlbum::where('id', $this->map['id'])->first();
         if(!is_null($find)){
             if(is_null($find->tags)){
                 $video_tags = $dom->find('.video_tags a[_stat]');
@@ -55,7 +55,7 @@ class QqVideoOne implements ShouldQueue
         }
         //电影
         if($this->map['type_id'] == 1){
-            SpVideo::create([
+            SpVideo::firstOrCreate([
                 'source_url' => $this->map['source_url'],
                 'albums_id' => $find->id
             ]);
@@ -66,7 +66,7 @@ class QqVideoOne implements ShouldQueue
             preg_match("/var COVER_INFO = (.+)\n/", $contents, $listMatch);
             $pathInfo = pathinfo($url);
             $json = json_decode($listMatch[1], true);
-            $find = SpAlbum::where('title', $this->map['title'])->first();
+            $find = SpAlbum::where('id', $this->map['id'])->first();
             if(!is_null($find)){
                 if(is_null($find->tags)){
                     $find->tags = implode(',', $json['subtype']);
@@ -91,7 +91,7 @@ class QqVideoOne implements ShouldQueue
             preg_match("/var LIST_INFO = (.+)\n/", $scriptListInfo, $listMatch);
             $pathInfo = pathinfo($url);
             $json = json_decode($listMatch[1], true);
-            $find = SpAlbum::where('title', $this->map['title'])->first();
+            $find = SpAlbum::where('id', $this->map['id'])->first();
             if(!is_null($find)){
                 foreach ($json['vid'] as $key => $item){
                     $map = [
