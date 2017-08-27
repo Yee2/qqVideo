@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="{{asset('m_video')}}/css/bootstrap.min.css">
     {{--<link rel="stylesheet" href="{{asset('m_video')}}/css/bootstrap-theme.min.css">--}}
     <link rel="stylesheet" href="{{asset('m_video')}}/css/index.css">
+    <link rel="stylesheet" href="{{asset('dplay')}}/dplay.css">
     <link rel="stylesheet" href="{{asset('m_video')}}/css/swiper-3.4.2.min.css">
 <body>
 <div class="@if(!$data['isMobile']) container @endif">
