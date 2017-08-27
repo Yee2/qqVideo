@@ -92,6 +92,8 @@ class QqVideo extends Command
                         'thumb' => $map->find('img')->attr('r-lazyload')
                     ]);
                 }
+            }else{
+                dispatch(new QqVideoOne($data));
             }
         }
         echo "finash\r\n";

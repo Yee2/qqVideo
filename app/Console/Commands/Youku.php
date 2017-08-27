@@ -72,6 +72,8 @@ class Youku extends Command
                         'thumb' => $map->find('img')->attr('_src')
                     ]);
                 }
+            }else{
+                dispatch(new YoukuOne($data));
             }
         }
         echo "finash\r\n";
