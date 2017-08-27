@@ -10,7 +10,8 @@
                         <div class="col-xs-6 shipin">
                             <a href="{{route('video.info', $item->id)}}" class="thumbnail"
                                title="{{$item->title}}_{{config('site.title')}}">
-                                <img src="{{route('video.getThumb', $item->id)}}" alt="{{$item->title}}_{{config('site.title')}}">
+                                <img src="{{asset('m_video')}}/img/videoLoading.gif" _src="{{route('video.getThumb', $item->id)}}"
+                                     alt="{{$item->title}}_{{config('site.title')}}">
                                 <div class="title">
                                     <p class="text-center">{{$item->title}}</p>
                                 </div>
@@ -28,7 +29,8 @@
                         <div class="col-xs-3 shipin">
                             <a href="{{route('video.info', $item->id)}}" class="thumbnail"
                                title="{{$item->title}}_{{config('site.title')}}">
-                                <img src="{{route('video.getThumb', $item->id)}}" alt="{{$item->title}}_{{config('site.title')}}">
+                                <img src="{{asset('m_video')}}/img/videoLoading.gif" _src="{{route('video.getThumb', $item->id)}}"
+                                     alt="{{$item->title}}_{{config('site.title')}}">
                                 <div class="title">
                                     <p class="text-center">{{$item->title}}</p>
                                 </div>
