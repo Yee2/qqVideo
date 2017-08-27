@@ -2,7 +2,7 @@
 <p class="text-center small">相关事项：如果本站收集的链接地址无意侵犯了您的权益，请来邮件告知，我们会及时进行处理。邮箱：3123118153#qq.com(请#改为@)</p>
 <p class="text-center small">版权声明：爱剧影院(www.ijuyingyuan.cn) 为非赢利性站点，电影资源系收集于互联网，是好看的电影天堂，更新最快的电影网站.</p>
 <div class="ads">
-    <script src="http://j.qiqivv.com:6060/blog/showdetail.php?z=118867"></script>
+    {{--<script src="http://j.qiqivv.com:6060/blog/showdetail.php?z=118867"></script>--}}
 </div>
 <script src="https://s13.cnzz.com/z_stat.php?id=1263639858&web_id=1263639858" language="JavaScript"></script>
 <!--分享-->
