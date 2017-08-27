@@ -32,7 +32,7 @@
             </div>
         </div>
         <div class="panel-footer">
-            <p class="text-center small">为您提供最全面最高效的视频订阅服务</p>
+            @include("m_video.copyright")
         </div>
     </div>
 </div>
