@@ -47,8 +47,7 @@
         </div>
     </header>
     <div class="ads">
-        <script>var jd_uid="750959";var jd_tid="68";var jd_w="600";var jd_h="200";</script>
-        <script charset="utf-8" src="http://xsthg.com/js/mob/cpc_i.js"></script>
+
     </div>
     <div class="row main" id="pjax-container">
         @yield('body')
