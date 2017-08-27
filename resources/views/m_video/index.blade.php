@@ -17,19 +17,19 @@
                         @if($loop->index %2 == 0)
                             <div class="row list-group-item shipin">
                                 <div class="col-xs-6">
-                                    <a href="{{route('video.info', $item->id)}}" @if($data['isMobile']) target="_blank"@endif class="thumbnail">
-                                        <img src="{{route('video.getThumb', $item->id)}}" />
+                                    <a href="{{route('video.info', $item->id)}}" class="thumbnail">
+                                        <img src="{{asset('m_video')}}/img/videoLoading.gif" _src="{{route('video.getThumb', $item->id)}}" />
                                     </a>
-                                    <a href="{{route('video.info', $item->id)}}" @if($data['isMobile']) target="_blank"@endif>
+                                    <a href="{{route('video.info', $item->id)}}">
                                         <div class="title text-center">{{$item->title}}</div>
                                     </a>
                                 </div>
                                 @elseif($loop->index %2 == 1)
                                     <div class="col-xs-6">
-                                        <a href="{{route('video.info', $item->id)}}" @if($data['isMobile']) target="_blank"@endif class="thumbnail">
-                                            <img src="{{route('video.getThumb', $item->id)}}" />
+                                        <a href="{{route('video.info', $item->id)}}" class="thumbnail">
+                                            <img src="{{asset('m_video')}}/img/videoLoading.gif" _src="{{route('video.getThumb', $item->id)}}" />
                                         </a>
-                                        <a href="{{route('video.info', $item->id)}}" @if($data['isMobile']) target="_blank"@endif>
+                                        <a href="{{route('video.info', $item->id)}}">
                                             <div class="title text-center">{{$item->title}}</div>
                                         </a>
                                     </div>
@@ -44,7 +44,7 @@
                             <div class="row list-group-item shipin">
                                 <div class="col-sm-2">
                                     <a href="{{route('video.info', $item->id)}}" class="thumbnail">
-                                        <img src="{{route('video.getThumb', $item->id)}}" />
+                                        <img src="{{asset('m_video')}}/img/videoLoading.gif" _src="{{route('video.getThumb', $item->id)}}" />
                                     </a>
                                     <a href="{{route('video.info', $item->id)}}">
                                         <div class="title text-center">{{$item->title}}</div>
@@ -53,9 +53,9 @@
                                 @elseif($loop->index %6 == 5)
                                     <div class="col-sm-2">
                                         <a href="{{route('video.info', $item->id)}}" class="thumbnail">
-                                            <img src="{{route('video.getThumb', $item->id)}}" />
+                                            <img src="{{asset('m_video')}}/img/videoLoading.gif" _src="{{route('video.getThumb', $item->id)}}" />
                                         </a>
-                                        <a href="{{route('video.info', $item->id)}}" >
+                                        <a href="{{route('video.info', $item->id)}}">
                                             <div class="title text-center">{{$item->title}}</div>
                                         </a>
                                     </div>
@@ -63,7 +63,7 @@
                         @else
                             <div class="col-sm-2">
                                 <a href="{{route('video.info', $item->id)}}" class="thumbnail">
-                                    <img src="{{route('video.getThumb', $item->id)}}" />
+                                    <img src="{{asset('m_video')}}/img/videoLoading.gif" _src="{{route('video.getThumb', $item->id)}}" />
                                 </a>
                                 <a href="{{route('video.info', $item->id)}}" >
                                     <div class="title text-center">{{$item->title}}</div>
@@ -91,19 +91,19 @@
                         @if($loop->index %2 == 0)
                             <div class="row list-group-item shipin">
                                 <div class="col-xs-6">
-                                    <a href="{{route('video.info', $item->id)}}" @if($data['isMobile']) target="_blank"@endif class="thumbnail">
-                                        <img src="{{route('video.getThumb', $item->id)}}" />
+                                    <a href="{{route('video.info', $item->id)}}" class="thumbnail">
+                                        <img src="{{asset('m_video')}}/img/videoLoading.gif" _src="{{route('video.getThumb', $item->id)}}" />
                                     </a>
-                                    <a href="{{route('video.info', $item->id)}}" @if($data['isMobile']) target="_blank"@endif>
+                                    <a href="{{route('video.info', $item->id)}}">
                                         <div class="title text-center">{{$item->title}}</div>
                                     </a>
                                 </div>
                                 @elseif($loop->index %2 == 1)
                                     <div class="col-xs-6">
-                                        <a href="{{route('video.info', $item->id)}}" @if($data['isMobile']) target="_blank"@endif class="thumbnail">
-                                            <img src="{{route('video.getThumb', $item->id)}}" />
+                                        <a href="{{route('video.info', $item->id)}}" class="thumbnail">
+                                            <img src="{{asset('m_video')}}/img/videoLoading.gif" _src="{{route('video.getThumb', $item->id)}}" />
                                         </a>
-                                        <a href="{{route('video.info', $item->id)}}" @if($data['isMobile']) target="_blank"@endif>
+                                        <a href="{{route('video.info', $item->id)}}">
                                             <div class="title text-center">{{$item->title}}</div>
                                         </a>
                                     </div>
@@ -118,7 +118,7 @@
                             <div class="row list-group-item shipin">
                                 <div class="col-sm-2">
                                     <a href="{{route('video.info', $item->id)}}" class="thumbnail">
-                                        <img src="{{route('video.getThumb', $item->id)}}" />
+                                        <img src="{{asset('m_video')}}/img/videoLoading.gif" _src="{{route('video.getThumb', $item->id)}}" />
                                     </a>
                                     <a href="{{route('video.info', $item->id)}}">
                                         <div class="title text-center">{{$item->title}}</div>
@@ -127,19 +127,19 @@
                                 @elseif($loop->index %6 == 5)
                                     <div class="col-sm-2">
                                         <a href="{{route('video.info', $item->id)}}" class="thumbnail">
-                                            <img src="{{route('video.getThumb', $item->id)}}" />
+                                            <img src="{{asset('m_video')}}/img/videoLoading.gif" _src="{{route('video.getThumb', $item->id)}}" />
                                         </a>
-                                        <a href="{{route('video.info', $item->id)}}" >
+                                        <a href="{{route('video.info', $item->id)}}">
                                             <div class="title text-center">{{$item->title}}</div>
                                         </a>
                                     </div>
                             </div>
                         @else
                             <div class="col-sm-2">
-                                <a href="{{route('video.info', $item->id)}}" class="thumbnail">
-                                    <img src="{{route('video.getThumb', $item->id)}}" />
+                                <a href="{{route('video.info', $item->id)}}" class="thumbnail" @if(!$data['isMobile']) target="_blank"@endif>
+                                    <img src="{{asset('m_video')}}/img/videoLoading.gif" _src="{{route('video.getThumb', $item->id)}}" />
                                 </a>
-                                <a href="{{route('video.info', $item->id)}}" >
+                                <a href="{{route('video.info', $item->id)}}" @if(!$data['isMobile']) target="_blank"@endif>
                                     <div class="title text-center">{{$item->title}}</div>
                                 </a>
                             </div>
@@ -166,19 +166,19 @@
                         @if($loop->index %2 == 0)
                             <div class="row list-group-item shipin">
                                 <div class="col-xs-6">
-                                    <a href="{{route('video.info', $item->id)}}" @if($data['isMobile']) target="_blank"@endif class="thumbnail">
-                                        <img src="{{route('video.getThumb', $item->id)}}" />
+                                    <a href="{{route('video.info', $item->id)}}" class="thumbnail">
+                                        <img src="{{asset('m_video')}}/img/videoLoading.gif" _src="{{route('video.getThumb', $item->id)}}" />
                                     </a>
-                                    <a href="{{route('video.info', $item->id)}}" @if($data['isMobile']) target="_blank"@endif>
+                                    <a href="{{route('video.info', $item->id)}}">
                                         <div class="title text-center">{{$item->title}}</div>
                                     </a>
                                 </div>
                                 @elseif($loop->index %2 == 1)
                                     <div class="col-xs-6">
-                                        <a href="{{route('video.info', $item->id)}}" @if($data['isMobile']) target="_blank"@endif class="thumbnail">
+                                        <a href="{{route('video.info', $item->id)}}" class="thumbnail">
                                             <img src="{{route('video.getThumb', $item->id)}}" />
                                         </a>
-                                        <a href="{{route('video.info', $item->id)}}" @if($data['isMobile']) target="_blank"@endif>
+                                        <a href="{{route('video.info', $item->id)}}">
                                             <div class="title text-center">{{$item->title}}</div>
                                         </a>
                                     </div>
@@ -194,7 +194,7 @@
                                 <div class="col-sm-2">
                                     <a href="{{route('video.info', $item->id)}}" class="thumbnail"
                                        title="{{$item->title}}_{{config('site.title')}}">
-                                        <img src="{{route('video.getThumb', $item->id)}}"
+                                        <img src="{{asset('m_video')}}/img/videoLoading.gif" _src="{{route('video.getThumb', $item->id)}}"
                                              alt="{{$item->title}}_{{config('site.title')}}" />
                                     </a>
                                     <a href="{{route('video.info', $item->id)}}"
@@ -206,7 +206,7 @@
                                     <div class="col-sm-2">
                                         <a href="{{route('video.info', $item->id)}}" class="thumbnail"
                                            title="{{$item->title}}_{{config('site.title')}}">
-                                            <img src="{{route('video.getThumb', $item->id)}}"
+                                            <img src="{{asset('m_video')}}/img/videoLoading.gif" _src="{{route('video.getThumb', $item->id)}}"
                                                  alt="{{$item->title}}_{{config('site.title')}}" />
                                         </a>
                                         <a href="{{route('video.info', $item->id)}}"
@@ -219,7 +219,7 @@
                             <div class="col-sm-2">
                                 <a href="{{route('video.info', $item->id)}}" class="thumbnail"
                                    title="{{$item->title}}_{{config('site.title')}}">
-                                    <img src="{{route('video.getThumb', $item->id)}}"
+                                    <img src="{{asset('m_video')}}/img/videoLoading.gif" _src="{{route('video.getThumb', $item->id)}}"
                                          alt="{{$item->title}}_{{config('site.title')}}" />
                                 </a>
                                 <a href="{{route('video.info', $item->id)}}"
