@@ -126,9 +126,17 @@ class Video extends Controller
      */
     private function view(Request $request, $template = '', $data = []){
         if(!$request->ajax()){
-            $template = 'http_m_video.'.$template;
+            if($this->agent->isMobile()) {
+                $template = 'http_m_video.' . $template;
+            }else{
+                $template = 'http_video.' . $template;
+            }
         }else{
-            $template = 'm_video.'.$template;
+            if($this->agent->isMobile()){
+                $template = 'm_video.'.$template;
+            }else{
+                $template = 'video.'.$template;
+            }
         }
         return view($template, $data);
     }
