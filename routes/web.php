@@ -10,10 +10,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-<<<<<<< HEAD
-Route::get('/test', function(\Illuminate\Http\Request $request){
-    return $request->header('referer');
-=======
 Route::get('/test', function(){
     $url = 'http://v.youku.com/v_show/id_XMjk2OTUyOTUzNg==.html?spm=a2h1n.8251845.0.0';
     $dom = \phpQuery::newDocumentFileHTML($url, 'utf-8');
@@ -27,7 +23,6 @@ Route::get('/test', function(){
             $map->find('a')->attr('href'),"<br />"
         );
     }
->>>>>>> fdb74cb425f5e06a9a065174c7e36d4fa72668cd
 });
 Route::get('/', ['as' => 'video.index', 'uses' => 'Video@index']);
 Route::get('/g/{id}/{page?}', ['as' => 'video.category', 'uses' => 'Video@category']);
