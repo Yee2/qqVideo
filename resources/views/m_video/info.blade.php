@@ -11,29 +11,22 @@
     </div>
     <div class="am-panel-bd">
         <iframe src="{{$sourceUrl}}" style="width:100%;height: 550px;"></iframe>
-        <div class="am-btn-group" style="width: 100%">
-            <button class="am-btn am-btn-secondary" style="width: 88%">正在播放：第1集</button>
-            <div class="am-dropdown" data-am-dropdown>
-                <button class="am-btn am-btn-secondary am-dropdown-toggle" data-am-dropdown-toggle>
-                    <span class="am-icon-caret-down"></span>
-                </button>
-                <ul class="am-dropdown-content">
-                    @foreach($videos as $item)
-                        @if($item->id == $infoId)
-                            <li class="am-active"><a href="#">第{{$loop->iteration}}集</a></li>
-                        @else
-                            <li>
-                                <a href="{{route('video.info', [
-                            'id' => $info->id,
-                            'infoId' => $item->id
-                            ])}}">第{{$loop->iteration}}集</a>
-                            </li>
-                        @endif
-                    @endforeach
-                </ul>
+        <div style="width:100%">
+            <div class="am-btn-group" style="width: 100%;overflow-x: scroll;white-space: nowrap;">
+                @foreach($videos as $item)
+                    @if($item->id == $infoId)
+                        <a class="am-btn am-btn-primary" style="float:none">第{{$loop->iteration}}集</a>
+                    @else
+                        <a href="{{route('video.info', [
+            'id' => $info->id,
+            'infoId' => $item->id
+            ])}}" class="am-btn am-btn-secondary" style="float:none">第{{$loop->iteration}}集</a>
+                    @endif
+                @endforeach
             </div>
         </div>
-        <div id="SOHUCS" sid="{{$info->id}}" ></div>
+    </div>
+        {{--<div id="SOHUCS" sid="{{$info->id}}" ></div>
         <script type="text/javascript">
             (function(){
                 var appid = 'cysXcUQEm';
@@ -68,6 +61,8 @@
                             window.changyan.api.config({appid:appid,conf:conf})
                         });
                 } })();
-        </script>
+        </script>--}}
+    <div class="am-panel-ft">
+
     </div>
 </div>

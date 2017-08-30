@@ -17,7 +17,6 @@
             {{-- Array Of Links --}}
             @if (is_array($element))
                 @foreach ($element as $page => $url)
-                    @if($loop->iteration <= 2)
                     @if ($page == $paginator->currentPage())
                         <li class="am-active">
                             <a title="{{$cateName}}_第{{$page}}页_{{config('site.title')}}">{{ $page }}</a>
@@ -27,7 +26,6 @@
                             <a title="{{$cateName}}_第{{$page}}页_{{config('site.title')}}"
                                href="{{ route('video.category', ['id' => $id, 'page' => $page]) }}">{{ $page }}</a>
                         </li>
-                    @endif
                     @endif
                 @endforeach
             @endif

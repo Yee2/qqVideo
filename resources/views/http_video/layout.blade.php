@@ -15,6 +15,7 @@
     {{--<link rel="stylesheet" href="{{asset('m_video')}}/css/bootstrap-theme.min.css">--}}
     <link rel="stylesheet" href="{{asset('video')}}/css/index.css">
 <body>
+<!-- 和媳妇一起度过的第{{$data['weLoveEdTime']}}天 -->
 <div class="@if(!$data['isMobile']) container @endif">
     <header>
         <div class="row">

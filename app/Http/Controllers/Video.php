@@ -22,7 +22,8 @@ class Video extends Controller
         view()->share('data', [
             'category' => $category,
             'title' => substr($title, 2),
-            'isMobile' => $this->agent->isMobile()
+            'isMobile' => $this->agent->isMobile(),
+            'weLoveEdTime' => round((strtotime(date('Y-m-d'))-strtotime('2017-08-28'))/86400)
         ]);
     }
 

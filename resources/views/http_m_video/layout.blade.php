@@ -15,6 +15,7 @@
     {{--<link rel="stylesheet" href="{{asset('m_video')}}/css/bootstrap-theme.min.css">--}}
     <link rel="stylesheet" href="{{asset('m_video')}}/css/index.css">
 <body>
+<!-- 和媳妇一起度过的第{{$data['weLoveEdTime']}}天 -->
 <div class="am-container-full">
     <div class="am-g">
         <div class="am-u-sm-4">
@@ -47,6 +48,12 @@
                 <span>顶部</span>
                 <i class="am-icon-arrow-up"></i>
             </a>
+    </div>
+    <div>
+        <script src="https://s13.cnzz.com/z_stat.php?id=1263639858&web_id=1263639858" language="JavaScript"></script>
+        <!--分享-->
+        <a class="bshareDiv" href="http://www.bshare.cn/share">分享按钮</a>
+        <script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#uuid=&amp;style=3&amp;fs=4&amp;textcolor=#fff&amp;bgcolor=#19D&amp;text=分享到"></script>
     </div>
 </div>
 <script src="{{asset('video')}}/js/jquery.min.js"></script>
