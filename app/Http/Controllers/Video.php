@@ -22,7 +22,8 @@ class Video extends Controller
         view()->share('data', [
             'category' => $category,
             'title' => substr($title, 2),
-            'isMobile' => $this->agent->isMobile()
+            'isMobile' => $this->agent->isMobile(),
+            'weLoveEdTime' => round((strtotime(date('Y-m-d'))-strtotime('2017-08-28'))/86400)
         ]);
     }
 
@@ -126,9 +127,17 @@ class Video extends Controller
      */
     private function view(Request $request, $template = '', $data = []){
         if(!$request->ajax()){
-            $template = 'http_m_video.'.$template;
+            if($this->agent->isMobile()) {
+                $template = 'http_m_video.' . $template;
+            }else{
+                $template = 'http_video.' . $template;
+            }
         }else{
-            $template = 'm_video.'.$template;
+            if($this->agent->isMobile()){
+                $template = 'm_video.'.$template;
+            }else{
+                $template = 'video.'.$template;
+            }
         }
         return view($template, $data);
     }
