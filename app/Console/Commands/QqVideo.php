@@ -48,7 +48,7 @@ class QqVideo extends Command
             echo "all finash\r\n";
             return false;
         }
-        $type = self::getType($optionType);
+        $type = SpAlbum::getTypeQq($optionType);
         $url = 'http://v.qq.com/x/list/'.$type['type'].'?offset='.$optionOffset;
         try{
             $dom = \phpQuery::newDocumentFileHTML($url, 'utf-8');
@@ -76,10 +76,20 @@ class QqVideo extends Command
             $map = pq($listDom->eq($count-$i));
             if($i == 1) $count++;
             $alt = $map->find('.figure_info')->text();
-            if(($type['id'] != 1) && !preg_match('/^(全|更).+/', $alt, $match)) continue;
+            $mark = $map->find('.mark_v>img')->attr('alt');
+            if(strpos($mark, '预告片') !== false) continue;
+            $status = SpAlbum::StatusEd;
+            if(($type['id'] != 1)){
+                if(!preg_match('/^(全|更).+/', $alt, $match)) continue;
+                if(empty($match)) continue;
+                if(strpos($match[0], '更') !== false){
+                    $status = SpAlbum::StatusIng;
+                }
+            }
             $data = [
                 'title' => $map->find('img')->attr('alt'),
                 'source_url' => $map->attr('href'),
+                'parse_type' => 'qq',
                 'type_id' => $type['id'],
             ];
             $find = SpAlbum::where($data)->first();
@@ -87,6 +97,7 @@ class QqVideo extends Command
                 $info = SpAlbum::create($data);
                 if($info){
                     $data['id'] = $info->id;
+                    $data['status'] = $status;
                     dispatch(new QqVideoOne($data));
                     SpThumb::create([
                         'albums_id' => $info->id,
@@ -94,12 +105,16 @@ class QqVideo extends Command
                     ]);
                 }
             }else{
-                $data['id'] = $find->id;
-                dispatch(new QqVideoOne($data));
+                if($find->status == SpAlbum::StatusIng){
+                    $data['id'] = $find->id;
+                    dispatch(new QqVideoOne($data));
+                    $find->status = $status;
+                    $find->save();
+                }
             }
         }
         echo "finash\r\n";
-        if(0 <= $optionOffset){
+        if(0 < $optionOffset){
             Artisan::call('video:qqvideo', [
                 '--type' => $optionType,
                 '--offset' => $optionOffset-30,
@@ -111,26 +126,5 @@ class QqVideo extends Command
                 '--offset' => 0
             ]);
         }
-    }
-
-    private static function getType($item = 0){
-        $map = [
-            [
-                'id' => 1,
-                'type' => 'movie',
-                'desc' => '电影'
-            ],
-            [
-                'id' => 2,
-                'type' => 'tv',
-                'desc' => '电视剧'
-            ],
-            [
-                'id' => 3,
-                'type' => 'cartoon',
-                'desc' => '动漫'
-            ],
-        ];
-        return $map[$item];
     }
 }

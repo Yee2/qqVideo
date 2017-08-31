@@ -6,6 +6,11 @@ use Illuminate\Support\Facades\DB;
 
 class SpAlbum extends Base
 {
+    const StatusIng = 1;
+    const StatusEd = 2;
+    const TypeMovie = 1;
+    const TypeTv = 2;
+    const TypeDm = 3;
     /**
      * 获取分类最新数据
      * @param int $number
@@ -32,14 +37,69 @@ class SpAlbum extends Base
         return $result;
     }
 
-    public static function getHots()
-    {
-        
-    }
-
+    /**
+     * 随机标题
+     * @return mixed
+     */
     public static function getRandTitle()
     {
         $result = self::orderBy(DB::Raw('rand()'))->limit(1)->value('title');
         return $result;
+    }
+
+    public static function getHots()
+    {
+        
+    }
+    /**
+     * 优酷类型
+     * @param int $item
+     * @return mixed
+     */
+    public static function getTypeYouku($item = 0){
+        $map = [
+            [
+                'id' => SpAlbum::TypeMovie,
+                'type' => '96',
+                'desc' => '电影'
+            ],
+            [
+                'id' => SpAlbum::TypeTv,
+                'type' => '97',
+                'desc' => '电视剧'
+            ],
+            [
+                'id' => SpAlbum::TypeDm,
+                'type' => '100',
+                'desc' => '动漫'
+            ],
+        ];
+        return $map[$item];
+    }
+
+    /**
+     * 腾讯视频类型
+     * @param int $item
+     * @return mixed
+     */
+    public static function getTypeQq($item = 0){
+        $map = [
+            [
+                'id' => SpAlbum::TypeMovie,
+                'type' => 'movie',
+                'desc' => '电影'
+            ],
+            [
+                'id' => SpAlbum::TypeTv,
+                'type' => 'tv',
+                'desc' => '电视剧'
+            ],
+            [
+                'id' => SpAlbum::TypeDm,
+                'type' => 'cartoon',
+                'desc' => '动漫'
+            ],
+        ];
+        return $map[$item];
     }
 }

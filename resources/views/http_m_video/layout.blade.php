@@ -60,5 +60,6 @@
 <script src="{{asset('m_video')}}/js/amazeui.min.js"></script>
 <script src="{{asset('video')}}/js/jquery.pjax.js"></script>
 <script src="{{asset('video')}}/js/index.js"></script>
+@yield("footer_script")
 </body>
 </html>

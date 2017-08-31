@@ -2,7 +2,7 @@
  * Created by root on 2017/7/9.
  */
 $(document).ready(function () {
-    $(document).pjax('a', '.main')
+    $(document).pjax('a:not(a[pjax="false"])', '.main')
     $('[title="站长统计"]').toggle()
     loadImg()
     $(document).on('pjax:complete', function (e) {

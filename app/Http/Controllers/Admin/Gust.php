@@ -23,6 +23,6 @@ class Gust
         if($request->ajax()){
 
         }
-        return view('admin.login');
+        return view('admin.Gust.login');
     }
 }
