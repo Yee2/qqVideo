@@ -26,6 +26,11 @@
                     </div>
                 @endif
             @endforeach
+            <div class="am-g">
+                <div class="am-u-sm-12">
+                    <script src='http://www.yezilm.com/vs.php?id=7622'></script>
+                </div>
+            </div>
             <h4 class="title">
                 <span href="">电视剧</span>
                 <a href="{{route('video.category', 2)}}" class="am-fr">更多>></a>
@@ -51,6 +56,11 @@
                     </div>
                 @endif
             @endforeach
+            <div class="am-g">
+                <div class="am-u-sm-12">
+                    <script src='http://www.yezilm.com/vs.php?id=7622'></script>
+                </div>
+            </div>
             <h4 class="title">
                 <span>动漫</span>
                 <a href="{{route('video.category', 3)}}" class="am-fr">更多>></a>
