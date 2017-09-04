@@ -40,7 +40,7 @@
     </div>
     <div class="am-g">
         <div class="am-u-sm-12">
-            <script src="http://wm.lrswl.com/page/s.php?s=250703&w=728&h=90"></script>
+            <script src="http://wm.lrswl.com/page/s.php?s=250702&w=950&h=90"></script>
         </div>
     </div>
     <div class="am-g main" id="pjax-container">
