@@ -47,7 +47,7 @@ class YoukuOne implements ShouldQueue
         $keywords = $dom->find('meta[name="keywords"]')->attr("content");
         $description = $dom->find('meta[name="description"]')->attr("content");
         $find->tags = $keywords;
-        $find->descript = $description;
+        $find->descript = self::trimall($description);
         $find->save();
         if($this->map['type_id'] == SpAlbum::TypeMovie){
             SpVideo::firstOrCreate([

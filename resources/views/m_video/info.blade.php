@@ -39,9 +39,10 @@
     $(function(){
         $('a[pjax="false"]').click(function(e){
             e.preventDefault()
-            console.log($(this).prop('href'))
+            console.log($(this).prop('href'),$('title').text()+$(this).text())
             $('iframe').prop('src', $(this).data('href'))
-            history.pushState({}, $('title').text().$(this).text(), $(this).prop('href'));
+            $('title').text($(this).text()+'_'+$('title').text())
+            history.pushState({}, '', $(this).prop('href'));
         })
     })
 </script>

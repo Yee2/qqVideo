@@ -35,7 +35,7 @@ class QqVideoOne implements ShouldQueue
     {
         $url = $this->map['source_url'];
         try{
-            $dom = \phpQuery::newDocumentFileHTML($url, 'utf-8');
+            $dom = \phpQuery::newDocumentFileHTML($url, 'gbk');
         }catch (\Exception $e){
             dispatch(new self($this->map));
             return false;
@@ -54,7 +54,7 @@ class QqVideoOne implements ShouldQueue
         }
         if(is_null($find->descript)){
             $description = $dom->find('meta[name="description"]')->attr('content');
-            $find->descript = $description;
+            $find->descript = self::trimall($description);
         }
         $find->save();
         $pathInfo = pathinfo($url);
@@ -69,7 +69,7 @@ class QqVideoOne implements ShouldQueue
         }
         //电视剧、动漫
         elseif(in_array($this->map['type_id'], [SpAlbum::TypeTv, SpAlbum::TypeDm])){
-            //$dom = \phpQuery::newDocumentFileHTML($url, 'utf-8');
+            $dom = \phpQuery::newDocumentFileHTML($url, 'utf-8');
             if($this->map['type_id'] === SpAlbum::TypeTv){
                 try{
                     $contents = file_get_contents("compress.zlib://".$url);
@@ -100,5 +100,12 @@ class QqVideoOne implements ShouldQueue
             }
         }
         return true;
+    }
+
+    //删除空格
+    private static function trimall($str){
+        $qian=array(" ","　","\t","\n","\r");
+        $hou=array("","","","","");
+        return str_replace($qian,$hou,$str);
     }
 }
