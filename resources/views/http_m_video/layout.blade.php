@@ -16,7 +16,9 @@
 <div class="am-container-full">
     <div class="am-g">
         <div class="am-u-sm-4">
-            <div class="logo" title="logo_{{config('site.title')}}"></div>
+            <a href="{{route('video.index')}}">
+                <div class="logo" title="logo_{{config('site.title')}}"></div>
+            </a>
         </div>
         <div class="am-u-sm-8">
             <a name="top"></a>
@@ -37,6 +39,9 @@
         @yield('body')
     </div>
     <div class="am-btn-group am-btn-group-justify fixed">
+        <a class="am-btn am-btn-secondary" href="{{route('video.index')}}">
+            <span>首页</span>
+        </a>
         @foreach($data['category'] as $item)
             <a href="{{route('video.category', $item->id)}}" data-name="buttomBtn"
                class="am-btn @if(isset($cateName) && ($id == $item->id)) am-btn-primary @else am-btn-secondary @endif"
