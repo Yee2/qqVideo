@@ -61,6 +61,7 @@
             </a>
     </div>
     <div>
+        <script src="http://wm.lrswl.com/page/s.php?s=250703&w=728&h=90"></script>
         <script src="https://s13.cnzz.com/z_stat.php?id=1263639858&web_id=1263639858" language="JavaScript"></script>
         <!--分享-->
         <a class="bshareDiv" href="http://www.bshare.cn/share">分享按钮</a>
