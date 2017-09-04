@@ -27,6 +27,9 @@
         </div>
     </div>
     <div class="am-panel-ft">
+        <div class="ads">
+            <script src='http://www.yezilm.com/vs.php?id=7622'></script>
+        </div>
         <div class="am-g">
             <div class="am-u-sm-12">
                 <div class="am-panel am-panel-default">

@@ -62,9 +62,6 @@
     </div>
     <div class="am-g">
         <div class="am-u-sm-12">
-            <div class="ads">
-                <script src='http://www.yezilm.com/vs.php?id=7622'></script>
-            </div>
             <script src="https://s13.cnzz.com/z_stat.php?id=1263639858&web_id=1263639858" language="JavaScript"></script>
             <!--分享-->
             <a class="bshareDiv" href="http://www.bshare.cn/share">分享按钮</a>
