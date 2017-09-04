@@ -60,11 +60,16 @@
                 <i class="am-icon-arrow-up"></i>
             </a>
     </div>
-    <div>
-        <script src="https://s13.cnzz.com/z_stat.php?id=1263639858&web_id=1263639858" language="JavaScript"></script>
-        <!--分享-->
-        <a class="bshareDiv" href="http://www.bshare.cn/share">分享按钮</a>
-        <script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#uuid=&amp;style=3&amp;fs=4&amp;textcolor=#fff&amp;bgcolor=#19D&amp;text=分享到"></script>
+    <div class="am-g">
+        <div class="am-u-sm-12">
+            <div class="ads">
+                <script src='http://www.yezilm.com/vs.php?id=7622'></script>
+            </div>
+            <script src="https://s13.cnzz.com/z_stat.php?id=1263639858&web_id=1263639858" language="JavaScript"></script>
+            <!--分享-->
+            <a class="bshareDiv" href="http://www.bshare.cn/share">分享按钮</a>
+            <script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#uuid=&amp;style=3&amp;fs=4&amp;textcolor=#fff&amp;bgcolor=#19D&amp;text=分享到"></script>
+        </div>
     </div>
 </div>
 <script src="{{asset('video')}}/js/jquery.min.js"></script>
