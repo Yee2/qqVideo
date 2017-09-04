@@ -34,73 +34,70 @@ class QqVideoOne implements ShouldQueue
     public function handle()
     {
         $url = $this->map['source_url'];
-        $dom = \phpQuery::newDocumentFileHTML($url, 'gbk');
+        $pathInfo = pathinfo($url);
         $find = SpAlbum::where('id', $this->map['id'])->first();
-        if(!is_null($find)){
-            if(is_null($find->tags)){
-                $video_tags = $dom->find('.video_tags a[_stat]');
-                try{
-                    foreach ($video_tags as $item){
-                        $map = pq($item);
-                        $tags[] = $map->text();
-                    }
-                    $find->tags = implode(',', $tags);
-                }catch (\Exception $e){}
-            }
-            if(is_null($find->descript)){
-                $description = $dom->find('meta[name="description"]')->attr('content');
-                $find->descript = $description;
-            }
-            $find->save();
+        $dom = \phpQuery::newDocumentFileHTML($url, 'gbk');
+        if(is_null($find)) return false;
+        if(is_null($find->tags)){
+            $video_tags = $dom->find('.video_tags a[_stat]');
+            try{
+                foreach ($video_tags as $item){
+                    $map = pq($item);
+                    $tags[] = $map->text();
+                }
+                $find->tags = implode(',', $tags);
+            }catch (\Exception $e){}
         }
+        if(is_null($find->descript)){
+            $description = $dom->find('meta[name="description"]')->attr('content');
+            $find->descript = $description;
+        }
+        $find->save();
+
+        //电视剧
+        /*if($this->map['type_id'] == SpAlbum::TypeTv){
+            $contents = file_get_contents("compress.zlib://".$url);
+            preg_match("/var LIST_INFO = (.+)\n/", $contents, $listMatch);
+            $json = json_decode($listMatch[1], true);
+            foreach ($json['vip'] as $key => $item){
+                $map = [
+                    'id' => $find->id,
+                    'filename' => $pathInfo['filename'],
+                    'item' => $item,
+                    'title' => $json['data'][$item]['title']
+                ];
+                dispatch(new QqvideoOneTv($map));
+            }
+            return true;
+        }*/
+
         //电影
-        if($this->map['type_id'] == 1){
+        if($this->map['type_id'] == SpAlbum::TypeMovie){
             SpVideo::firstOrCreate([
                 'source_url' => $this->map['source_url'],
                 'albums_id' => $find->id
             ]);
         }
-        //电视剧
-        elseif($this->map['type_id'] == 2){
-            $contents = file_get_contents("compress.zlib://".$url);
-            preg_match("/var COVER_INFO = (.+)\n/", $contents, $listMatch);
-            $pathInfo = pathinfo($url);
-            $json = json_decode($listMatch[1], true);
-            $find = SpAlbum::where('id', $this->map['id'])->first();
-            if(!is_null($find)){
-                if(is_null($find->tags)){
-                    $find->tags = implode(',', $json['subtype']);
-                }
-                if(is_null($find->descript)){
-                    $find->descript = $json['description'];
-                }
-                $find->save();
+
+        elseif(in_array($this->map['type_id'], [SpAlbum::TypeCartoon,SpAlbum::TypeTv])){
+           // $dom = \phpQuery::newDocumentFileHTML($url, 'utf-8');
+            if($this->map['type_id'] == SpAlbum::TypeTv){
+                $contents = file_get_contents("compress.zlib://".$url);
+            }else{
+                $contents = $dom->find('script[r-notemplate="true"]')->html();
             }
-            foreach ($json['vip_ids'] as $key => $item){
+
+            preg_match("/var LIST_INFO = (.+)\n/", $contents, $listMatch);
+            $json = json_decode($listMatch[1], true);
+            dd($url, $json, count($json['vid']));
+            foreach ($json['vid'] as $key => $item){
                 $map = [
                     'id' => $find->id,
                     'filename' => $pathInfo['filename'],
-                    'item' => $item['V'],
-                    'title' => ($key+1)
+                    'item' => $item,
+                    'title' => $json['data'][$item]['title']
                 ];
                 dispatch(new QqvideoOneTv($map));
-            }
-        }elseif($this->map['type_id'] == 3){
-            $dom = \phpQuery::newDocumentFileHTML($url, 'utf-8');
-            $scriptListInfo = $dom->find('script[r-notemplate="true"]')->html();
-            preg_match("/var LIST_INFO = (.+)\n/", $scriptListInfo, $listMatch);
-            $pathInfo = pathinfo($url);
-            $json = json_decode($listMatch[1], true);
-            $find = SpAlbum::where('id', $this->map['id'])->first();
-            if(!is_null($find)){
-                foreach ($json['vid'] as $key => $item){
-                    $map = [
-                        'id' => $find->id,
-                        'filename' => $pathInfo['filename'],
-                        'item' => $item,
-                    ];
-                    dispatch(new QqvideoOneDm($map));
-                }
             }
         }
     }

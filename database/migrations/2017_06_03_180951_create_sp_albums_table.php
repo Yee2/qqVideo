@@ -30,7 +30,7 @@ class CreateSpAlbumsTable extends Migration
             $table->longText('descript')->nullable()->comment("描述");
             $table->string('remark')->nullable()->comment("备注");
             $table->integer('sort')->default(0)->comment("排序");
-            $table->integer('status')->default(1)->comment("状态：1正常");
+            $table->integer('status')->default(1)->comment("状态：1更新中2全集");
             $table->timestamps();
         });
     }

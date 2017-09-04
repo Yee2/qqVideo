@@ -7,6 +7,7 @@ use App\Models\SpAlbum;
 use App\Models\SpThumb;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Log;
 
 class QqVideo extends Command
 {
@@ -70,32 +71,43 @@ class QqVideo extends Command
             ]);
             exit(0);
         }
-        echo "ing --type:".$optionType.", --offst:".$optionOffset."\r\n";
+        echo "ing --type:".$optionType.", --offset:".$optionOffset."\r\n";
         $count = $listDom->count();
         for($i = 1; $i <= $count; $i++){
             $map = pq($listDom->eq($count-$i));
             if($i == 1) $count++;
             $alt = $map->find('.figure_info')->text();
-            if(($type['id'] != 1) && !preg_match('/^(全|更).+/', $alt, $match)) continue;
+            $mark = $map->find('.mark_v>img')->attr('alt');
+            if($mark == '预告片') continue;
+            $status = SpAlbum::StatusEd;
+            if($type['id'] !== SpAlbum::TypeMovie){
+                preg_match('/^(全|更).+/', $alt, $match);
+                if(empty($match)) continue;
+                if (strpos($match[0], '更') !== false){
+                    $status = SpAlbum::StatusIng;
+                }
+            }
+
             $data = [
                 'title' => $map->find('img')->attr('alt'),
                 'source_url' => $map->attr('href'),
-                'type_id' => $type['id'],
+                'type_id' => $type['id']
             ];
             $find = SpAlbum::where($data)->first();
             if(is_null($find)){
-                $info = SpAlbum::create($data);
-                if($info){
-                    $data['id'] = $info->id;
-                    dispatch(new QqVideoOne($data));
-                    SpThumb::create([
-                        'albums_id' => $info->id,
-                        'thumb' => $map->find('img')->attr('r-lazyload')
-                    ]);
-                }
-            }else{
+                $info = SpAlbum::firstOrCreate($data);
+                $data['id'] = $info->id;
+                $data['status'] = $status;
+                dispatch(new QqVideoOne($data));
+                SpThumb::firstOrCreate([
+                    'albums_id' => $info->id,
+                    'thumb' => $map->find('img')->attr('r-lazyload')
+                ]);
+            }else if($find->status == SpAlbum::StatusIng){
                 $data['id'] = $find->id;
                 dispatch(new QqVideoOne($data));
+                $find->status = $status;
+                $find->save();
             }
         }
         echo "finash\r\n";
@@ -116,17 +128,17 @@ class QqVideo extends Command
     private static function getType($item = 0){
         $map = [
             [
-                'id' => 1,
+                'id' => SpAlbum::TypeMovie,
                 'type' => 'movie',
                 'desc' => '电影'
             ],
             [
-                'id' => 2,
+                'id' => SpAlbum::TypeTv,
                 'type' => 'tv',
                 'desc' => '电视剧'
             ],
             [
-                'id' => 3,
+                'id' => SpAlbum::TypeCartoon,
                 'type' => 'cartoon',
                 'desc' => '动漫'
             ],
