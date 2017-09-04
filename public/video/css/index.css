@@ -1,24 +1,9 @@
-header{
-    border: 1px solid #ddd;
-}
-header .nav-list{
-    border: none;
-}
-header .userPanel{
-    line-height: 36px;
-}
-header .logo{
+.logo{
     height: 42px;
     width: 101px;
     background-size: 100%;
     background-repeat: no-repeat;
     background-image: url("../img/logo.png");
-}
-header .searchForm{
-    margin-top: 3px;
-}
-header .userPanel .login, header .userPanel .register,header .userPanel .lqVip{
-    padding: 0px;
 }
 .contentLeft .tips{
     margin-bottom: 0px;

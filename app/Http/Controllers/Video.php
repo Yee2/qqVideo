@@ -23,7 +23,8 @@ class Video extends Controller
             'category' => $category,
             'title' => substr($title, 2),
             'isMobile' => $this->agent->isMobile(),
-            'weLoveEdTime' => round((strtotime(date('Y-m-d'))-strtotime('2017-08-28'))/86400)
+            'weLoveEdTime' => round((strtotime(date('Y-m-d'))-strtotime('2017-08-28'))/86400),
+            'weMetEdTime' => round((strtotime(date('Y-m-d'))-strtotime('2017-08-21'))/86400),
         ]);
     }
 
@@ -34,9 +35,8 @@ class Video extends Controller
      */
     public function index(Request $request){
         $info = SpAlbum::getCategoryDatas(4);
-        $infoPc = SpAlbum::getCategoryDatas(12);
-        $hot = SpAlbum::getHots();
-        return $this->view($request,'index', compact('info', 'hot', 'infoPc'));
+        $infoPc = SpAlbum::getCategoryDatas(8);
+        return $this->view($request,'index', compact('info',  'infoPc'));
     }
 
     /**
@@ -82,9 +82,11 @@ class Video extends Controller
         }
         $videos = SpVideo::where('albums_id', $id)->orderBy(DB::Raw('title', 'asc'))->get();
         $description = "【".$info->title."】".(($info->type_id != 1)?("第".$data->title."集，"):'').$info->descript;
+
+        $rand = SpAlbum::getRand(4);
         return $this->view(
             $request, 'info',
-            compact('info', 'videos', 'sourceUrl', 'infoId','description')
+            compact('info', 'videos', 'sourceUrl', 'infoId','description', 'rand')
         );
     }
 

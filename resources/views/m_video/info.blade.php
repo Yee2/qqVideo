@@ -18,35 +18,54 @@
                         'id' => $info->id,
                         'infoId' => $item->id
                         ])}}" class="am-btn @if($item->id == $infoId) am-btn-default @else am-btn-secondary @endif"
-                       style="float:none" pjax="false" title="第{{$item->title}}集_{{$info->title}}_{{config('site.title')}}"
+                       style="float:none" pjax="false" title="第{{(($loop->iteration <10)?('0'.$loop->iteration):$loop->iteration)}}集_{{$info->title}}_{{config('site.title')}}"
                        data-href="{{config('site.playUrl')}}{{$item->source_url}}" data-index="{{$loop->index}}">
-                        第{{$loop->iteration}}集
+                        第{{(($loop->iteration <10)?('0'.$loop->iteration):$loop->iteration)}}集
                     </a>
                 @endforeach
             </div>
         </div>
     </div>
     <div class="am-panel-ft">
-
+        <div class="am-g">
+            <div class="am-u-sm-12">
+                <div class="am-panel am-panel-default">
+                    <div class="am-panel-hd">
+                        您可能喜欢
+                    </div>
+                    <div class="am-panel-bd">
+                        @foreach($rand as $item)
+                            @if($loop->index %4 == 0)
+                                <div class="am-g">
+                                    <div class="am-u-sm-3 am-text-center">
+                                        <a href="{{route('video.info', $item->id)}}">
+                                            <img src="{{asset('m_video')}}/img/videoLoading.gif" class="am-img-thumbnail"
+                                                 _src="{{route('video.getThumb', $item->id)}}" />
+                                        </a>
+                                        <a href="{{route('video.info', $item->id)}}">{{$item->title}}</a>
+                                    </div>
+                                    @elseif($loop->index %4 == 3)
+                                        <div class="am-u-sm-3 am-text-center">
+                                            <a href="{{route('video.info', $item->id)}}">
+                                                <img src="{{asset('m_video')}}/img/videoLoading.gif" class="am-img-thumbnail"
+                                                     _src="{{route('video.getThumb', $item->id)}}" />
+                                            </a>
+                                            <a href="{{route('video.info', $item->id)}}">{{$item->title}}</a>
+                                        </div>
+                                </div>
+                            @else
+                                <div class="am-u-sm-3 am-text-center">
+                                    <a href="{{route('video.info', $item->id)}}">
+                                        <img src="{{asset('m_video')}}/img/videoLoading.gif" class="am-img-thumbnail"
+                                             _src="{{route('video.getThumb', $item->id)}}" />
+                                    </a>
+                                    <a href="{{route('video.info', $item->id)}}" >{{$item->title}}</a>
+                                </div>
+                            @endif
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
-@section("footer_script")
-<script>
-    $(function(){
-        move($('a.am-btn-default').data('index'))
-        $('a[pjax="false"]').click(function(e){
-            e.preventDefault()
-            $('iframe').prop('src', $(this).data('href'))
-            $('title').text($(this).attr('title'))
-            history.pushState({}, '', $(this).prop('href'))
-            $(this).siblings().addClass('am-btn-secondary').removeClass('am-btn-default')
-            $(this).removeClass('am-btn-secondary').addClass('am-btn-default')
-            move($(this).data('index'))
-        })
-    })
-    function move(index) {
-        var btnWidth = $('a.am-btn-default').width()
-        $('#videoGroup').scrollLeft((btnWidth+2*index)*index)
-    }
-</script>
-@endsection

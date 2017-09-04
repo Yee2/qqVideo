@@ -5,3 +5,6 @@
 @section('body')
     @include("m_video.info")
 @endsection
+@section("footer_script")
+    <script src="{{asset('video')}}/js/info.js"></script>
+@endsection

@@ -8,11 +8,10 @@
     <meta name="description" content="@yield('seo_description')[{{config('site.title')}}]">
     <title>@yield('title')_{{config('site.title')}}</title>
     <meta baidu-gxt-verify-token="d646e803f30a0a7eba69199ded167a5c">
+    <meta name="love" content="我们认识的第{{$data['weMetEdTime']}}天，相爱的第{{$data['weLoveEdTime']}}天">
     <link rel="stylesheet" href="{{asset('m_video')}}/css/amazeui.min.css">
-    {{--<link rel="stylesheet" href="{{asset('m_video')}}/css/bootstrap-theme.min.css">--}}
     <link rel="stylesheet" href="{{asset('m_video')}}/css/index.css">
 <body>
-<!-- 和媳妇一起度过的第{{$data['weLoveEdTime']}}天 -->
 <div class="am-container-full">
     <div class="am-g">
         <div class="am-u-sm-4">
@@ -35,7 +34,7 @@
             </form>
         </div>
     </div>
-    <div class="row main" id="pjax-container">
+    <div class="am-g main" id="pjax-container">
         @yield('body')
     </div>
     <div class="am-btn-group am-btn-group-justify fixed">

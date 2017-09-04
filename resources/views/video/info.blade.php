@@ -1,80 +1,83 @@
-<div class="col-xs-12">
-    <div class="panel panel-default contentLeft">
-        <div class="panel-header">
-            <ol class="breadcrumb" style="margin: 0;">
-                <li>
-                    <a href="{{route('video.index')}}" title="{{config('site.title')}}">首页</a>
-                </li>
+<div class="am-u-sm-12">
+    <div class="am-panel am-panel-default">
+        <div class="am-panel-hd">
+            <ol class="am-breadcrumb" style="margin: 0;">
+                <li><a href="{{route('video.index')}}" title="{{config('site.title')}}">首页</a></li>
                 <li>
                     <a href="{{route('video.category', $info->type_id)}}"
                        title="{{$info['typeName']}}_{{config('site.title')}}">{{$info['typeName']}}</a>
                 </li>
-                <li class="active" title="{{$info->title}}_{{config('site.title')}}">{{$info->title}}</li>
+                <li class="am-active">{{$info->title}}</li>
             </ol>
         </div>
-        <div class="dataInfo panel-body">
-            <div class="row">
-                <iframe src="{{$sourceUrl}}" style="width:100%;height: 550px;"></iframe>
-            </div>
-            <div class="row">
-                <div class="btn-group" role="group">
-                @foreach($videos as $item)
-                    @if($item->id == $infoId)
-                        <button class="btn btn-info">第{{$loop->iteration}}集</button>
-                    @else
-                        <a class="btn btn-primary" href="{{route('video.info', [
-                            'id' => $info->id,
-                            'infoId' => $item->id
-                            ])}}">第{{$loop->iteration}}集</a>
-                    @endif
-                @endforeach
+        <div class="am-panel-bd">
+            <div class="am-g">
+                <div class="am-u-sm-12">
+                    <iframe src="{{config('site.playUrl')}}{{$sourceUrl}}" style="width:100%;height: 550px;"></iframe>
                 </div>
             </div>
-            <div class="row">
-                <!--PC和WAP自适应版-->
-                <div id="SOHUCS" sid="{{$info->id}}" ></div>
-                <script type="text/javascript">
-                    (function(){
-                        var appid = 'cysXcUQEm';
-                        var conf = 'prod_726a909befa5b2d9187dc6413e24479a';
-                        var width = window.innerWidth || document.documentElement.clientWidth;
-                        if (width < 960) {
-                            window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript"' +
-                                'src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>');
-                        } else {
-                            var loadJs=function(d,a){
-                                var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;
-                                var b=document.createElement("script");
-                                b.setAttribute("type","text/javascript");
-                                b.setAttribute("charset","UTF-8");
-                                b.setAttribute("src",d);
-                                if(typeof a==="function"){
-                                    if(window.attachEvent){
-                                        b.onreadystatechange=function(){
-                                            var e=b.readyState;
-                                            if(e==="loaded"||e==="complete"){
-                                                b.onreadystatechange=null;
-                                                a()
-                                            }
-                                        }
-                                    }else{b.onload=a}
-                                }
-                                c.appendChild(b)
-                            };
-                            loadJs(
-                                "https://changyan.sohu.com/upload/changyan.js",
-                                function(){
-                                    window.changyan.api.config({appid:appid,conf:conf})
-                                });
-                        } })();
-                </script>
+            <div class="am-g">
+                <div class="am-u-sm-12">
+                    选集<hr>
+                </div>
+            </div>
+            <div class="am-g">
+                <div class="am-u-sm-12">
+                    <div class="am-btn-group">
+                        @foreach($videos as $item)
+                            <a href="{{route('video.info', [
+                                'id' => $info->id,
+                                'infoId' => $item->id
+                                ])}}"
+                               class="am-btn @if($item->id == $infoId) am-btn-default @else am-btn-secondary @endif"
+                               pjax="false" data-index="{{$loop->index}}"
+                               title="第{{(($loop->iteration <10)?('0'.$loop->iteration):$loop->iteration)}}集_{{$info->title}}_{{config('site.title')}}"
+                               data-href="{{config('site.playUrl')}}{{$item->source_url}}"
+                            >第{{(($loop->iteration <10)?('0'.$loop->iteration):$loop->iteration)}}集</a>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+            <div class="am-g">
+                <div class="am-u-sm-12">
+                    <div class="am-panel am-panel-default">
+                        <div class="am-panel-hd">
+                            您可能喜欢
+                        </div>
+                        <div class="am-panel-bd">
+                            @foreach($rand as $item)
+                                @if($loop->index %4 == 0)
+                                    <div class="am-g">
+                                        <div class="am-u-sm-3 am-text-center">
+                                            <a href="{{route('video.info', $item->id)}}">
+                                                <img src="{{asset('m_video')}}/img/videoLoading.gif" class="am-img-thumbnail"
+                                                     _src="{{route('video.getThumb', $item->id)}}" />
+                                            </a>
+                                            <a href="{{route('video.info', $item->id)}}">{{$item->title}}</a>
+                                        </div>
+                                        @elseif($loop->index %4 == 3)
+                                            <div class="am-u-sm-3 am-text-center">
+                                                <a href="{{route('video.info', $item->id)}}">
+                                                    <img src="{{asset('m_video')}}/img/videoLoading.gif" class="am-img-thumbnail"
+                                                         _src="{{route('video.getThumb', $item->id)}}" />
+                                                </a>
+                                                <a href="{{route('video.info', $item->id)}}">{{$item->title}}</a>
+                                            </div>
+                                    </div>
+                                @else
+                                    <div class="am-u-sm-3 am-text-center">
+                                        <a href="{{route('video.info', $item->id)}}">
+                                            <img src="{{asset('m_video')}}/img/videoLoading.gif" class="am-img-thumbnail"
+                                                 _src="{{route('video.getThumb', $item->id)}}" />
+                                        </a>
+                                        <a href="{{route('video.info', $item->id)}}" >{{$item->title}}</a>
+                                    </div>
+                                @endif
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="panel-footer">
-            @include("m_video.copyright")
-        </div>
     </div>
-</div>
-<div class="ads">
-    <script language="javascript" src="http://sy.kcxsyz.com/1191/2/1"></script>
 </div>

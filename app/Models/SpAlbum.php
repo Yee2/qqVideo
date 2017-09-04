@@ -47,9 +47,15 @@ class SpAlbum extends Base
         return $result;
     }
 
-    public static function getHots()
+    /**
+     * 获取随机数据
+     * @param $limit 返回条数
+     * @return mixed
+     */
+    public static function getRand($limit)
     {
-        
+        $result = self::orderBy(DB::Raw('rand()'))->limit($limit)->get();
+        return $result;
     }
     /**
      * 优酷类型
