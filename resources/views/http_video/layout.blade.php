@@ -7,10 +7,7 @@
     <meta name="keywords" content="@yield('seo_keywords'),{{config('site.keywords')}}">
     <meta name="description" content="@yield('seo_description')">
     <title>@yield('title')_{{config('site.title')}}</title>
-    {{--亿赢联盟--}}
-    <meta name='zyiis_check_verify' content='e7b64a49676834dce6af183b492456f1'>
-    {{--百度联盟--}}
-    <meta name="baidu_union_verify" content="34e101b089f885cea6b5b38b960aad27">
+    <meta baidu-gxt-verify-token="d646e803f30a0a7eba69199ded167a5c">
     <link rel="stylesheet" href="{{asset('video')}}/css/bootstrap.min.css">
     {{--<link rel="stylesheet" href="{{asset('m_video')}}/css/bootstrap-theme.min.css">--}}
     <link rel="stylesheet" href="{{asset('video')}}/css/index.css">
