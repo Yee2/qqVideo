@@ -10,8 +10,13 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::get('/', ['as' => 'video.index', 'uses' => 'Video@index']);
 Route::get('/g/{id}/{page?}', ['as' => 'video.category', 'uses' => 'Video@category']);
 Route::get('/v/{id}/{infoId?}', ['as' => 'video.info', 'uses' => 'Video@info']);
 Route::get('/s/{title?}/{page?}', ['as' => 'video.search', 'uses' => 'Video@search']);
 Route::get('/t/{id}', ['as' => 'video.getThumb', 'uses' => 'Video@getThumb']);
+
+Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], function (){
+    Route::match(['get', 'post'],'login', ['as' => 'Gust.login', 'uses' => 'Gust@login']);
+});

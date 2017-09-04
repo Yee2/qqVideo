@@ -42,7 +42,6 @@ class YoukuOne implements ShouldQueue
         }
         $find = SpAlbum::find($this->map['id']);
         if(is_null($find)){
-            Log::info("不存在的数据,ID:".$this->map['id'].",title:".$this->map['title']);
             return false;
         }
         $keywords = $dom->find('meta[name="keywords"]')->attr("content");
@@ -50,21 +49,29 @@ class YoukuOne implements ShouldQueue
         $find->tags = $keywords;
         $find->descript = $description;
         $find->save();
-        if($this->map['type_id'] == 1){
+        if($this->map['type_id'] == SpAlbum::TypeMovie){
             SpVideo::firstOrCreate([
                 'source_url' => $this->map['source_url'],
                 'albums_id' => $find->id
             ]);
+            $find->total_num += 1;
+            Log::info("total_num:".$find->total_num);
+            $find->save();
         }else{
             $listDom = $dom->find('div[name="tvlist"]');
             $count = $listDom->count();
             for($i = 1; $i <= $count; $i++){
                 $map = pq($listDom->eq($count-$i));
+                $href = $map->find('a')->attr('href');
+                $url = (strpos($href, 'http') === false)?('http:'.$href):$href;
                 SpVideo::firstOrCreate([
-                    'source_url' => $map->find('a')->attr('href'),
+                    'source_url' => $url,
                     'title' => $map->find('a')->text(),
                     'albums_id' => $find->id
                 ]);
+                $find->total_num += 1;
+                Log::info("total_num:".$find->total_num);
+                $find->save();
             }
         }
     }

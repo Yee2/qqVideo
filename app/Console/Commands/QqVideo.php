@@ -49,7 +49,7 @@ class QqVideo extends Command
             echo "all finash\r\n";
             return false;
         }
-        $type = self::getType($optionType);
+        $type = SpAlbum::getTypeQq($optionType);
         $url = 'http://v.qq.com/x/list/'.$type['type'].'?offset='.$optionOffset;
         try{
             $dom = \phpQuery::newDocumentFileHTML($url, 'utf-8');
@@ -78,40 +78,44 @@ class QqVideo extends Command
             if($i == 1) $count++;
             $alt = $map->find('.figure_info')->text();
             $mark = $map->find('.mark_v>img')->attr('alt');
-            if($mark == '预告片') continue;
+            if(strpos($mark, '预告片') !== false) continue;
             $status = SpAlbum::StatusEd;
-            if($type['id'] !== SpAlbum::TypeMovie){
-                preg_match('/^(全|更).+/', $alt, $match);
+            if(($type['id'] != 1)){
+                if(!preg_match('/^(全|更).+/', $alt, $match)) continue;
                 if(empty($match)) continue;
-                if (strpos($match[0], '更') !== false){
+                if(strpos($match[0], '更') !== false){
                     $status = SpAlbum::StatusIng;
                 }
             }
-
             $data = [
                 'title' => $map->find('img')->attr('alt'),
                 'source_url' => $map->attr('href'),
-                'type_id' => $type['id']
+                'parse_type' => 'qq',
+                'type_id' => $type['id'],
             ];
             $find = SpAlbum::where($data)->first();
             if(is_null($find)){
-                $info = SpAlbum::firstOrCreate($data);
-                $data['id'] = $info->id;
-                $data['status'] = $status;
-                dispatch(new QqVideoOne($data));
-                SpThumb::firstOrCreate([
-                    'albums_id' => $info->id,
-                    'thumb' => $map->find('img')->attr('r-lazyload')
-                ]);
-            }else if($find->status == SpAlbum::StatusIng){
-                $data['id'] = $find->id;
-                dispatch(new QqVideoOne($data));
-                $find->status = $status;
-                $find->save();
+                $info = SpAlbum::create($data);
+                if($info){
+                    $data['id'] = $info->id;
+                    $data['status'] = $status;
+                    dispatch(new QqVideoOne($data));
+                    SpThumb::create([
+                        'albums_id' => $info->id,
+                        'thumb' => $map->find('img')->attr('r-lazyload')
+                    ]);
+                }
+            }else{
+                if($find->status == SpAlbum::StatusIng){
+                    $data['id'] = $find->id;
+                    dispatch(new QqVideoOne($data));
+                    $find->status = $status;
+                    $find->save();
+                }
             }
         }
         echo "finash\r\n";
-        if(0 <= $optionOffset){
+        if(0 < $optionOffset){
             Artisan::call('video:qqvideo', [
                 '--type' => $optionType,
                 '--offset' => $optionOffset-30,
@@ -123,26 +127,5 @@ class QqVideo extends Command
                 '--offset' => 0
             ]);
         }
-    }
-
-    private static function getType($item = 0){
-        $map = [
-            [
-                'id' => SpAlbum::TypeMovie,
-                'type' => 'movie',
-                'desc' => '电影'
-            ],
-            [
-                'id' => SpAlbum::TypeTv,
-                'type' => 'tv',
-                'desc' => '电视剧'
-            ],
-            [
-                'id' => SpAlbum::TypeCartoon,
-                'type' => 'cartoon',
-                'desc' => '动漫'
-            ],
-        ];
-        return $map[$item];
     }
 }

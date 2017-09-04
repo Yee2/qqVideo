@@ -37,7 +37,7 @@ class Youku extends Command
             echo "all finash\r\n";
             return false;
         }
-        $type = self::getType($optionType);
+        $type = SpAlbum::getTypeYouku($optionType);
         $url = 'http://list.youku.com/category/show/c_'.$type['type'].'_s_1_d_1_p_'.$optionPage.'.html';
         $dom = \phpQuery::newDocumentFileHTML($url, 'utf-8');
         if($optionFirst){
@@ -56,9 +56,16 @@ class Youku extends Command
             $map = pq($listDom->eq($count-$i));
             $url = $map->find('a:first')->attr('href');
             $url = (strpos($url, 'http') === false)?('http:'.$url):$url;
+            $status = SpAlbum::StatusEd;
+            $albumsStatus = $map->find('.p-time span')->text();
+            if(strpos($albumsStatus, '更') !== false){
+                $status = SpAlbum::StatusIng;
+            }
             $data = [
                 'title' => $map->find('a:first')->attr('title'),
                 'source_url' => $url,
+                'parse_type' => 'youku',
+                'status' => $status,
                 'type_id' => $type['id'],
             ];
             $find = SpAlbum::where($data)->first();
@@ -73,8 +80,11 @@ class Youku extends Command
                     ]);
                 }
             }else{
-                $data['id'] = $find->id;
-                dispatch(new YoukuOne($data));
+                if($find->status === SpAlbum::StatusEd){
+                    $data['id'] = $find->id;
+                    dispatch(new YoukuOne($data));
+                    $find->status = $status;
+                }
             }
         }
         echo "finash\r\n";
@@ -93,26 +103,5 @@ class Youku extends Command
             ]);
             return false;
         }
-    }
-
-    private static function getType($item = 0){
-        $map = [
-            [
-                'id' => 1,
-                'type' => '96',
-                'desc' => '电影'
-            ],
-            [
-                'id' => 2,
-                'type' => '97',
-                'desc' => '电视剧'
-            ],
-            [
-                'id' => 3,
-                'type' => '100',
-                'desc' => '动漫'
-            ],
-        ];
-        return $map[$item];
     }
 }

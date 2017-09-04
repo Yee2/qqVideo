@@ -7,10 +7,7 @@
     <meta name="keywords" content="@yield('seo_keywords'),{{config('site.keywords')}}">
     <meta name="description" content="@yield('seo_description')">
     <title>@yield('title')_{{config('site.title')}}</title>
-    {{--亿赢联盟--}}
-    <meta name='zyiis_check_verify' content='e7b64a49676834dce6af183b492456f1'>
-    {{--百度联盟--}}
-    <meta name="baidu_union_verify" content="34e101b089f885cea6b5b38b960aad27">
+    <meta baidu-gxt-verify-token="d646e803f30a0a7eba69199ded167a5c">
     <link rel="stylesheet" href="{{asset('m_video')}}/css/amazeui.min.css">
     {{--<link rel="stylesheet" href="{{asset('m_video')}}/css/bootstrap-theme.min.css">--}}
     <link rel="stylesheet" href="{{asset('m_video')}}/css/index.css">
@@ -41,9 +38,14 @@
     </div>
     <div class="am-btn-group am-btn-group-justify fixed">
         @foreach($data['category'] as $item)
-            <a href="{{route('video.category', $item->id)}}" class="am-btn am-btn-secondary" role="button"
+            <a href="{{route('video.category', $item->id)}}" data-name="buttomBtn"
+               class="am-btn @if(isset($cateName) && ($id == $item->id)) am-btn-primary @else am-btn-secondary @endif"
+               role="button"
                title="{{$item->name}}_{{config('site.title')}}">{{$item->name}}</a>
         @endforeach
+            <a class="am-btn am-btn-secondary" href="">
+                <span>建议</span>
+            </a>
             <a class="am-btn am-btn-secondary" href="#top">
                 <span>顶部</span>
                 <i class="am-icon-arrow-up"></i>
@@ -60,5 +62,6 @@
 <script src="{{asset('m_video')}}/js/amazeui.min.js"></script>
 <script src="{{asset('video')}}/js/jquery.pjax.js"></script>
 <script src="{{asset('video')}}/js/index.js"></script>
+@yield("footer_script")
 </body>
 </html>

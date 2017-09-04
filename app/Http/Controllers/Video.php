@@ -67,21 +67,25 @@ class Video extends Controller
         if(is_null($info)) return response('404');
         $info['typeName'] = SpVideoType::where('id', $info->type_id)->value('name');
         if(!is_null($infoId)){
-            $source_url = SpVideo::where('id', $infoId)->value('source_url');
+            $data = SpVideo::where('id', $infoId)->first();
+            $sourceUrl = $data->source_url;
         }else{
             $data = SpVideo::where('albums_id', $id)->orderBy(DB::Raw('title', 'asc'))->first();
             if(is_null($data)){
                 return $this->view($request, 'loading');
             }
-            $source_url = $data->source_url;
+            $sourceUrl = $data->source_url;
             $infoId = $data->id;
         }
-        if(is_null($source_url)){
+        if(is_null($sourceUrl)){
             return $this->view($request, 'loading');
         }
-        $sourceUrl = "https://api.vparse.org/?url=".$source_url;//https://api.vparse.org/?skin=47ks&url=
         $videos = SpVideo::where('albums_id', $id)->orderBy(DB::Raw('title', 'asc'))->get();
-        return $this->view($request, 'info', compact('info', 'videos', 'sourceUrl', 'infoId'));
+        $description = "【".$info->title."】".(($info->type_id != 1)?("第".$data->title."集，"):'').$info->descript;
+        return $this->view(
+            $request, 'info',
+            compact('info', 'videos', 'sourceUrl', 'infoId','description')
+        );
     }
 
     /**

@@ -21,6 +21,7 @@ class CreateSpAlbumsTable extends Migration
             $table->integer('type_id')->default(1)->index()->comment("类型ID");
             $table->string('parse_type')->nullable()->comment("类型ID");
             $table->string('source_url')->nullable()->index()->comment("资源地址");
+            $table->integer("total_num")->default(0)->comment("集数");
             $table->longText('tags')->nullable()->comment("标签");
             $table->longText('year')->nullable()->comment("年份");
             $table->longText('director')->nullable()->comment("导演");
@@ -31,6 +32,7 @@ class CreateSpAlbumsTable extends Migration
             $table->string('remark')->nullable()->comment("备注");
             $table->integer('sort')->default(0)->comment("排序");
             $table->integer('status')->default(1)->comment("状态：1更新中2全集");
+            $table->softDeletes();
             $table->timestamps();
         });
     }

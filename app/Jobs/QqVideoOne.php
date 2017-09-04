@@ -34,9 +34,13 @@ class QqVideoOne implements ShouldQueue
     public function handle()
     {
         $url = $this->map['source_url'];
-        $pathInfo = pathinfo($url);
+        try{
+            $dom = \phpQuery::newDocumentFileHTML($url, 'utf-8');
+        }catch (\Exception $e){
+            dispatch(new self($this->map));
+            return false;
+        }
         $find = SpAlbum::where('id', $this->map['id'])->first();
-        $dom = \phpQuery::newDocumentFileHTML($url, 'gbk');
         if(is_null($find)) return false;
         if(is_null($find->tags)){
             $video_tags = $dom->find('.video_tags a[_stat]');
@@ -53,52 +57,48 @@ class QqVideoOne implements ShouldQueue
             $find->descript = $description;
         }
         $find->save();
-
-        //电视剧
-        /*if($this->map['type_id'] == SpAlbum::TypeTv){
-            $contents = file_get_contents("compress.zlib://".$url);
-            preg_match("/var LIST_INFO = (.+)\n/", $contents, $listMatch);
-            $json = json_decode($listMatch[1], true);
-            foreach ($json['vip'] as $key => $item){
-                $map = [
-                    'id' => $find->id,
-                    'filename' => $pathInfo['filename'],
-                    'item' => $item,
-                    'title' => $json['data'][$item]['title']
-                ];
-                dispatch(new QqvideoOneTv($map));
-            }
-            return true;
-        }*/
-
+        $pathInfo = pathinfo($url);
         //电影
         if($this->map['type_id'] == SpAlbum::TypeMovie){
             SpVideo::firstOrCreate([
                 'source_url' => $this->map['source_url'],
                 'albums_id' => $find->id
             ]);
+            $find->total_num++;
+            $find->save();
         }
-
-        elseif(in_array($this->map['type_id'], [SpAlbum::TypeCartoon,SpAlbum::TypeTv])){
-           // $dom = \phpQuery::newDocumentFileHTML($url, 'utf-8');
-            if($this->map['type_id'] == SpAlbum::TypeTv){
-                $contents = file_get_contents("compress.zlib://".$url);
+        //电视剧、动漫
+        elseif(in_array($this->map['type_id'], [SpAlbum::TypeTv, SpAlbum::TypeDm])){
+            //$dom = \phpQuery::newDocumentFileHTML($url, 'utf-8');
+            if($this->map['type_id'] === SpAlbum::TypeTv){
+                try{
+                    $contents = file_get_contents("compress.zlib://".$url);
+                }catch (\Exception $e){
+                    dispatch(new self($this->map));
+                    return false;
+                }
             }else{
                 $contents = $dom->find('script[r-notemplate="true"]')->html();
             }
-
             preg_match("/var LIST_INFO = (.+)\n/", $contents, $listMatch);
             $json = json_decode($listMatch[1], true);
-            dd($url, $json, count($json['vid']));
             foreach ($json['vid'] as $key => $item){
+                $subTitle = $key + 1;
+                $title = ($subTitle < 10)?('0'.$subTitle):$subTitle;
+                $sourceUrl = 'https://v.qq.com/x/cover/'.$pathInfo['filename'].'/'.$item.'.html';
                 $map = [
-                    'id' => $find->id,
-                    'filename' => $pathInfo['filename'],
-                    'item' => $item,
-                    'title' => $json['data'][$item]['title']
+                    'albums_id' => $find->id,
+                    'source_url' => $sourceUrl,
+                    'title' => $title
                 ];
-                dispatch(new QqvideoOneTv($map));
+                $info = SpVideo::where($map)->first();
+                if(is_null($info)){
+                    SpVideo::firstOrCreate($map);
+                    $find->total_num++;
+                    $find->save();
+                }
             }
         }
+        return true;
     }
 }
