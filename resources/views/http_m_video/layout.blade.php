@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="keywords" content="@yield('seo_keywords'),{{config('site.keywords')}}">
-    <meta name="description" content="@yield('seo_description')">
+    <meta name="description" content="@yield('seo_description')[{{config('site.title')}}]">
     <title>@yield('title')_{{config('site.title')}}</title>
     <meta baidu-gxt-verify-token="d646e803f30a0a7eba69199ded167a5c">
     <link rel="stylesheet" href="{{asset('m_video')}}/css/amazeui.min.css">
@@ -22,7 +22,7 @@
         </div>
         <div class="am-u-sm-8">
             <a name="top"></a>
-            <form action="{{route('video.search')}}" method="get" class="am-form">
+            <form action="{{route('video.search')}}" method="get" class="am-form" id="searchForm">
                 <div class="am-input-group">
                     <input type="text" class="am-form-field" id="search-input" name="title"
                            placeholder="{{$title or $data['title']}}" value="{{$title or $data['title']}}">
@@ -48,7 +48,7 @@
                role="button"
                title="{{$item->name}}_{{config('site.title')}}">{{$item->name}}</a>
         @endforeach
-            <a class="am-btn am-btn-secondary" href="">
+            <a class="am-btn am-btn-secondary" href="mailto:wuzunlin@foxmail.com">
                 <span>建议</span>
             </a>
             <a class="am-btn am-btn-secondary" href="#top">

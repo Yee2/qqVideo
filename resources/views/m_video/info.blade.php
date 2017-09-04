@@ -12,20 +12,16 @@
     <div class="am-panel-bd">
         <iframe src="{{config('site.playUrl')}}{{$sourceUrl}}" style="width:100%;height: 550px;"></iframe>
         <div style="width:100%">
-            <div class="am-btn-group" style="width: 100%;overflow-x: scroll;white-space: nowrap;">
+            <div id="videoGroup" class="am-btn-group" style="width: 100%;overflow-x: scroll;white-space: nowrap;">
                 @foreach($videos as $item)
-                    @if($item->id == $infoId)
-                        <a class="am-btn am-btn-primary" style="float:none">第{{$loop->iteration}}集</a>
-                    @else
-                        <a href="{{route('video.info', [
-                            'id' => $info->id,
-                            'infoId' => $item->id
-                            ])}}" class="am-btn am-btn-secondary"
-                           style="float:none" pjax="false"
-                           data-href="{{config('site.playUrl')}}{{$item->source_url}}">
-                            第{{$loop->iteration}}集
-                        </a>
-                    @endif
+                    <a href="{{route('video.info', [
+                        'id' => $info->id,
+                        'infoId' => $item->id
+                        ])}}" class="am-btn @if($item->id == $infoId) am-btn-default @else am-btn-secondary @endif"
+                       style="float:none" pjax="false" title="第{{$item->title}}集_{{$info->title}}_{{config('site.title')}}"
+                       data-href="{{config('site.playUrl')}}{{$item->source_url}}" data-index="{{$loop->index}}">
+                        第{{$loop->iteration}}集
+                    </a>
                 @endforeach
             </div>
         </div>
@@ -37,13 +33,20 @@
 @section("footer_script")
 <script>
     $(function(){
+        move($('a.am-btn-default').data('index'))
         $('a[pjax="false"]').click(function(e){
             e.preventDefault()
-            console.log($(this).prop('href'),$('title').text()+$(this).text())
             $('iframe').prop('src', $(this).data('href'))
-            $('title').text($(this).text()+'_'+$('title').text())
-            history.pushState({}, '', $(this).prop('href'));
+            $('title').text($(this).attr('title'))
+            history.pushState({}, '', $(this).prop('href'))
+            $(this).siblings().addClass('am-btn-secondary').removeClass('am-btn-default')
+            $(this).removeClass('am-btn-secondary').addClass('am-btn-default')
+            move($(this).data('index'))
         })
     })
+    function move(index) {
+        var btnWidth = $('a.am-btn-default').width()
+        $('#videoGroup').scrollLeft((btnWidth+2*index)*index)
+    }
 </script>
 @endsection

@@ -12,6 +12,11 @@ $(document).ready(function () {
         $(this).siblings('a').removeClass('am-btn-primary').addClass('am-btn-secondary');
         $(this).addClass('am-btn-primary');
     })
+    $('#searchForm').submit(function (e) {
+        e.preventDefault()
+        var text = $('#search-input').val()
+        window.location.href = "/s/"+ text.replace('/','').replace('\\', '')
+    })
 });
 function loadImg() {
     var imgMap = $('img[_src]')
