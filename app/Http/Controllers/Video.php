@@ -81,7 +81,7 @@ class Video extends Controller
             return $this->view($request, 'loading');
         }
         $videos = SpVideo::where('albums_id', $id)->orderBy(DB::Raw('title', 'asc'))->get();
-        $description = "【".$info->title."】".(($info->type_id != 1)?("第".$data->title."集，"):'').$info->descript;
+        $description = "【".$info->title."】".(($info->type_id != 1)?("第".$data->title."集，"):'');
 
         $rand = SpAlbum::getRand(4);
         return $this->view(
