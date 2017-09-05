@@ -17,6 +17,10 @@ Route::get('/v/{id}/{infoId?}', ['as' => 'video.info', 'uses' => 'Video@info']);
 Route::get('/s/{title?}/{page?}', ['as' => 'video.search', 'uses' => 'Video@search']);
 Route::get('/t/{id}', ['as' => 'video.getThumb', 'uses' => 'Video@getThumb']);
 
+Auth::routes();
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], function (){
-    Route::match(['get', 'post'],'login', ['as' => 'Gust.login', 'uses' => 'Gust@login']);
+    Route::get('index', ['as' => 'Index.index', 'uses' => 'Index@index']);
+    Route::post('saveVideo', ['as' => 'Album.saveVideo', 'uses' => 'Album@saveVideo']);
+    Route::get('deleteVideo/{id?}', ['as' => 'Album.deleteVideo', 'uses' => 'Album@deleteVideo']);
+    Route::resource('Album', 'Album');
 });

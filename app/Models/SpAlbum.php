@@ -108,4 +108,48 @@ class SpAlbum extends Base
         ];
         return $map[$item];
     }
+
+    /**
+     * 当前视频的类型
+     * @return mixed
+     * author tingfeng <wuzunlin@foxmail.com>
+     * created time: 2017/9/5 13:37
+     */
+    public function nowType()
+    {
+        return SpVideoType::where('id', $this->type_id)->value('name');
+    }
+
+    /**
+     * 视频来源
+     * @return string
+     * author tingfeng <wuzunlin@foxmail.com>
+     * created time: 2017/9/5 13:39
+     */
+    public function nowParseType()
+    {
+        switch ($this->parse_type){
+            case 'qq':
+                $text = '腾讯视频';
+                break;
+            case 'youku':
+                $text = '优酷';
+                break;
+            default:
+                $text = '未知';
+                break;
+        }
+        return $text;
+    }
+
+    /**
+     * 获取当前缩略图
+     * @return mixed
+     * author tingfeng <wuzunlin@foxmail.com>
+     * created time: 2017/9/5 14:01
+     */
+    public function nowThumb()
+    {
+        return SpThumb::where('albums_id', $this->id)->value('thumb');
+    }
 }

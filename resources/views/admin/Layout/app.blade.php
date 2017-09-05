@@ -8,14 +8,16 @@
     <title>后台</title>
     <link rel="stylesheet" href="{{asset('m_video')}}/css/amazeui.min.css">
     <link rel="stylesheet" href="{{asset('admin')}}/css/style.css">
+    <script src="{{asset('video')}}/js/jquery.min.js"></script>
+    <script src="{{asset('video')}}/js/jquery.pjax.js"></script>
+    <script src="{{asset('m_video')}}/js/amazeui.min.js"></script>
+    <script src="{{asset('admin')}}/js/index.js"></script>
     @yield('header_script')
 </head>
 <body>
 <div class="am-container-full">
 @yield('body')
 </div>
-<script src="{{asset('video')}}/js/jquery.min.js"></script>
-<script src="{{asset('m_video')}}/js/amazeui.min.js"></script>
 @yield('footer_script')
 </body>
 </html>

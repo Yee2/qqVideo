@@ -22,5 +22,10 @@ class DatabaseSeeder extends Seeder
                 'name' => '动漫',
             ],
         ]);
+        \App\Models\User::create([
+            'name' => 'admin',
+            'email' => '1770963469@qq.com',
+            'password' => password_hash('123456', PASSWORD_DEFAULT)
+        ]);
     }
 }
