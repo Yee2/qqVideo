@@ -26,7 +26,7 @@ class Album extends Base
     {
         $data = SpAlbum::where(function ($query)use($request){
             if($request->has('title')){
-                $query->where('title', 'like', $request->input('title'));
+                $query->where('title', 'like', "%".$request->input('title')."%");
             }
             if($request->has('type_id')){
                 $query->where('type_id', $request->input('type_id'));

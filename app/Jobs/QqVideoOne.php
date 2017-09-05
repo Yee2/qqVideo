@@ -80,9 +80,9 @@ class QqVideoOne implements ShouldQueue
             }else{
                 $contents = $dom->find('script[r-notemplate="true"]')->html();
             }
-            preg_match("/var LIST_INFO = (.+)\n/", $contents, $listMatch);
+            preg_match("/var COVER_INFO = (.+)\n/", $contents, $listMatch);
             $json = json_decode($listMatch[1], true);
-            foreach ($json['vid'] as $key => $item){
+            foreach ($json['video_ids'] as $key => $item){
                 $subTitle = $key + 1;
                 $title = ($subTitle < 10)?('0'.$subTitle):$subTitle;
                 $sourceUrl = 'https://v.qq.com/x/cover/'.$pathInfo['filename'].'/'.$item.'.html';
