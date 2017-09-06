@@ -152,4 +152,11 @@ class SpAlbum extends Base
     {
         return SpThumb::where('albums_id', $this->id)->value('thumb');
     }
+
+    //删除空格
+    public static function trimall($str){
+        $qian=array(" ","　","\t","\n","\r");
+        $hou=array("","","","","");
+        return str_replace($qian,$hou,$str);
+    }
 }

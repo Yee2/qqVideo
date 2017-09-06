@@ -54,7 +54,7 @@ class QqVideoOne implements ShouldQueue
         }
         if(is_null($find->descript)){
             $description = $dom->find('meta[name="description"]')->attr('content');
-            $find->descript = self::trimall($description);
+            $find->descript = SpAlbum::trimall($description);
         }
         $find->save();
         $pathInfo = pathinfo($url);
@@ -100,12 +100,5 @@ class QqVideoOne implements ShouldQueue
             }
         }
         return true;
-    }
-
-    //删除空格
-    private static function trimall($str){
-        $qian=array(" ","　","\t","\n","\r");
-        $hou=array("","","","","");
-        return str_replace($qian,$hou,$str);
     }
 }
