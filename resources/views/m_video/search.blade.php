@@ -7,7 +7,7 @@
                     <div class="am-u-sm-6 am-text-center">
                         <a href="{{route('video.info', $item->id)}}">
                             <img src="{{asset('m_video')}}/img/videoLoading.gif" class="am-img-thumbnail"
-                                 _src="{{route('video.getThumb', $item->id)}}" />
+                                 _src="{{--{{route('video.getThumb', $item->id)}}--}}{{$item->nowThumb()}}" />
                         </a>
                         <a href="{{route('video.info', $item->id)}}">{{$item->title}}</a>
                     </div>
@@ -15,7 +15,7 @@
                         <div class="am-u-sm-6 am-text-center">
                             <a href="{{route('video.info', $item->id)}}">
                                 <img src="{{asset('m_video')}}/img/videoLoading.gif" class="am-img-thumbnail"
-                                     _src="{{route('video.getThumb', $item->id)}}" />
+                                     _src="{{--{{route('video.getThumb', $item->id)}}--}}{{$item->nowThumb()}}" />
                             </a>
                             <a href="{{route('video.info', $item->id)}}">{{$item->title}}</a>
                         </div>

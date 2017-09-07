@@ -22,7 +22,7 @@
         </h1>
     </header>
     <div class="am-g">
-        <div class="am-u-sm-2">
+        <div class="am-u-sm-12 am-u-md-2">
             <ul class="am-list am-list-static am-list-border">
                 <li>
                     <a href="" pjax="true">
@@ -41,7 +41,7 @@
                 </li>
             </ul>
         </div>
-        <div class="am-u-sm-10" id="main">
+        <div class="am-u-sm-12 am-u-md-10" id="main">
             @yield('body')
         </div>
     </div>

@@ -1,5 +1,5 @@
 <div class="am-g">
-    <div class="am-u-sm-5 am-fr">
+    <div class="am-u-sm-12 am-u-md-12 am-fr">
         <form class="am-form-inline" id="searchForm">
             <div class="am-form-group">
                 <input type="text" placeholder="标题" name="title" class="am-form-field am-radius"
@@ -27,51 +27,55 @@
     </div>
 </div>
 <div class="am-g">
-    <table class="am-table am-table-bordered am-text-center">
-        <thead>
-        <tr>
-            <th class="am-text-center">ID</th>
-            <th class="am-text-center">类型</th>
-            <th class="am-text-center">标题</th>
-            <th class="am-text-center">来源</th>
-            <th class="am-text-center">状态</th>
-            <th class="am-text-center">集数</th>
-            <th class="am-text-center">缩略图</th>
-            <th class="am-text-center">创建时间</th>
-            <th class="am-text-center">更新时间</th>
-            <th class="am-text-center">操作</th>
-        </tr>
-        </thead>
-        <tbody>
-        @foreach($data as $item)
+    <div class="am-u-sm-12 am-u-md-12">
+        <table class="am-table am-table-bordered am-text-center">
+            <thead>
             <tr>
-                <td>{{$item->id}}</td>
-                <td>{{$item->nowType()}}</td>
-                <td>{{$item->title}}</td>
-                <td>{{$item->nowParseType()}}</td>
-                <td>{{($item->status == 2)?'全集':'更新中'}}</td>
-                <td>{{$item->total_num}}</td>
-                <td>
-                    <img src="{{$item->nowThumb()}}" class="am-img-thumbnail" style="width: 50px">
-                </td>
-                <td>{{$item->created_at}}</td>
-                <td>{{$item->updated_at}}</td>
-                <td>
-                    <div class="am-btn-group">
-                        <a href="{{route('admin.Album.edit', $item->id)}}" class="am-btn am-btn-primary am-radius">编辑</a>
-                        <a class="am-btn am-btn-success am-radius">下架</a>
-                        <a class="am-btn am-btn-danger am-radius">删除</a>
-                    </div>
-                </td>
+                <th class="am-text-center">ID</th>
+                <th class="am-text-center">类型</th>
+                <th class="am-text-center">标题</th>
+                <th class="am-text-center">来源</th>
+                <th class="am-text-center">状态</th>
+                <th class="am-text-center">集数</th>
+                {{--<th class="am-text-center">缩略图</th>--}}
+                <th class="am-text-center">创建时间</th>
+                {{--<th class="am-text-center">更新时间</th>--}}
+                <th class="am-text-center">操作</th>
             </tr>
-        @endforeach
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            @foreach($data as $item)
+                <tr>
+                    <td>{{$item->id}}</td>
+                    <td>{{$item->nowType()}}</td>
+                    <td>{{$item->title}}</td>
+                    <td>{{$item->nowParseType()}}</td>
+                    <td>{{($item->status == 2)?'全集':'更新中'}}</td>
+                    <td>{{$item->total_num}}</td>
+                    {{--<td>
+                        <img src="{{$item->nowThumb()}}" class="am-img-thumbnail" style="width: 50px">
+                    </td>--}}
+                    <td>{{$item->created_at}}</td>
+                    {{--<td>{{$item->updated_at}}</td>--}}
+                    <td>
+                        <div class="am-btn-group">
+                            <a href="{{route('admin.Album.edit', $item->id)}}" class="am-btn am-btn-primary am-radius">编辑</a>
+                            <a class="am-btn am-btn-success am-radius">下架</a>
+                            <a class="am-btn am-btn-danger am-radius">删除</a>
+                        </div>
+                    </td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
+    </div>
 </div>
 <div class="am-g">
-    {{$data->links('admin.Layout.paginate', [
+    <div class="am-u-sm-12">
+        {{$data->links('admin.Layout.paginate', [
         'query' => '&title='.request()->input('title').
         '&type_id='.request()->input('type_id').'&parse_type='.request()->input('title').
         '&status='.request()->input('status')
     ])}}
+    </div>
 </div>

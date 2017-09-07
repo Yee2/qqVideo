@@ -6,7 +6,7 @@
         </h1>
     </header>
     <div class="am-g">
-        <div class="am-u-sm-2">
+        <div class="am-u-sm-5 am-u-md-2">
             <ul class="am-list am-list-static am-list-border">
                 <li>
                     <a href="" pjax="true">

@@ -55,7 +55,7 @@ class YoukuOne implements ShouldQueue
                 'albums_id' => $find->id
             ]);
             $find->total_num += 1;
-            Log::info("total_num:".$find->total_num);
+            Log::info("id:".$find->id.",total_num:".$find->total_num);
             $find->save();
         }else{
             $listDom = $dom->find('div[name="tvlist"]');
@@ -70,7 +70,7 @@ class YoukuOne implements ShouldQueue
                     'albums_id' => $find->id
                 ]);
                 $find->total_num += 1;
-                Log::info("total_num:".$find->total_num);
+                Log::info("id:".$find->id.",total_num:".$find->total_num);
                 $find->save();
             }
         }
