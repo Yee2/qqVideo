@@ -79,7 +79,7 @@
     <div class="am-u-sm-12">
         {{$data->links('admin.Layout.paginate', [
         'query' => '&title='.request()->input('title').
-        '&type_id='.request()->input('type_id').'&parse_type='.request()->input('title').
+        '&type_id='.request()->input('type_id').'&parse_type='.request()->input('parse_type').
         '&status='.request()->input('status')
     ])}}
     </div>
