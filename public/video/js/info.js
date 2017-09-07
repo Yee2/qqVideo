@@ -5,7 +5,7 @@ $(function(){
     move($('a.am-btn-default').data('index'))
     $('a[pjax="false"]').click(function(e){
         e.preventDefault()
-        $('iframe').prop('src', $(this).data('href'))
+        $('#iframeVideo').prop('src', $(this).data('href'))
         $('title').text($(this).attr('title'))
         history.pushState({}, '', $(this).prop('href'))
         $(this).siblings().addClass('am-btn-secondary').removeClass('am-btn-default')

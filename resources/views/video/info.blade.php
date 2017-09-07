@@ -13,7 +13,7 @@
         <div class="am-panel-bd">
             <div class="am-g">
                 <div class="am-u-sm-12">
-                    <iframe src="{{config('site.playUrl')}}{{$sourceUrl}}" style="width:100%;height: 550px;"></iframe>
+                    <iframe src="{{config('site.playUrl')}}{{$sourceUrl}}" style="width:100%;height: 550px;" id="iframeVideo"></iframe>
                 </div>
             </div>
             <div class="am-g">

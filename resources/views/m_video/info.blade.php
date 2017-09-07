@@ -10,7 +10,7 @@
         </ol>
     </div>
     <div class="am-panel-bd">
-        <iframe src="{{config('site.playUrl')}}{{$sourceUrl}}" style="width:100%;height: 550px;"></iframe>
+        <iframe src="{{config('site.playUrl')}}{{$sourceUrl}}" style="width:100%;height: 550px;" id="iframeVideo"></iframe>
         <div style="width:100%">
             <div id="videoGroup" class="am-btn-group" style="width: 100%;overflow-x: scroll;white-space: nowrap;">
                 @foreach($videos as $item)
