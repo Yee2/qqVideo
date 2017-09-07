@@ -22,6 +22,7 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin'], fu
     Route::get('index', ['as' => 'Index.index', 'uses' => 'Index@index']);
     Route::post('saveVideo', ['as' => 'Album.saveVideo', 'uses' => 'Album@saveVideo']);
     Route::get('deleteVideo/{id?}', ['as' => 'Album.deleteVideo', 'uses' => 'Album@deleteVideo']);
+    Route::get('queue/{id}', ['as' => 'Album.queue', 'uses' => 'Album@queue']);
     Route::resource('Album', 'Album');
 });
 Route::get('/test', function(){

@@ -60,7 +60,7 @@
                     <td>
                         <div class="am-btn-group">
                             <a href="{{route('admin.Album.edit', $item->id)}}" class="am-btn am-btn-primary am-radius">编辑</a>
-                            <a class="am-btn am-btn-success am-radius">下架</a>
+                            <a href="{{route('admin.Album.queue', $item->id)}}" class="am-btn am-btn-success am-radius queue">任务</a>
                             <a class="am-btn am-btn-danger am-radius">删除</a>
                         </div>
                     </td>
@@ -79,3 +79,19 @@
     ])}}
     </div>
 </div>
+<script>
+    $(function(){
+        $('.queue').click(function(){
+            $.ajax({
+                url: $(this).prop('href'),
+                type: 'get',
+                beforeSend: function(){
+                    $(self).button('loding');
+                },
+                success: function(res){
+                    $(self).button('reset');
+                }
+            })
+        })
+    })
+</script>

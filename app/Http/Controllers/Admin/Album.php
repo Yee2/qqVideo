@@ -9,6 +9,8 @@
 namespace App\Http\Controllers\Admin;
 
 
+use App\Jobs\QqVideoOne;
+use App\Jobs\YoukuOne;
 use App\Models\SpAlbum;
 use App\Models\SpVideo;
 use Illuminate\Http\Request;
@@ -84,5 +86,25 @@ class Album extends Base
         if(is_null($find)) return self::error('数据不存在');
         $find->delete();
         return self::success('删除成功');
+    }
+
+    public function queue($id)
+    {
+        $find = SpAlbum::find($id);
+        if(is_null($find)) return self::error('数据不存在');
+        $data = [
+            'id' => $find->id,
+            'title' => $find->title,
+            'source_url' => $find->source_url,
+            'parse_type' => 'youku',
+            'status' => $find->status,
+            'type_id' => $find->type_id,
+        ];
+        if($find->parse_type == 'qq'){
+            dispatch(new QqVideoOne($data));
+        }else if($find->parse_type == 'youku'){
+            dispatch(new YoukuOne($data));
+        }
+        return self::success('添加成功');
     }
 }
