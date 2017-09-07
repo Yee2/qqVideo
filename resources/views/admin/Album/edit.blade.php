@@ -4,7 +4,7 @@
             <div class="am-panel-hd">编辑《{{$info->title}}》</div>
             <div class="am-panel-bd">
                 <div class="am-g">
-                    <form action="" class="am-form am-u-sm-11">
+                    <form action="{{route('admin.Album.update', $info->id)}}" class="am-form am-u-sm-11" id="editForm">
                         <div class="am-form-group">
                             <div class="am-g">
                                 <label class="am-u-sm-2 am-text-right">标题</label>
@@ -46,9 +46,9 @@
                         </div>
                         <div class="am-form-group">
                             <div class="am-g">
-                                <label class="am-u-sm-2 am-text-right">缩略图</label>
+                                <label class="am-u-sm-2 am-text-right">集数</label>
                                 <div class="am-u-sm-10">
-                                    <input type="text" placeholder="缩略图" name="thumb" value="{{$info->nowThumb()}}">
+                                    <input type="number" placeholder="集数" name="total_num" value="{{$info->total_num}}">
                                 </div>
                             </div>
                         </div>
@@ -88,9 +88,11 @@
                                 </div>
                             </div>
                         </div>
+                        {{csrf_field()}}
                         <div class="am-form-group">
                             <div class="am-u-sm-10 am-u-sm-offset-2">
-                                <button type="submit" class="am-btn am-btn-success">保存</button>
+                                <button type="submit" class="am-btn am-btn-success"
+                                        data-am-loading="{spinner: 'circle-o-notch', loadingText: '保存中...', resetText: '保存成功'}">保存</button>
                             </div>
                         </div>
                     </form>
@@ -121,9 +123,9 @@
                     <td>
                         <a href="{{$item->source_url}}" class="am-btn am-btn-primary" target="_blank">访问来源</a>
                         <button type="button" data-id="{{$item->id}}" class="am-btn am-btn-primary save"
-                                data-am-loading="{spinner: 'circle-o-notch', loadingText: '加载中...', resetText: '保存成功'}">保存</button>
+                                data-am-loading="{spinner: 'circle-o-notch', loadingText: '保存中...', resetText: '保存成功'}">保存</button>
                         <button type="button" data-id="{{$item->id}}" class="am-btn am-btn-danger delete"
-                                data-am-loading="{spinner: 'circle-o-notch', loadingText: '加载中...', resetText: '删除成功'}">删除</button>
+                                data-am-loading="{spinner: 'circle-o-notch', loadingText: '保存中...', resetText: '删除成功'}">删除</button>
                     </td>
                 </tr>
             @endforeach
@@ -133,9 +135,24 @@
 </div>
 <script>
     $(function(){
+        $('#editForm').submit(function(e){
+            e.preventDefault()
+            var self = $(this).find('button[type="submit"]')
+            $.ajax({
+                url: $(this).prop('action'),
+                type: 'PUT',
+                data: $(this).serializeArray(),
+                beforeSend: function(){
+                    $(self).button('loding');
+                },
+                success: function(res){
+                    $(self).button('reset');
+                }
+            })
+        })
         $('.delete').click(function (e) {
             e.preventDefault()
-            var self = $(this)
+            var self = this
             $.ajax({
                 url: "{{route('admin.Album.deleteVideo')}}/"+$(this).data('id'),
                 type: 'get',

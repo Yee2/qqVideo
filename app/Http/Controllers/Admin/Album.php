@@ -59,6 +59,42 @@ class Album extends Base
     }
 
     /**
+     * 更新数据
+     * @param Request $request
+     * @param $id
+     * @return mixed
+     */
+    public function update(Request $request, $id)
+    {
+        $find = SpAlbum::find($id);
+        if(is_null($find)) return self::error('数据不存在');
+        $find->title = $request->input('title');
+        $find->type_id = $request->input('type_id');
+        $find->parse_type = $request->input('parse_type');
+        $find->source_url = $request->input('source_url');
+        $find->total_num = $request->input('total_num');
+        $find->tags = $request->input('tags');
+        $find->descript = $request->input('descript');
+        $find->sort = $request->input('sort');
+        $find->status = $request->input('status');
+        if(!$find->save()) return self::error('更新失败');
+        return self::success('保存成功');
+    }
+
+    /**
+     * 软删除
+     * @param $id
+     * @return mixed
+     */
+    public function destroy($id)
+    {
+        $find = SpAlbum::find($id);
+        if(is_null($find)) return self::error('数据不存在');
+        if(!$find->delete()) return self::error('删除失败');
+        return self::success('删除成功');
+    }
+
+    /**
      * 保存视频信息
      * @param Request $request
      * @return mixed
@@ -70,7 +106,7 @@ class Album extends Base
         if(is_null($find)) return self::error('数据不存在');
         $find->title = $request->input('title');
         $find->source_url = $request->input('source_url');
-        $find->save();
+        if(!$find->save()) return self::error('更新失败');
         return self::success('保存成功');
     }
     /**

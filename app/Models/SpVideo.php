@@ -2,6 +2,9 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 class SpVideo extends Base
 {
+    use SoftDeletes;
 }

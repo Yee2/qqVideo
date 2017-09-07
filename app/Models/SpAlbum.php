@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\DB;
 
 class SpAlbum extends Base
 {
+    use SoftDeletes;
     const StatusIng = 1;
     const StatusEd = 2;
     const TypeMovie = 1;
@@ -153,10 +155,14 @@ class SpAlbum extends Base
         return SpThumb::where('albums_id', $this->id)->value('thumb');
     }
 
-    //删除空格
+    /**
+     * 删除空格
+     * @param $str 字符串
+     * @return mixed
+     */
     public static function trimall($str){
-        $qian=array(" ","　","\t","\n","\r");
-        $hou=array("","","","","");
+        $qian = array(" ","　","\t","\n","\r");
+        $hou = array("","","","","");
         return str_replace($qian,$hou,$str);
     }
 }

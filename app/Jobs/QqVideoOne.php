@@ -60,12 +60,17 @@ class QqVideoOne implements ShouldQueue
         $pathInfo = pathinfo($url);
         //电影
         if($this->map['type_id'] == SpAlbum::TypeMovie){
-            SpVideo::firstOrCreate([
+            $map = [
                 'source_url' => $this->map['source_url'],
                 'albums_id' => $find->id
-            ]);
-            $find->total_num++;
-            $find->save();
+            ];
+            $info = SpVideo::where($map)->first();
+            if(is_null($info)){
+                if(SpVideo::create($map)){
+                    $find->total_num++;
+                    $find->save();
+                }
+            }
         }
         //电视剧、动漫
         elseif(in_array($this->map['type_id'], [SpAlbum::TypeTv, SpAlbum::TypeDm])){
@@ -93,9 +98,10 @@ class QqVideoOne implements ShouldQueue
                 ];
                 $info = SpVideo::where($map)->first();
                 if(is_null($info)){
-                    SpVideo::firstOrCreate($map);
-                    $find->total_num++;
-                    $find->save();
+                    if(SpVideo::create($map)){
+                        $find->total_num++;
+                        $find->save();
+                    }
                 }
             }
         }

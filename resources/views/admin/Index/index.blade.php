@@ -7,7 +7,7 @@
     </header>
     <div class="am-g">
         <div class="am-u-sm-5 am-u-md-2">
-            <ul class="am-list am-list-static am-list-border">
+            <ul class="am-list am-list-static am-list-border" id="menu">
                 <li>
                     <a href="" pjax="true">
                         <i class="am-icon-home am-icon-fw"></i>修改密码
@@ -29,4 +29,11 @@
 
         </div>
     </div>
+@endsection
+@section('footer_script')
+    <script>
+        $(function(){
+            $('#menu li:eq(1) a').trigger('click')
+        })
+    </script>
 @endsection

@@ -50,13 +50,17 @@ class YoukuOne implements ShouldQueue
         $find->descript = SpAlbum::trimall($description);
         $find->save();
         if($this->map['type_id'] == SpAlbum::TypeMovie){
-            SpVideo::firstOrCreate([
+            $map = [
                 'source_url' => $this->map['source_url'],
                 'albums_id' => $find->id
-            ]);
-            $find->total_num += 1;
-            Log::info("id:".$find->id.",total_num:".$find->total_num);
-            $find->save();
+            ];
+            $info = SpVideo::where($map)->first();
+            if(is_null($info)){
+                SpVideo::create($map);
+                $find->total_num += 1;
+                $find->save();
+                Log::info("id:".$find->id.",total_num:".$find->total_num);
+            }
         }else{
             $listDom = $dom->find('div[name="tvlist"]');
             $count = $listDom->count();
@@ -64,14 +68,18 @@ class YoukuOne implements ShouldQueue
                 $map = pq($listDom->eq($count-$i));
                 $href = $map->find('a')->attr('href');
                 $url = (strpos($href, 'http') === false)?('http:'.$href):$href;
-                SpVideo::firstOrCreate([
+                $map = [
                     'source_url' => $url,
                     'title' => $map->find('a')->text(),
                     'albums_id' => $find->id
-                ]);
-                $find->total_num += 1;
-                Log::info("id:".$find->id.",total_num:".$find->total_num);
-                $find->save();
+                ];
+                $info = SpVideo::where($map)->first();
+                if(is_null($info)){
+                    SpVideo::create($map);
+                    $find->total_num += 1;
+                    $find->save();
+                    Log::info("id:".$find->id.",total_num:".$find->total_num);
+                }
             }
         }
     }

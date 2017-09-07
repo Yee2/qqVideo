@@ -59,9 +59,14 @@
                     {{--<td>{{$item->updated_at}}</td>--}}
                     <td>
                         <div class="am-btn-group">
-                            <a href="{{route('admin.Album.edit', $item->id)}}" class="am-btn am-btn-primary am-radius">编辑</a>
-                            <a href="{{route('admin.Album.queue', $item->id)}}" pjax="false" class="am-btn am-btn-success am-radius queue">任务</a>
-                            <a class="am-btn am-btn-danger am-radius" pjax="false">删除</a>
+                            <a href="{{route('admin.Album.edit', $item->id)}}"
+                               class="am-btn am-btn-primary am-radius">编辑</a>
+                            <a href="{{route('admin.Album.queue', $item->id)}}" pjax="false"
+                               class="am-btn am-btn-success am-radius queue"
+                               data-am-loading="{spinner: 'circle-o-notch', loadingText: '添加中...', resetText: '已添加'}">任务</a>
+                            <a href="{{route('admin.Album.destroy', $item->id)}}" pjax="false"
+                               class="am-btn am-btn-danger am-radius delete"
+                               data-am-loading="{spinner: 'circle-o-notch', loadingText: '删除中...', resetText: '已成功'}">删除</a>
                         </div>
                     </td>
                 </tr>
@@ -81,10 +86,27 @@
 </div>
 <script>
     $(function(){
-        $('.queue').click(function(){
+        $('.queue').click(function(e){
+            e.preventDefault()
+            var self = this
             $.ajax({
                 url: $(this).prop('href'),
                 type: 'get',
+                beforeSend: function(){
+                    $(self).button('loding');
+                },
+                success: function(res){
+                    $(self).button('reset');
+                }
+            })
+        })
+        $('.delete').click(function(e){
+            e.preventDefault()
+            var self = this
+            $.ajax({
+                url: $(this).prop('href'),
+                type: 'delete',
+                data: {"_token": "{{csrf_token()}}"},
                 beforeSend: function(){
                     $(self).button('loding');
                 },

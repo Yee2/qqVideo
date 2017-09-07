@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('m_video/css/amazeui.css') }}" rel="stylesheet">
+    @yield('header_script')
 </head>
 <body>
     <div id="am-container">
@@ -22,5 +23,6 @@
     <!-- Scripts -->
     <script src="{{ asset('video/js/jquery.min.js') }}"></script>
     <script src="{{ asset('m_video/js/amazeui.js') }}"></script>
+    @yield('footer_script')
 </body>
 </html>
