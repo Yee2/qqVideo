@@ -18,7 +18,7 @@
                         'id' => $info->id,
                         'infoId' => $item->id
                         ])}}" class="am-btn @if($item->id == $infoId) am-btn-default @else am-btn-secondary @endif"
-                       style="float:none" pjax="false" title="第{{(($loop->iteration <10)?('0'.$loop->iteration):$loop->iteration)}}集_{{$info->title}}_{{config('site.title')}}"
+                       style="float:none" {{--pjax="false"--}} title="第{{(($loop->iteration <10)?('0'.$loop->iteration):$loop->iteration)}}集_{{$info->title}}_{{config('site.title')}}"
                        data-href="{{config('site.playUrl')}}{{$item->source_url}}" data-index="{{$loop->index}}">
                         第{{(($loop->iteration <10)?('0'.$loop->iteration):$loop->iteration)}}集
                     </a>
