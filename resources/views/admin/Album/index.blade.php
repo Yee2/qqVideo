@@ -4,6 +4,8 @@
             <div class="am-form-group">
                 <input type="text" placeholder="标题" name="title" class="am-form-field am-radius"
                        value="{{request()->input('title')}}">
+                <input type="text" placeholder="集数" name="total_num" class="am-form-field am-radius"
+                       value="{{request()->input('total_num')}}">
                 <select class="am-form-field" name="type_id">
                     <option value="">所有类型</option>
                     <option value="1" @if(request()->input('type_id') == 1) selected @endif>电影</option>

@@ -39,6 +39,9 @@ class Album extends Base
             if($request->has('status')){
                 $query->where('status', $request->input('status'));
             }
+            if($request->has('total_num')){
+                $query->where('total_num', $request->input('total_num'));
+            }
         })->orderBy('id', 'desc')->paginate(8);
         return $this->view($request, 'Album.index', compact('data'));
     }
