@@ -88,19 +88,21 @@ class QqVideoOne implements ShouldQueue
             preg_match("/var COVER_INFO = (.+)\n/", $contents, $listMatch);
             $json = json_decode($listMatch[1], true);
             foreach ($json['vip_ids'] as $key => $item){
-                $subTitle = $key + 1;
-                $title = ($subTitle < 10)?('0'.$subTitle):$subTitle;
-                $sourceUrl = 'https://v.qq.com/x/cover/'.$pathInfo['filename'].'/'.$item['V'].'.html';
-                $map = [
-                    'albums_id' => $find->id,
-                    'source_url' => $sourceUrl,
-                    'title' => $title
-                ];
-                $info = SpVideo::where($map)->first();
-                if(is_null($info)){
-                    if(SpVideo::create($map)){
-                        $find->total_num++;
-                        $find->save();
+                if(in_array($item['F'], [2,7])){
+                    $subTitle = $key + 1;
+                    $title = ($subTitle < 10)?('0'.$subTitle):$subTitle;
+                    $sourceUrl = 'https://v.qq.com/x/cover/'.$pathInfo['filename'].'/'.$item['V'].'.html';
+                    $map = [
+                        'albums_id' => $find->id,
+                        'source_url' => $sourceUrl,
+                        'title' => $title
+                    ];
+                    $info = SpVideo::where($map)->first();
+                    if(is_null($info)){
+                        if(SpVideo::create($map)){
+                            $find->total_num++;
+                            $find->save();
+                        }
                     }
                 }
             }
