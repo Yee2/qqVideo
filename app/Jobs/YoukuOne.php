@@ -66,19 +66,22 @@ class YoukuOne implements ShouldQueue
             $count = $listDom->count();
             for($i = 1; $i <= $count; $i++){
                 $map = pq($listDom->eq($count-$i));
-                $href = $map->find('a')->attr('href');
-                $url = (strpos($href, 'http') === false)?('http:'.$href):$href;
-                $map = [
-                    'source_url' => $url,
-                    'title' => $map->find('a')->text(),
-                    'albums_id' => $find->id
-                ];
-                $info = SpVideo::where($map)->first();
-                if(is_null($info)){
-                    SpVideo::create($map);
-                    $find->total_num += 1;
-                    $find->save();
-                    Log::info("id:".$find->id.",total_num:".$find->total_num);
+                $isPre = $map->find('a .sn_ispreview');
+                if($isPre->length == 0){
+                    $href = $map->find('a')->attr('href');
+                    $url = (strpos($href, 'http') === false)?('http:'.$href):$href;
+                    $map = [
+                        'source_url' => $url,
+                        'title' => $map->find('a')->text(),
+                        'albums_id' => $find->id
+                    ];
+                    $info = SpVideo::where($map)->first();
+                    if(is_null($info)){
+                        SpVideo::create($map);
+                        $find->total_num += 1;
+                        $find->save();
+                        Log::info("id:".$find->id.",total_num:".$find->total_num);
+                    }
                 }
             }
         }

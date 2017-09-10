@@ -88,7 +88,7 @@ class QqVideoOne implements ShouldQueue
             preg_match("/var COVER_INFO = (.+)\n/", $contents, $listMatch);
             $json = json_decode($listMatch[1], true);
             foreach ($json['vip_ids'] as $key => $item){
-                if(in_array($item['F'], [2,7])){
+                if(in_array($item['F'], [SpAlbum::QqOneTypeOpen, SpAlbum::QqOneTypeVip])){
                     $subTitle = $key + 1;
                     $title = ($subTitle < 10)?('0'.$subTitle):$subTitle;
                     $sourceUrl = 'https://v.qq.com/x/cover/'.$pathInfo['filename'].'/'.$item['V'].'.html';

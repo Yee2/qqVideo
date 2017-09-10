@@ -13,6 +13,8 @@ class SpAlbum extends Base
     const TypeMovie = 1;
     const TypeTv = 2;
     const TypeDm = 3;
+    const QqOneTypeOpen = 2;
+    const QqOneTypeVip = 7;
     /**
      * 获取分类最新数据
      * @param int $number
