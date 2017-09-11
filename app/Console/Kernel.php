@@ -15,6 +15,8 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         'App\Console\Commands\QqVideo',
         'App\Console\Commands\Youku',
+        'App\Console\Commands\NotCollect',
+        'App\Console\Commands\NotCollectType',
     ];
 
     /**
