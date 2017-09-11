@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Log;
 class YoukuOne implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-
+    public $tries = 2;
     public $map;
     /**
      * Create a new job instance.
@@ -61,7 +61,7 @@ class YoukuOne implements ShouldQueue
                 $find->save();
                 Log::info("id:".$find->id.",total_num:".$find->total_num);
             }
-        }else{
+        }else if($this->map['type_id'] == SpAlbum::TypeTv){
             $listDom = $dom->find('div[name="tvlist"]');
             $count = $listDom->count();
             for($i = 1; $i <= $count; $i++){
@@ -73,6 +73,31 @@ class YoukuOne implements ShouldQueue
                     $map = [
                         'source_url' => $url,
                         'title' => $map->find('a')->text(),
+                        'albums_id' => $find->id
+                    ];
+                    $info = SpVideo::where($map)->first();
+                    if(is_null($info)){
+                        SpVideo::create($map);
+                        $find->total_num += 1;
+                        $find->save();
+                        Log::info("id:".$find->id.",total_num:".$find->total_num);
+                    }
+                }
+            }
+        }else if($this->map['type_id'] == SpAlbum::TypeDm){
+            $listDom = $dom->find('div.lists>div.items>li');
+            $count = $listDom->count();
+            for($i = 1; $i <= $count; $i++){
+                $map = pq($listDom->eq($count-$i));
+                $isPre = $map->find('a .sn_ispreview');
+                if($isPre->length == 0){
+                    $href = $map->find('a')->attr('href');
+                    $url = (strpos($href, 'http') === false)?('http:'.$href):$href;
+                    $subTitle = $map->find('a .l_serial label')->text();
+                    $title = ($subTitle < 10)?('0'.$subTitle):$subTitle;
+                    $map = [
+                        'source_url' => $url,
+                        'title' => $title,
                         'albums_id' => $find->id
                     ];
                     $info = SpVideo::where($map)->first();

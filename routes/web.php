@@ -34,3 +34,42 @@ Route::get('/test', function(){
     $body = mb_substr($request->getBody()->getContents(), 2, -1);
     dd(json_decode($body));
 });
+Route::get('/test1', function(){
+    $url = 'http://v.youku.com/v_show/id_XMjk5OTY1MjkxMg==.html';
+    $dom = \phpQuery::newDocumentFile($url);
+    /*$find = \App\Models\SpAlbum::find($this->map['id']);
+    if(is_null($find)){
+        return false;
+    }
+    $keywords = $dom->find('meta[name="keywords"]')->attr("content");
+    $description = $dom->find('meta[name="description"]')->attr("content");
+    $find->tags = $keywords;
+    $find->descript = \App\Models\SpAlbum::trimall($description);
+    $find->save();*/
+    $listDom = $dom->find('div.lists>div.items>li');
+    $count = $listDom->count();
+    //dd($map = pq($listDom->eq(0))->text());
+    for($i = 0; $i < $count; $i++){
+        $map = pq($listDom->eq($i));
+        $isPre = $map->find('a .sn_ispreview');
+        if($isPre->length == 0){
+            $href = $map->find('a')->attr('href');
+            $url = (strpos($href, 'http') === false)?('http:'.$href):$href;
+            $subTitle = $map->find('a .l_serial label')->text();
+            $title = ($subTitle < 10)?('0'.$subTitle):$subTitle;
+            $maps[] = [
+                'source_url' => $url,
+                'title' => $title,
+                //'albums_id' => $find->id
+            ];
+            /*$info = \App\Models\SpVideo::where($map)->first();
+            if(is_null($info)){
+                \App\Models\SpVideo::create($map);
+                $find->total_num += 1;
+                $find->save();
+            }*/
+        }
+    }
+    dd($maps);
+
+});
