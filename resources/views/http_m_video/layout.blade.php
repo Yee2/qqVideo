@@ -34,11 +34,11 @@
             </form>
         </div>
     </div>
-    <div class="am-g">
+    {{--<div class="am-g">
         <div class="am-u-sm-12">
             <script src='http://www.yezilm.com/vs.php?id=7622'></script>
         </div>
-    </div>
+    </div>--}}
     <div class="am-g main" id="pjax-container">
         @yield('body')
     </div>
