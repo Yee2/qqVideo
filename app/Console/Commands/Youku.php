@@ -63,12 +63,12 @@ class Youku extends Command
             }
             $data = [
                 'title' => $map->find('a:first')->attr('title'),
-                'source_url' => $url,
                 'parse_type' => 'youku',
                 'status' => $status,
                 'type_id' => $type['id'],
             ];
             $find = SpAlbum::where($data)->first();
+            $data['source_url'] = $url;
             if(is_null($find)){
                 $info = SpAlbum::create($data);
                 if($info){
