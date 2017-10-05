@@ -9,50 +9,55 @@
     <title>@yield('title')_{{config('site.title')}}</title>
     <meta baidu-gxt-verify-token="d646e803f30a0a7eba69199ded167a5c">
     <meta name="love" content="我们认识的第{{$data['weMetEdTime']}}天，相爱的第{{$data['weLoveEdTime']}}天">
+
     <link rel="stylesheet" href="{{asset('m_video')}}/css/amazeui.min.css">
+    <link href="https://cdn.bootcss.com/bxslider/4.2.12/jquery.bxslider.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{asset('video')}}/css/index.css">
+    <link rel="stylesheet" href="{{asset('video')}}/css/new.css">
 <body>
-<div class="am-container">
-    <div class="am-g">
-        <div class="am-u-sm-2">
-            <a href="{{route('video.index')}}">
-                <div class="logo" title="logo_{{config('site.title')}}"></div>
-            </a>
-        </div>
-        <div class="am-u-sm-6">
-            <ul class="am-nav am-nav-pills">
-                @foreach($data['category'] as $item)
-                    <li @if(isset($cateName) && ($id == $item->id)) class="am-active" @endif>
-                        <a href="{{route('video.category', $item->id)}}" title="{{$item->name}}_{{config('site.title')}}">{{$item->name}}</a>
-                    </li>
-                @endforeach
-            </ul>
-        </div>
-        <div class="am-u-sm-4">
-            <form action="{{route('video.search')}}" method="get" id="searchForm" class="am-form-inline am-fr">
-                <div class="am-form-group">
-                    <input name="title" type="text" placeholder="{{$title or $data['title']}}" id="search-input"
-                           class="am-form-field am-radius" value="{{$title or $data['title']}}">
-                    <button class="am-btn am-btn-warning" type="submit">搜索</button>
+<header class="top">
+    <div class="am-container">
+        <ul class="nav">
+            <li>
+                <a href="">爱剧影院</a>
+            </li>
+            @foreach($data['category'] as $item)
+                <li @if(isset($cateName) && ($id == $item->id)) class="am-active" @endif>
+                    <a href="{{route('video.category', $item->id)}}" title="{{$item->name}}_{{config('site.title')}}">{{$item->name}}</a>
+                </li>
+            @endforeach
+            <li class="search">
+                <div class="search-box">
+                    <form action="{{route('video.search')}}" method="get" id="searchForm">
+                        <input name="title" type="text" placeholder="{{$title or $data['title']}}" id="search-input"
+                               class="am-form-field am-radius" value="{{$title or $data['title']}}">
+                        <button class="am-btn am-btn-warning" type="submit">搜索</button>
+                    </form>
                 </div>
-            </form>
-        </div>
+            </li>
+        </ul>
     </div>
-    {{--<div class="am-g">
-        <div class="am-u-sm-12">
-            <script src="http://wm.lrswl.com/page/s.php?s=250702&w=950&h=90"></script>
-        </div>
-    </div>--}}
+</header>
+<div style="height: 50px;width: 100%;"></div>
+<div class="am-container" id="ijuyingyuan">
     <div class="am-g main" id="pjax-container">
         @yield('body')
     </div>
-    <div class="am-panel-footer">
+    <footer>
         @include('video.copyright')
-    </div>
+    </footer>
 </div>
 <script src="{{asset('video')}}/js/jquery.min.js"></script>
 <script src="{{asset('m_video')}}/js/amazeui.min.js"></script>
 <script src="{{asset('video')}}/js/jquery.pjax.js"></script>
+
+<script src="https://cdn.bootcss.com/bxslider/4.2.12/jquery.bxslider.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $('.bxslider').bxSlider();
+    });
+</script>
+
 <script src="{{asset('video')}}/js/index.js"></script>
 @yield("footer_script")
 </body>

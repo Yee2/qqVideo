@@ -1,0 +1,226 @@
+body{
+  background-color: #2C3641;
+  color: #CCCCCC;
+}
+header.top{
+  position: fixed;
+  width: 100vw;
+  height: 50px;
+  z-index: 200;
+  background-color: rgba(34,34,34,0.95);
+  .nav{
+    padding: 0;
+    margin: 0;
+    color: #FFF;
+
+    list-style-type: none;
+    display: flex;
+    >li{
+      display: block;
+      >a{
+        color: #FFF;
+        display: block;
+        line-height: 48px;
+        height: 48px;
+        padding: 0 20px;
+        font-weight: 700;
+      }
+      >a:hover{
+        background-color: #01A99B;
+      }
+    }
+    >li.search{
+      flex-grow:1;
+      >div{
+        float: right;
+      }
+    }
+  }
+}
+#ijuyingyuan{
+  footer{
+    margin: 50px 0;
+    color: #AAA;
+  }
+}
+.search-box{
+  input[type=text]{
+    display: inline-block;
+    width: 200px;
+    background-color: transparent;
+    color: #EAEAEA;
+    border: 2px solid #415464;
+    box-shadow: none;
+    border-color:  transparent transparent #415464 transparent;
+    position: relative;
+    &:before{
+      content: "";
+      height: 4px;
+      width: 2px;
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      background-color: #415464;
+    }
+    &:focus{
+      box-shadow: none;
+      outline-offset: 0px !important;
+      outline: none !important;
+      //outline-style: none;
+    }
+  }
+}
+.This-is-link{
+  background-color: transparent;
+  color: rgba(0,0,0,0);
+  position: absolute;
+  display: block;
+  top:0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.bar_wrap{
+  width: 100%;
+  height: 54px;
+  line-height: 54px;
+  padding: 0 20px;
+  //background: rgb(184, 29, 30);
+  //background: linear-gradient(166deg, rgb(184, 29, 30) 14%, rgb(126, 29, 31) 70%);
+  background: -moz-linear-gradient(top,#ff3f3f,#a50000);
+  box-shadow: 0 2px 5px rgba(0,0,0,.2);
+  position: relative;
+  &:before{
+    position: absolute;
+    height: 0;
+    width: 0;
+    border-width: 10px;
+    top:100%;
+    left: 0;
+    border-style: solid;
+    border-color: #5d0f0f #5d0f0f transparent transparent;;
+    content: "";
+  }
+  &:after{
+    position: absolute;
+    height: 0;
+    width: 0;
+    border-width: 10px;
+    top:100%;
+    right: 0;
+    border-style: solid;
+    border-color: #5d0f0f transparent transparent #5d0f0f;
+    content: "";
+  }
+}
+.bar_rail{
+  height: 54px;
+  line-height: 54px;
+  color: #FFF;
+  font-size: 24px;
+  position: relative;
+  background: -moz-linear-gradient(top,#ff3f3f,#a50000);
+  span{
+    color: white;
+  }
+  >div:first-of-type{
+    width: 100%;
+    &:after{
+      content: "";
+      position: absolute;
+      top: 20px;
+      right: 100%;
+      z-index: -1;
+      width: 0;
+      height: 0;
+      border-width: 27px;
+      border-style: solid;
+      border-color: #ff1515 #ff1515 #920000 #ff1515;
+      border-left-color: transparent;
+    }
+    &:before{
+      content: "";
+      position: absolute;
+      top: 20px;
+      left: 100%;
+      z-index: -1;
+      width: 0;
+      height: 0;
+      border-width: 27px;
+      border-style: solid;
+      border-color: #ff1515 #ff1515 #920000 #ff1515;
+      border-right-color: transparent;
+    }
+  }
+  //&:after{
+  //  position: absolute;
+  //  height: 0px;
+  //  border: 15px solid transparent;
+  //  border-top-color: rgba(184, 29, 30,0.8);
+  //  border-right-color: rgba(184, 29, 30,0.8);
+  //  width: 0px;
+  //  left: -40px;
+  //  top:55px;
+  //  content: "";
+  //}
+}
+.movie-list{
+  background-color: white;
+  display: flex;
+  flex-wrap:wrap;
+  padding: 15px;
+  margin: 0 20px;
+  >div{
+    position: relative;
+    width: 230px;
+    height: 320px;
+    margin: 0;
+    overflow: hidden;
+    .cover{
+      position: relative;
+      width: 200px;
+      height: 300px;
+      margin: 0 auto;
+      background-image: url('/video/img/cover.png');
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      >img{
+        width: 100%;
+        height: 100%;
+      }
+    }
+    .name{
+      position: absolute;
+      top: 260px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200px;
+      background-color: rgba(0,0,0,0.4);
+      text-align: center;
+      color: #FFF;
+    }
+  }
+}
+
+.banner{
+  padding: 0 20px;
+  overflow: hidden;
+  >ul{
+    max-height: 262px;
+    >li{
+      img{
+        max-width: 100%;
+        max-height: 100%;
+      }
+    }
+  }
+  .bx-wrapper{
+    margin-bottom: 0;
+    border: none;
+    box-shadow: none;
+    .bxslider{
+      >li{
+        cursor: pointer;
+      }
+    }
+  }
+}
